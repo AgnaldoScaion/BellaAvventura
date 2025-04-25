@@ -13,28 +13,35 @@ body {
     min-height: 100vh;
 }
 
-.header {
-    background-color: #a8d5a0;
+  /* Cabeçalho com Grid */
+  header {
+    background-color: #A7D096;
+    padding: 20px;
+  }
+  
+  .top-bar {
     display: grid;
+    grid-template-columns: auto 1fr auto; /* Menu à esquerda, logo no centro, login à direita */
     align-items: center;
-    padding: 50px ;
-}
-
-.menu-icon {
-    justify-self: start;
+  }
+  
+  .menu-button,
+  .login-button {
+    background: none;
+    border: none;
     font-size: 24px;
-}
-
-.logo {
-    justify-self: center;
-    font-weight: bold;
-    font-size: 22px;
-}
-
-.user-icon {
-    justify-self: end;
-    font-size: 18px;
-}
+    cursor: pointer;
+  }
+  
+  .logo {
+    text-align: center;
+  }
+  
+  .logo img {
+    width: 120px; /* Ajuste proporcional do tamanho da logo */
+    height: auto;
+  }
+  
 
 .banner img {
     width: 100%;
@@ -86,43 +93,19 @@ body {
     gap: 10px;
 }
 
-.footer {
-    background-color: #a8d5a0;
-    display: grid;
-    gap: 10px;
-    padding: 20px;
+  /* Rodapé com Grid */
+  footer {
+    background-color: #A7D096;
+    color: white;
     text-align: center;
-    font-size: 14px;
-}
-
-.footer-top {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.footer-contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-
-.email-icon {
-    width: 18px;
-    height: 18px;
-}
-
-.footer-contact a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.footer-bottom {
-    font-size: 12px;
-}
-
-.footer-bottom a {
-    color: inherit;
-    text-decoration: none;
-}
-
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 40px;
+  }
+  
+  footer a {
+    color: white;
+    text-decoration: underline;
+    display: block;
+    margin-top: 5px;
+  }

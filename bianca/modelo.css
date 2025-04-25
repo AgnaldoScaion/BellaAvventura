@@ -1,0 +1,176 @@
+/* Reset e fonte base */
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background-color: #fefefe;
+    color: #2c2c2c;
+  }
+  
+  /* Cabeçalho com Grid */
+  header {
+    background-color: #A7D096;
+    padding: 20px;
+  }
+  
+  .top-bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Menu à esquerda, logo no centro, login à direita */
+    align-items: center;
+  }
+  
+  .menu-button,
+  .login-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .logo {
+    text-align: center;
+  }
+  
+  .logo img {
+    width: 120px; /* Ajuste proporcional do tamanho da logo */
+    height: auto;
+  }
+  
+  /* Grid principal do conteúdo */
+  .grid-container {
+    display: grid;
+    gap: 40px;
+    max-width: 66%; /* Ajustado para 2/3 da largura da tela */
+    margin: 50px auto; /* Centralizando e adicionando margem maior */
+    padding: 20px; /* Reduzindo o padding interno */
+    background-color: #fff; /* Fundo branco para destacar */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adicionando sombra */
+    position: relative;
+    display: flex; /* Usando flexbox para alinhar a pilastra e o conteúdo */
+  }
+  
+  /* Pilastra verde */
+  .pilastra-verde {
+    width: 55px; /* Espessura da pilastra */
+    background-color: #B1C6B1; /* Cor da pilastra */
+    border-radius: 8px; /* Bordas arredondadas na pilastra */
+    margin-right: 20px; /* Espaço entre a pilastra e o conteúdo */
+  }
+  
+  /* Conteúdo principal */
+  .conteudo {
+    flex: 1; /* O conteúdo ocupa o restante do espaço */
+  }
+  
+  /* Seção destino principal */
+  .destino {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    justify-items: center;
+    background-color: #B1C6B1;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .destino img {
+    width: 100%;
+    max-width: 500px; /* Limitando o tamanho da imagem */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .localiza {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .estrelas {
+    color: #5B8F45;
+    font-size: 20px;
+  }
+  
+  /* Seção sobre o destino */
+  .sobre {
+    display: grid;
+    gap: 10px;
+  }
+  
+  .sobre h2 {
+    color: #2e4e2e;
+  }
+  
+  /* Galeria com Grid */
+  .imagens-secundarias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+    margin-bottom: 40px; /* Espaço maior entre as fotos e os comentários */
+  }
+  
+  .imagens-secundarias img {
+    width: 100%;
+    max-width: 350px; /* Limitando o tamanho das imagens */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    place-self: center;
+    border: 15px solid #B1C6B1; /* Moldura verde */
+  }
+  
+  /* Seção de comentários */
+  .comentarios {
+    display: grid;
+    gap: 20px;
+    background-color: #CBDACF;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 40px; /* Garantindo espaço superior, caso necessário */
+  }
+  
+  .comentarios h2 span {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .comentario {
+    background: #fff;
+    border-left: 5px solid #B1C6B1;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  /* Feedback com botão centralizado */
+  .feedback {
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+    text-align: center;
+  }
+  
+  .feedback button {
+    background-color: #9fba9f;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Rodapé com Grid */
+  footer {
+    background-color: #A7D096;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 40px;
+  }
+  
+  footer a {
+    color: white;
+    text-decoration: underline;
+    display: block;
+    margin-top: 5px;
+  }
