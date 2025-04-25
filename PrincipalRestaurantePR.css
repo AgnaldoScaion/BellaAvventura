@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    color: #333;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #a8d5a0;
+    display: grid;
+    align-items: center;
+    padding: 50px ;
+}
+
+.menu-icon {
+    justify-self: start;
+    font-size: 24px;
+}
+
+.logo {
+    justify-self: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.user-icon {
+    justify-self: end;
+    font-size: 18px;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+}
+
+.content {
+    padding: 100px;
+    display: grid;
+    gap: 20px;
+}
+
+.content h1 {
+    text-align: center;
+    font-size: 28px;
+}
+
+.intro {
+    background-color: #f1f1f1;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: larger;
+}
+
+.restaurants-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.restaurant {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 15px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.restaurant img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.info {
+    display: grid;
+    gap: 10px;
+}
+
+.footer {
+    background-color: #a8d5a0;
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer-top {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.footer-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.email-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.footer-contact a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    font-size: 12px;
+}
+
+.footer-bottom a {
+    color: inherit;
+    text-decoration: none;
+}
+
