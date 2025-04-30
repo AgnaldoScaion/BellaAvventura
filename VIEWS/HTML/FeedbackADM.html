@@ -386,7 +386,7 @@
         </div>
       </div>
 
-    <div id="menuContainer"></div>
+    <div id="menuContainer1"></div>
 
     <div class="main-title">FEEDBACKS</div>
 
@@ -474,22 +474,22 @@
 
       
         // Carrega o menu externo
-        fetch('../HTML/MenuNaoLogado.html')
-          .then(res => res.text())
-          .then(html => {
-            document.getElementById('menuContainer').innerHTML = html;
-      
-            const menu = document.getElementById('menu-nao-logado');
-            const menuIcon = document.querySelector('.menu-icon');
-      
-            if (menu && menuIcon) {
-              menuIcon.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                menu.classList.toggle('visible');
-              });
-            }
-          })
-          .catch(err => console.error('Erro ao carregar menu:', err));
+        fetch('../HTML/MenuAdm.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+    
+          const menu = document.getElementById('menu-adm');
+          const menuIcon = document.querySelector('.menu-icon');
+    
+          if (menu && menuIcon) {
+            menuIcon.addEventListener('click', () => {
+              menu.classList.toggle('hidden');
+              menu.classList.toggle('visible');
+            });
+          }
+        })
+        .catch(err => console.error('Erro ao carregar menu adm:', err));
       
       
       // Abrir menu
