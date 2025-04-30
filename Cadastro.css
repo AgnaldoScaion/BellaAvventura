@@ -1,0 +1,16 @@
+.body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quadrado {
+    margin-top: 100px;
+    height: 400px;
+    width: 500px;
+    background-color: #cbdacf;
+    border-radius: 5%;
+    text-align: center;
+
+}
