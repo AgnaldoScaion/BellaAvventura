@@ -1,196 +1,620 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home - Bella Avventura</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
-      color: #000;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Aventura - Planeje sua viagem perfeita</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GaramondBold';
+            src: local('Garamond'), serif;
+            font-weight: bold;
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            background-color: #f3f7f3;
+        }
+        
+        .wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #A7D096;
+            position: relative;
+            height: 86px;
+          }
+          
+          .header-img img {
+            height: 126px;
+            transition: transform 0.5s ease;
+          }
+          
+          .header-img {
+            position:absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+          }
 
-    /* Header */
-    .header {
-      background-color: #A7D096;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-    }
+        /* Header Styles */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background-color: #A7D096;
+            position: relative;
+          }
+        
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .user-header {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Header Logo */
 
-    .menu-icon, .user-icon {
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    .logo-container {
-      position: absolute;
-      top: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-    }
-
-    .logo-container img {
-      height: 110px;
-    }
-
-    /* Conteúdo principal */
-    .main {
-      padding: 60px 20px 40px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .section-box {
-      background-color: #f5f5f5;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    }
-
-    .main-title {
-      font-family: 'Garamond', serif;
-      font-weight: bold;
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .section-box p {
-      text-align: justify;
-      line-height: 1.6;
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
-
-    /* Bonificação */
-    .bonus-section {
-      background-color: #A7D096;
-      border-radius: 12px;
-      padding: 30px 20px;
-      margin-top: 40px;
-    }
-
-    .bonus-box {
-      background-color: #f1f7f3;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 15px;
-    }
-
-    .bonus-section h2 {
-      text-align: center;
-      font-family: 'Garamond', serif;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .bonus-section em {
-      display: block;
-      text-align: center;
-      margin: 10px 0;
-      font-style: italic;
-    }
-
-    /* Footer */
-    .footer {
-      background-color: #A7D096;
-      color: #000;
-      font-size: 14px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .footer-top img {
-      width: 50px;
-      vertical-align: middle;
-      margin-right: 8px;
-    }
-
-    .footer-bottom {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      padding-top: 10px;
-      border-top: 1px solid #ccc;
-      margin-top: 15px;
-    }
-
-    .footer a {
-      color: black;
-      text-decoration: none;
-    }
-
-    @media (max-width: 600px) {
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
+    .menu-box {
+        position: absolute;
+        top: 50px;
+        left: 20px;
+        background-color: #d6e3d6;
+        border-radius: 8px;
+        padding: 20px;
+        width: 260px;
+        display: flex;
+        gap: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-family: 'Garamond', serif;
+        z-index: 10;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+    
+      .menu-lateral {
+        background-color: #88b68b;
+        width: 24px;
+        border-radius: 8px;
+      }
+    
+      .menu-conteudo {
+        flex: 1;
+      }
+    
+      .menu-conteudo h2 {
+        font-size: 20px;
+        margin: 0;
+        border-bottom: 1px solid #999;
+        padding-bottom: 10px;
+      }
+    
+      .menu-conteudo ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+      }
+    
+      .menu-conteudo li {
+        margin: 15px 0;
+      }
+    
+      .menu-conteudo a {
+        text-decoration: none;
+        color: black;
+        transition: color 0.2s;
+      }
+    
+      .menu-conteudo a:hover {
+        color: #3a6545;
+      }
+    
+      /* Esconde o menu inicialmente */
+      .hidden {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+    
+      .visible {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
       }
 
-      .logo-container img {
-        height: 90px;
-      }
-    }
-  </style>
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+            animation: fadeIn 0.7s ease;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: slideUp 0.8s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            animation: slideUp 1s ease;
+        }
+        
+        .btn {
+            background-color: #A7D096;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: bold;
+            animation: fadeIn 1.5s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: #5a8f3d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .features h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease;
+        }
+        
+        .features-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 300px;
+            border: 3px solid #D8E6D9;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .feature-card:nth-child(1) { animation-delay: 0.4s; }
+        .feature-card:nth-child(2) { animation-delay: 0.6s; }
+        .feature-card:nth-child(3) { animation-delay: 0.8s; }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .feature-card h3 {
+            color: #5a8f3d;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            font-weight: 400;
+        }
+
+        /* Bonus System Section */
+        .bonus-system {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: white;
+            margin: 2rem 0;
+            border-top: 3px solid #D8E6D9;
+            border-bottom: 3px solid #D8E6D9;
+            animation: fadeIn 1s ease;
+        }
+        
+        .bonus-system h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .formula {
+            background-color: #A7D096;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 2rem auto;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(167, 208, 150, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .formula:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(167, 208, 150, 0.4);
+        }
+        
+        .how-it-works {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 1rem;
+        }
+        
+        .how-it-works ul {
+            padding-left: 1.5rem;
+        }
+        
+        .how-it-works li {
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+        
+        .example {
+            background-color: #f3f7f3;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid #D8E6D9;
+            transition: all 0.3s ease;
+        }
+        
+        .example:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .example p {
+            font-weight: 400;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #A7D096;
+            padding: 20px;
+            color: #000;
+            font-size: 14px;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+        
+        .footer-top {
+            margin-bottom: 15px;
+            font-size: 33%;
+        }
+        
+        .footer-top img {
+            width: 15%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        
+        .footer-top:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .footer-left,
+        .footer-center,
+        .footer-right {
+            flex: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-left:hover, 
+        .footer-right:hover {
+            transform: translateY(-3px);
+        }
+        
+        .footer-left { text-align: left; }
+        .footer-right { text-align: right; }
+        
+        .footer-bottom a {
+            text-decoration: underline;
+            color: black;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-bottom a:hover {
+            color: #5a8f3d;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 600px) {
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        
+            .footer-left,
+            .footer-center,
+            .footer-right {
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .header-img img {
+                height: 100px;
+                top: -30px;
+            }
+            
+            .features-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .feature-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .menu-container {
+                width: 250px;
+            }
+            
+            .menu-items a {
+                font-size: 16px;
+            }
+        }
+        
+    </style>
 </head>
 <body>
+    <div class="wrapper">
 
-  <!-- Header -->
-  <header class="header">
-    <div class="menu-icon">☰</div>
-    <div class="user-icon">👤 Blanco</div>
-    <div class="logo-container">
-      <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo Bella Avventura">
-    </div>
-  </header>
+        <!-- Top Header -->
+        <div class="top-header">
+          <div class="menu-icon">☰</div>
+          <div class="user-header">
+            <span>👤</span> Usuário
+          </div>
+        </div>
+    
+           <!-- Logo -->
+           <div class="header">
+            <div class="header-img">
+              <a href="Entrada.html">
+              <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating" />
+              </a>
+            </div>
+          </div>
 
-  <!-- Conteúdo principal -->
-  <main class="main">
-    <div class="section-box">
-      <h1 class="main-title">BELLA AVENTURA</h1>
-      <p>Bem-vindo ao nosso site, uma plataforma pensada para tornar sua viagem mais prática e personalizada. Nosso objetivo é facilitar o planejamento da sua estadia, oferecendo sugestões de restaurantes e pontos turísticos diretamente relacionados à sua localização...</p>
-      <p>Nosso sistema é simples e eficaz: conforme você avalia os restaurantes e pontos turísticos que visitou, acumula pontos que, posteriormente, podem ser usados para obter descontos em hotéis, viagens e outros serviços turísticos...</p>
-      <p>Além disso, o site oferece uma seção interativa de feedback, onde você pode compartilhar sua experiência de viagem...</p>
-      <p>Com o nosso sistema de geolocalização e avaliações de usuários, você está com as melhores opções ao seu alcance...</p>
-    </div>
 
-    <div class="bonus-section">
-      <h2>SISTEMA DE BONIFICAÇÃO</h2>
-      <em>Fórmula: <strong>(A×5)+(Q×10)+(E×3)</strong></em>
-      <div class="bonus-box">
-        <p><strong>Como funciona?</strong></p>
-        <p>
-          A fórmula de bonificação é baseada em três fatores: o número de avaliações (A), a qualidade das avaliações (Q) e o engajamento com a comunidade (E).
-          Cada avaliação feita gera 5 pontos (A), avaliações de qualidade de 1 a 5 geram 10 pontos por nível (Q), e o engajamento, classificado de 1 a 5, gera 3 pontos por nível (E).
-        </p>
-        <p>
-          Por exemplo, um usuário com 5 avaliações de qualidade 4 e engajamento 3 teria 74 pontos, que podem ser convertidos em descontos para futuras viagens.
-        </p>
-      </div>
-    </div>
-  </main>
+        <div id="menuContainer"></div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-top">
-      <a href="mailto:bella.avventura@gmail.com">
-        <img src="https://img.icons8.com/ios-filled/50/000000/email-open.png" alt="Email">
-        bella.avventura@gmail.com
-      </a>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Planeje sua viagem perfeita</h1>
+            <p>Descubra os melhores restaurantes e pontos turísticos baseados na sua localização, avalie suas experiências e ganhe descontos para suas próximas aventuras!</p>
+            <a href="#" class="btn">Comece agora</a>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Como o Bella Aventura funciona</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <h3>Descubra locais próximos</h3>
+                    <p>Assim que você se hospeda em um hotel, nosso sistema automaticamente mostra os três melhores restaurantes e pontos turísticos próximos a você.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Avalie e ganhe pontos</h3>
+                    <p>Avalie os locais que visitou e acumule pontos que podem ser convertidos em descontos para hotéis, viagens e outros serviços turísticos.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Compartilhe experiências</h3>
+                    <p>Contribua com a comunidade de viajantes compartilhando suas avaliações e ajudando outros usuários a planejarem suas viagens.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bonus System Section -->
+        <section class="bonus-system">
+            <h2>Sistema de Bonificação</h2>
+            <div class="formula">
+                Fórmula: (A × 5) + (Q × 10) + (E × 3)
+            </div>
+            
+            <div class="how-it-works">
+                <p>A fórmula de bonificação é baseada em três fatores:</p>
+                <ul>
+                    <li><strong>A (Avaliações):</strong> Cada avaliação feita gera 5 pontos</li>
+                    <li><strong>Q (Qualidade):</strong> Avaliações de qualidade de 1 a 5 geram 10 pontos por nível</li>
+                    <li><strong>E (Engajamento):</strong> O engajamento, classificado de 1 a 5, gera 3 pontos por nível</li>
+                </ul>
+                
+                <div class="example">
+                    <p><strong>Exemplo:</strong> Um usuário com 5 avaliações de qualidade 4 e engajamento 3 teria:</p>
+                    <p>(5 × 5) + (4 × 10) + (3 × 3) = 25 + 40 + 9 = 74 pontos</p>
+                    <p>Estes pontos podem ser convertidos em descontos para futuras viagens.</p>
+                </div>
+            </div>
+        </section>
     </div>
-    <div class="footer-bottom">
-      <div>© 2025 Bella Avventura</div>
-      <div><a href="#">Termos e condições</a></div>
-    </div>
-  </footer>
+    
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-top">
+            <a href="https://www.bellaavventura.com.br/">
+                <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+            </a>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-left">
+                <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+            </div>
+            <div class="footer-center">© 2025 Bella Avventura</div>
+            <div class="footer-right">
+                <a href="TermosCondicoes.html">Termos e condições</a>
+            </div>
+        </div>
+    </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const menuIcon = document.querySelector('.menu-icon');
+          const closeMenu = document.getElementById('closeMenu');
+          const menuOverlay = document.getElementById('menuOverlay');
+          const menuContainer = document.querySelector('.menu-container');
+    
+          
+            // Carrega o menu externo
+            fetch('../HTML/MenuNaoLogado.html')
+              .then(res => res.text())
+              .then(html => {
+                document.getElementById('menuContainer').innerHTML = html;
+          
+                const menu = document.getElementById('menu-nao-logado');
+                const menuIcon = document.querySelector('.menu-icon');
+          
+                if (menu && menuIcon) {
+                  menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                  });
+                }
+              })
+              .catch(err => console.error('Erro ao carregar menu:', err));
+          
+          
+          // Abrir menu
+          menuIcon.addEventListener('click', function() {
+            menuOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Impede scroll quando menu está aberto
+          });
+          
+          // Fechar menu
+          function closeMenuFunction() {
+            menuContainer.style.animation = 'slideIn 0.4s ease reverse forwards';
+            setTimeout(() => {
+              menuOverlay.style.display = 'none';
+              document.body.style.overflow = 'auto';
+            }, 300);
+          }
+          
+          closeMenu.addEventListener('click', closeMenuFunction);
+          
+          // Fechar ao clicar fora
+          menuOverlay.addEventListener('click', function(e) {
+            if (e.target === menuOverlay) {
+              closeMenuFunction();
+            }
+          });
+          
+          // Adiciona efeito flutuante aleatório aos cards
+          const cards = document.querySelectorAll('.feedback-card');
+          cards.forEach((card, index) => {
+            // Tempo de animação diferente para cada card
+            card.style.animationDuration = `${0.5 + (index * 0.1)}s`;
+          });
+          
+          // Efeito flutuante no logo
+          const logo = document.querySelector('.header-img img');
+          setInterval(() => {
+            logo.style.transform = `translateX(-50%) translateY(${Math.sin(Date.now() / 800) * 5}px)`;
+          }, 50);
+        });
+      </script>
 </body>
 </html>

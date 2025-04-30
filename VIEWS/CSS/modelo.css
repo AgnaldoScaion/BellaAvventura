@@ -24,6 +24,7 @@ body {
     border: none;
     font-size: 24px;
     cursor: pointer;
+    margin-top: -45px;
   }
   
   .logo {
@@ -174,3 +175,13 @@ body {
     display: block;
     margin-top: 5px;
   }
+
+  /* Localização com ícone e linha */
+.info-localizacao {
+  font-size: 14px;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
