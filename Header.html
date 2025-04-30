@@ -6,69 +6,88 @@
     <title>Base para o Header</title>
 </head>
 <style>
-    @font-face {
-        font-family: 'GaramondBold';
-        src: local('Garamond'), serif;
-        font-weight: bold;
-      }
-  
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        font-family: 'Inter', sans-serif;
-        font-weight: 700;
-        display: flex;
-        flex-direction: column;
-        background-color: #f3f7f3;
-      }
-  
-      .wrapper {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
+  @font-face {
+    font-family: 'GaramondBold';
+    src: local('Garamond'), serif;
+    font-weight: bold;
+}
 
-    .top-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 30px;
-        background-color: #A7D096;
-        position: relative;
-        
-      }
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f7f3;
+}
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    background-color: #A7D096;
+    position: relative;
+    height: 86px;
+  }
   
-      .menu-icon {
-        font-size: 24px;
-        cursor: pointer;
-      }
+  .header-img img {
+    height: 126px;
+    transition: transform 0.5s ease;
+  }
   
-      .user-header {
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-  
-      /* Header Logo */
-      .header {
-        background-color: #A7D096;
-        position: relative;
-        height: 86px; /* Match the height of the image */
-      }
-      .header-img img {
-        height: 126px;
-      }
-      
-      .header-img {
-        position:absolute;
-        top: -50px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1;
-      }
-  
+  .header-img {
+    position:absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+/* Header Styles */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #A7D096;
+    position: relative;
+  }
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon:hover {
+    transform: scale(1.1);
+}
+
+.user-header {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+  @font-face {
+    font-family: 'GaramondBold';
+    src: local('Garamond'), serif;
+    font-weight: bold;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f7f3;
+  }
 </style>
 <body>
     <div class="wrapper">
