@@ -7,8 +7,8 @@
   <style>
     .menu-box {
         position: absolute;
-        top: 110px;
-        left: 30px;
+        top: 50px;
+        left: 20px;
         background-color: #d6e3d6;
         border-radius: 8px;
         padding: 20px;
@@ -86,6 +86,25 @@
       </ul>
     </div>
   </div>
-
+<!-- Script para carregar o menu nas outras guias
+  <script>
+    // Carrega o menu externo
+    fetch('../HTML/MenuNaoLogado.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menuContainer').innerHTML = html;
+  
+        const menu = document.getElementById('menu-nao-logado');
+        const menuIcon = document.querySelector('.menu-icon');
+  
+        if (menu && menuIcon) {
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
+          });
+        }
+      })
+      .catch(err => console.error('Erro ao carregar menu:', err));
+  </script> -->
 </body>
 </html>
