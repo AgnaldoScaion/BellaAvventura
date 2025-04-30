@@ -208,9 +208,14 @@
     <!-- Logo -->
     <div class="header">
       <div class="header-img">
+        <a href="Entrada.html">
         <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+        </a>
       </div>
     </div>
+
+    
+    <div id="menuContainer"></div>
 
     <div class="main-title">FEEDBACKS</div>
 
@@ -288,6 +293,25 @@
       </div>
     </div>
   </footer>
-
+  <script>
+    // Carrega o menu externo
+    fetch('../HTML/MenuNaoLogado.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menuContainer').innerHTML = html;
+  
+        const menu = document.getElementById('menu-nao-logado');
+        const menuIcon = document.querySelector('.menu-icon');
+  
+        if (menu && menuIcon) {
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
+          });
+        }
+      })
+      .catch(err => console.error('Erro ao carregar menu:', err));
+  </script>
+  
 </body>
 </html>
