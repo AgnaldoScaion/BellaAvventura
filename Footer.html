@@ -170,6 +170,27 @@
       </div>
     </div>
   </footer>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuIcon = document.querySelector('.menu-icon');
+    const closeMenu = document.getElementById('closeMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuContainer = document.querySelector('.menu-container');
+    
+    // Adiciona efeito flutuante aleatório aos cards
+    const cards = document.querySelectorAll('.feedback-card');
+    cards.forEach((card, index) => {
+      // Tempo de animação diferente para cada card
+      card.style.animationDuration = `${0.5 + (index * 0.1)}s`;
+    });
+    
+    // Efeito flutuante no logo
+    const logo = document.querySelector('.header-img img');
+    setInterval(() => {
+      logo.style.transform = `translateX(-50%) translateY(${Math.sin(Date.now() / 800) * 5}px)`;
+    }, 50);
+  });
+  
+</script>
 </body>
 </html>
