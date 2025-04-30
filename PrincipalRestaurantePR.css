@@ -13,7 +13,6 @@ body {
     min-height: 100vh;
 }
 
-  /* Cabeçalho com Grid */
   header {
     background-color: #A7D096;
     padding: 20px;
@@ -38,25 +37,31 @@ body {
   }
   
   .logo img {
-    width: 120px; /* Ajuste proporcional do tamanho da logo */
+    width: 120px; 
     height: auto;
   }
   
+  .banner {
+    display: flex;
+    justify-content: center;
+    padding:20%; /* igual ao .content */
+    margin-top: 20px;
+}
 
 .banner img {
     width: 100%;
     height: auto;
+    border-radius: 15px; /* opcional para combinar com os cards */
 }
 
-.content {
-    padding: 100px;
-    display: grid;
-    gap: 20px;
+.apresetacao{
+  text-align: center;
+  font-size: 28px;
 }
-
-.content h1 {
-    text-align: center;
-    font-size: 28px;
+.conteudo-geral {
+  padding: 150px;
+  display: grid;
+  gap: 20px;
 }
 
 .intro {
