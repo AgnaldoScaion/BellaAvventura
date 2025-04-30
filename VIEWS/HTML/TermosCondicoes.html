@@ -346,6 +346,8 @@
             </a>
         </div>
     </div>
+
+    <div id="menuContainer1"></div>
         
         <!-- Main Content -->
         <div class="terms-container">
@@ -466,7 +468,7 @@
               fetch('../HTML/MenuNaoLogado.html')
                 .then(res => res.text())
                 .then(html => {
-                  document.getElementById('menuContainer').innerHTML = html;
+                  document.getElementById('menuContainer1').innerHTML = html;
             
                   const menu = document.getElementById('menu-nao-logado');
                   const menuIcon = document.querySelector('.menu-icon');
