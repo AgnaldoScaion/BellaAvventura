@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feedback ADM - Bella Avventura</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'GaramondBold';
@@ -37,12 +37,16 @@
       padding: 10px 30px;
       background-color: #A7D096;
       position: relative;
-      
     }
 
     .menu-icon {
       font-size: 24px;
       cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-icon:hover {
+      transform: scale(1.1);
     }
 
     .user-header {
@@ -56,10 +60,12 @@
     .header {
       background-color: #A7D096;
       position: relative;
-      height: 86px; /* Match the height of the image */
+      height: 86px;
     }
+    
     .header-img img {
       height: 126px;
+      transition: transform 0.5s ease;
     }
     
     .header-img {
@@ -70,13 +76,13 @@
       z-index: 1;
     }
 
-
     /* Main Title */
     .main-title {
       text-align: center;
       font-size: 30px;
       font-weight: bold;
       margin: 30px 0 20px;
+      animation: fadeIn 1s ease;
     }
 
     /* Feedback List */
@@ -98,6 +104,19 @@
       border-radius: 12px;
       padding: 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      animation: slideUp 0.5s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .feedback-card:nth-child(1) { animation-delay: 0.1s; }
+    .feedback-card:nth-child(2) { animation-delay: 0.2s; }
+    .feedback-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .feedback-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
     .feedback-content {
@@ -125,11 +144,12 @@
       border-radius: 16px;
       border: none;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .delete-btn:hover {
       background-color: #cbe1d2;
+      transform: rotate(15deg);
     }
 
     .delete-btn img {
@@ -144,6 +164,7 @@
       color: #000;
       font-size: 14px;
       text-align: center;
+      animation: fadeIn 1s ease;
     }
 
     .footer-top {
@@ -154,6 +175,11 @@
     .footer-top img {
       width: 15%;
       height: auto;
+      transition: transform 0.5s ease;
+    }
+
+    .footer-top:hover img {
+      transform: rotate(5deg) scale(1.05);
     }
 
     .footer-bottom {
@@ -169,6 +195,12 @@
     .footer-right {
       flex: 1;
       text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-left:hover, 
+    .footer-right:hover {
+      transform: translateY(-3px);
     }
 
     .footer-left { text-align: left; }
@@ -177,6 +209,136 @@
     .footer-bottom a {
       text-decoration: underline;
       color: black;
+      transition: color 0.3s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: #5a8f3d;
+    }
+
+    /* Menu Flutuante Animado */
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .menu-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 100%;
+      background-color: #fff;
+      padding: 25px;
+      box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+      transform: translateX(-100%);
+      animation: slideIn 0.4s ease forwards;
+      will-change: transform;
+    }
+    
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #D8E6D9;
+    }
+    
+    .close-menu {
+      font-size: 28px;
+      cursor: pointer;
+      color: #5a8f3d;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    
+    .close-menu:hover {
+      transform: rotate(90deg);
+      color: #3a6f1d;
+    }
+    
+    .menu-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .menu-items li {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .menu-items a {
+      color: #333;
+      text-decoration: none;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      display: block;
+      padding: 8px 15px;
+      border-radius: 8px;
+    }
+    
+    .menu-items a:hover {
+      color: #fff;
+      background-color: #A7D096;
+      transform: translateX(10px);
+      box-shadow: 0 5px 15px rgba(167, 208, 150, 0.3);
+    }
+    
+    .menu-items a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 0;
+      background-color: #5a8f3d;
+      border-radius: 0 5px 5px 0;
+      transition: height 0.3s ease;
+    }
+    
+    .menu-items a:hover::before {
+      height: 70%;
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
     }
 
     @media (max-width: 600px) {
@@ -190,10 +352,20 @@
       .footer-right {
         text-align: center;
       }
+      
+      .menu-container {
+        width: 250px;
+      }
+      
+      .menu-items a {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
+
+
 
   <div class="wrapper">
 
@@ -205,16 +377,15 @@
       </div>
     </div>
 
-    <!-- Logo -->
-    <div class="header">
-      <div class="header-img">
-        <a href="Entrada.html">
-        <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
-        </a>
+       <!-- Logo -->
+       <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating" />
+          </a>
+        </div>
       </div>
-    </div>
 
-    
     <div id="menuContainer"></div>
 
     <div class="main-title">FEEDBACKS</div>
@@ -293,25 +464,71 @@
       </div>
     </div>
   </footer>
+
   <script>
-    // Carrega o menu externo
-    fetch('../HTML/MenuNaoLogado.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('menuContainer').innerHTML = html;
-  
-        const menu = document.getElementById('menu-nao-logado');
-        const menuIcon = document.querySelector('.menu-icon');
-  
-        if (menu && menuIcon) {
-          menuIcon.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('visible');
-          });
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuIcon = document.querySelector('.menu-icon');
+      const closeMenu = document.getElementById('closeMenu');
+      const menuOverlay = document.getElementById('menuOverlay');
+      const menuContainer = document.querySelector('.menu-container');
+
+      
+        // Carrega o menu externo
+        fetch('../HTML/MenuNaoLogado.html')
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById('menuContainer').innerHTML = html;
+      
+            const menu = document.getElementById('menu-nao-logado');
+            const menuIcon = document.querySelector('.menu-icon');
+      
+            if (menu && menuIcon) {
+              menuIcon.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('visible');
+              });
+            }
+          })
+          .catch(err => console.error('Erro ao carregar menu:', err));
+      
+      
+      // Abrir menu
+      menuIcon.addEventListener('click', function() {
+        menuOverlay.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Impede scroll quando menu está aberto
+      });
+      
+      // Fechar menu
+      function closeMenuFunction() {
+        menuContainer.style.animation = 'slideIn 0.4s ease reverse forwards';
+        setTimeout(() => {
+          menuOverlay.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }, 300);
+      }
+      
+      closeMenu.addEventListener('click', closeMenuFunction);
+      
+      // Fechar ao clicar fora
+      menuOverlay.addEventListener('click', function(e) {
+        if (e.target === menuOverlay) {
+          closeMenuFunction();
         }
-      })
-      .catch(err => console.error('Erro ao carregar menu:', err));
+      });
+      
+      // Adiciona efeito flutuante aleatório aos cards
+      const cards = document.querySelectorAll('.feedback-card');
+      cards.forEach((card, index) => {
+        // Tempo de animação diferente para cada card
+        card.style.animationDuration = `${0.5 + (index * 0.1)}s`;
+      });
+      
+      // Efeito flutuante no logo
+      const logo = document.querySelector('.header-img img');
+      setInterval(() => {
+        logo.style.transform = `translateX(-50%) translateY(${Math.sin(Date.now() / 800) * 5}px)`;
+      }, 50);
+    });
   </script>
-  
 </body>
 </html>

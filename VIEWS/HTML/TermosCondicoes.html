@@ -29,19 +29,25 @@
             flex-direction: column;
         }
 
-        /* Header Styles */
+        /* Header Styles com animações */
         .top-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 30px;
+            padding: 15px 30px;
             background-color: #A7D096;
             position: relative;
+            
         }
         
         .menu-icon {
             font-size: 24px;
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-icon:hover {
+            transform: scale(1.2);
         }
         
         .user-header {
@@ -49,32 +55,40 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            transition: transform 0.3s ease;
         }
         
-        /* Header Logo */
+        .user-header:hover {
+            transform: translateX(5px);
+        }
+
+        /* Header Logo com animação */
         .header {
             background-color: #A7D096;
             position: relative;
             height: 86px;
-        }
-        
-        .header-img img {
+          }
+          
+          .header-img img {
             height: 126px;
-        }
-        
-        .header-img {
-            position: absolute;
+            transition: transform 0.5s ease;
+          }
+          
+          .header-img {
+            position:absolute;
             top: -50px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1;
-        }
+          }
+      
 
-        /* Main Content */
+        /* Main Content com animações */
         .terms-container {
             max-width: 1000px;
             margin: 4rem auto 2rem;
             padding: 0 2rem;
+            animation: fadeIn 0.8s ease;
         }
         
         .terms-header {
@@ -86,12 +100,14 @@
             color: #5a8f3d;
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            animation: slideInUp 0.8s ease;
         }
         
         .terms-header .update-date {
             color: #666;
             font-style: italic;
             margin-bottom: 1rem;
+            animation: fadeIn 1.2s ease;
         }
         
         .terms-content {
@@ -99,12 +115,35 @@
             padding: 2rem;
             border-radius: 12px;
             border: 3px solid #D8E6D9;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .terms-content:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
         }
         
         .terms-section {
             margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
         }
+        
+        /* Animação sequencial para as seções */
+        .terms-section:nth-child(1) { animation-delay: 0.2s; }
+        .terms-section:nth-child(2) { animation-delay: 0.4s; }
+        .terms-section:nth-child(3) { animation-delay: 0.6s; }
+        .terms-section:nth-child(4) { animation-delay: 0.8s; }
+        .terms-section:nth-child(5) { animation-delay: 1.0s; }
+        .terms-section:nth-child(6) { animation-delay: 1.2s; }
+        .terms-section:nth-child(7) { animation-delay: 1.4s; }
+        .terms-section:nth-child(8) { animation-delay: 1.6s; }
+        .terms-section:nth-child(9) { animation-delay: 1.8s; }
+        .terms-section:nth-child(10) { animation-delay: 2.0s; }
+        .terms-section:nth-child(11) { animation-delay: 2.2s; }
+        .terms-section:nth-child(12) { animation-delay: 2.4s; }
+        .terms-section:nth-child(13) { animation-delay: 2.6s; }
         
         .terms-section h2 {
             color: #5a8f3d;
@@ -112,6 +151,12 @@
             margin-bottom: 1rem;
             border-bottom: 2px solid #D8E6D9;
             padding-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .terms-section h2:hover {
+            color: #3a6f1d;
+            border-bottom-color: #3a6f1d;
         }
         
         .terms-section p, .terms-section ul {
@@ -124,16 +169,39 @@
         }
         
         .terms-section li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding-left: 10px;
+        }
+        
+        .terms-section li:hover {
+            transform: translateX(5px);
+        }
+        
+        .terms-section li::before {
+            content: "•";
+            color: #5a8f3d;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            transition: all 0.3s ease;
+        }
+        
+        .terms-section li:hover::before {
+            color: #3a6f1d;
+            transform: scale(1.5);
         }
 
-        /* Footer Styles */
+        /* Footer com animações */
         .footer {
             background-color: #A7D096;
             padding: 20px;
             color: #000;
             font-size: 14px;
             text-align: center;
+            animation: fadeInUp 0.8s ease;
         }
         
         .footer-top {
@@ -144,6 +212,11 @@
         .footer-top img {
             width: 15%;
             height: auto;
+            transition: all 0.5s ease;
+        }
+        
+        .footer-top:hover img {
+            transform: rotate(5deg) scale(1.1);
         }
         
         .footer-bottom {
@@ -159,6 +232,12 @@
         .footer-right {
             flex: 1;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-left:hover, 
+        .footer-right:hover {
+            transform: translateY(-3px);
         }
         
         .footer-left { text-align: left; }
@@ -167,8 +246,58 @@
         .footer-bottom a {
             text-decoration: underline;
             color: black;
+            transition: all 0.3s ease;
         }
         
+        .footer-bottom a:hover {
+            color: #3a6f1d;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+            100% { transform: translateX(-50%) translateY(0px); }
+        }
+
         @media (max-width: 600px) {
             .footer-bottom {
                 flex-direction: column;
@@ -191,7 +320,12 @@
             
             .header-img img {
                 height: 100px;
-                top: -30px;
+            }
+            
+            /* Ajuste nas animações para mobile */
+            .terms-section {
+                animation-delay: 0s !important;
+                animation-duration: 0.5s;
             }
         }
     </style>
@@ -209,11 +343,11 @@
     <!-- Logo -->
     <div class="header">
         <div class="header-img">
-          <a href="Entrada.html">
-          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
-          </a>
+            <a href="Entrada.html">
+                <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+            </a>
         </div>
-      </div>
+    </div>
         
         <!-- Main Content -->
         <div class="terms-container">
@@ -226,7 +360,6 @@
                 <div class="terms-section">
                     <p>Bem-vindo ao Bella Avventura! Ao acessar e utilizar nosso site, você concorda com os seguintes Termos e Condições. Pedimos que leia atentamente todas as cláusulas. Caso não concorde com algum ponto, recomendamos que não utilize nossos serviços.</p>
                 </div>
-                
                 <div class="terms-section">
                     <h2>1. Aceitação dos Termos</h2>
                     <p>Ao acessar ou utilizar este site, você concorda em cumprir e se submeter aos Termos e Condições descritos abaixo, incluindo a nossa Política de Privacidade. Se você não concordar com esses termos, deve interromper o uso do site imediatamente.</p>
@@ -323,5 +456,72 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const closeMenu = document.getElementById('closeMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuContainer = document.querySelector('.menu-container');
+      
+            
+              // Carrega o menu externo
+              fetch('../HTML/MenuNaoLogado.html')
+                .then(res => res.text())
+                .then(html => {
+                  document.getElementById('menuContainer').innerHTML = html;
+            
+                  const menu = document.getElementById('menu-nao-logado');
+                  const menuIcon = document.querySelector('.menu-icon');
+            
+                  if (menu && menuIcon) {
+                    menuIcon.addEventListener('click', () => {
+                      menu.classList.toggle('hidden');
+                      menu.classList.toggle('visible');
+                    });
+                  }
+                })
+                .catch(err => console.error('Erro ao carregar menu:', err));
+            
+            
+            // Abrir menu
+            menuIcon.addEventListener('click', function() {
+              menuOverlay.style.display = 'block';
+              document.body.style.overflow = 'hidden'; // Impede scroll quando menu está aberto
+            });
+            
+            // Fechar menu
+            function closeMenuFunction() {
+              menuContainer.style.animation = 'slideIn 0.4s ease reverse forwards';
+              setTimeout(() => {
+                menuOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+              }, 300);
+            }
+            
+            closeMenu.addEventListener('click', closeMenuFunction);
+            
+            // Fechar ao clicar fora
+            menuOverlay.addEventListener('click', function(e) {
+              if (e.target === menuOverlay) {
+                closeMenuFunction();
+              }
+            });
+            
+            // Dispara animações ao carregar
+            animateOnScroll();
+            
+            // Dispara animações ao rolar
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Efeito flutuante contínuo no logo
+            const logo = document.querySelector('.header-img img');
+            function floatLogo() {
+                const floatValue = Math.sin(Date.now() / 800) * 8;
+                logo.style.transform = `translateX(-50%) translateY(${floatValue}px)`;
+                requestAnimationFrame(floatLogo);
+            }
+            floatLogo();
+        });
+    </script>
 </body>
 </html>

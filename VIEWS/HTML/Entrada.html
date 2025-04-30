@@ -28,6 +28,24 @@
             display: flex;
             flex-direction: column;
         }
+        .header {
+            background-color: #A7D096;
+            position: relative;
+            height: 86px;
+          }
+          
+          .header-img img {
+            height: 126px;
+            transition: transform 0.5s ease;
+          }
+          
+          .header-img {
+            position:absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+          }
 
         /* Header Styles */
         .top-header {
@@ -37,11 +55,16 @@
             padding: 10px 30px;
             background-color: #A7D096;
             position: relative;
-        }
+          }
         
         .menu-icon {
             font-size: 24px;
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-icon:hover {
+            transform: scale(1.1);
         }
         
         .user-header {
@@ -52,23 +75,72 @@
         }
         
         /* Header Logo */
-        .header {
-            background-color: #A7D096;
-            position: relative;
-            height: 86px;
-        }
-        
-        .header-img img {
-            height: 126px;
-        }
-        
-        .header-img {
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-        }
+
+    .menu-box {
+        position: absolute;
+        top: 50px;
+        left: 20px;
+        background-color: #d6e3d6;
+        border-radius: 8px;
+        padding: 20px;
+        width: 260px;
+        display: flex;
+        gap: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-family: 'Garamond', serif;
+        z-index: 10;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+    
+      .menu-lateral {
+        background-color: #88b68b;
+        width: 24px;
+        border-radius: 8px;
+      }
+    
+      .menu-conteudo {
+        flex: 1;
+      }
+    
+      .menu-conteudo h2 {
+        font-size: 20px;
+        margin: 0;
+        border-bottom: 1px solid #999;
+        padding-bottom: 10px;
+      }
+    
+      .menu-conteudo ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+      }
+    
+      .menu-conteudo li {
+        margin: 15px 0;
+      }
+    
+      .menu-conteudo a {
+        text-decoration: none;
+        color: black;
+        transition: color 0.2s;
+      }
+    
+      .menu-conteudo a:hover {
+        color: #3a6545;
+      }
+    
+      /* Esconde o menu inicialmente */
+      .hidden {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+    
+      .visible {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+      }
 
         /* Hero Section */
         .hero {
@@ -83,11 +155,13 @@
             text-align: center;
             color: white;
             padding: 0 1rem;
+            animation: fadeIn 1s ease;
         }
         
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
+            animation: slideUp 0.8s ease;
         }
         
         .hero p {
@@ -95,6 +169,7 @@
             max-width: 800px;
             margin-bottom: 2rem;
             font-weight: 400;
+            animation: slideUp 1s ease;
         }
         
         .btn {
@@ -105,13 +180,17 @@
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
             text-decoration: none;
             font-weight: bold;
+            animation: fadeIn 1.5s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .btn:hover {
             background-color: #5a8f3d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
         /* Features Section */
@@ -123,6 +202,7 @@
         .features h2 {
             font-size: 2rem;
             margin-bottom: 3rem;
+            animation: fadeIn 1s ease;
         }
         
         .features-container {
@@ -140,7 +220,20 @@
             padding: 2rem;
             width: 300px;
             border: 3px solid #D8E6D9;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .feature-card:nth-child(1) { animation-delay: 0.2s; }
+        .feature-card:nth-child(2) { animation-delay: 0.4s; }
+        .feature-card:nth-child(3) { animation-delay: 0.6s; }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         
         .feature-card h3 {
@@ -160,6 +253,7 @@
             margin: 2rem 0;
             border-top: 3px solid #D8E6D9;
             border-bottom: 3px solid #D8E6D9;
+            animation: fadeIn 1s ease;
         }
         
         .bonus-system h2 {
@@ -176,6 +270,13 @@
             margin: 2rem auto;
             font-size: 1.2rem;
             font-weight: bold;
+            box-shadow: 0 4px 8px rgba(167, 208, 150, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .formula:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(167, 208, 150, 0.4);
         }
         
         .how-it-works {
@@ -200,6 +301,11 @@
             border-radius: 8px;
             margin-top: 1rem;
             border: 1px solid #D8E6D9;
+            transition: all 0.3s ease;
+        }
+        
+        .example:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .example p {
@@ -213,6 +319,7 @@
             color: #000;
             font-size: 14px;
             text-align: center;
+            animation: fadeIn 1s ease;
         }
         
         .footer-top {
@@ -223,6 +330,11 @@
         .footer-top img {
             width: 15%;
             height: auto;
+            transition: transform 0.5s ease;
+        }
+        
+        .footer-top:hover img {
+            transform: rotate(5deg) scale(1.05);
         }
         
         .footer-bottom {
@@ -238,6 +350,12 @@
         .footer-right {
             flex: 1;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-left:hover, 
+        .footer-right:hover {
+            transform: translateY(-3px);
         }
         
         .footer-left { text-align: left; }
@@ -246,8 +364,56 @@
         .footer-bottom a {
             text-decoration: underline;
             color: black;
+            transition: color 0.3s ease;
         }
         
+        .footer-bottom a:hover {
+            color: #5a8f3d;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
         @media (max-width: 600px) {
             .footer-bottom {
                 flex-direction: column;
@@ -282,29 +448,40 @@
                 width: 100%;
                 max-width: 300px;
             }
+            
+            .menu-container {
+                width: 250px;
+            }
+            
+            .menu-items a {
+                font-size: 16px;
+            }
         }
+        
     </style>
 </head>
 <body>
     <div class="wrapper">
+
         <!-- Top Header -->
         <div class="top-header">
-            <div class="menu-icon">☰</div>
-            <div class="user-header">
-                <span>👤</span> Usuário
-            </div>
+          <div class="menu-icon">☰</div>
+          <div class="user-header">
+            <span>👤</span> Usuário
+          </div>
         </div>
-
-        <!-- Logo -->
-        <div class="header">
+    
+           <!-- Logo -->
+           <div class="header">
             <div class="header-img">
               <a href="Entrada.html">
-              <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+              <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating" />
               </a>
             </div>
           </div>
-        
-          <div id="menuContainer"></div>
+
+
+        <div id="menuContainer"></div>
 
         <!-- Hero Section -->
         <section class="hero">
@@ -373,24 +550,71 @@
             </div>
         </div>
     </footer>
+
     <script>
-        // Carrega o menu externo
-        fetch('../HTML/MenuNaoLogado.html')
-          .then(res => res.text())
-          .then(html => {
-            document.getElementById('menuContainer').innerHTML = html;
-      
-            const menu = document.getElementById('menu-nao-logado');
-            const menuIcon = document.querySelector('.menu-icon');
-      
-            if (menu && menuIcon) {
-              menuIcon.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                menu.classList.toggle('visible');
-              });
+        document.addEventListener('DOMContentLoaded', function() {
+          const menuIcon = document.querySelector('.menu-icon');
+          const closeMenu = document.getElementById('closeMenu');
+          const menuOverlay = document.getElementById('menuOverlay');
+          const menuContainer = document.querySelector('.menu-container');
+    
+          
+            // Carrega o menu externo
+            fetch('../HTML/MenuNaoLogado.html')
+              .then(res => res.text())
+              .then(html => {
+                document.getElementById('menuContainer').innerHTML = html;
+          
+                const menu = document.getElementById('menu-nao-logado');
+                const menuIcon = document.querySelector('.menu-icon');
+          
+                if (menu && menuIcon) {
+                  menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                  });
+                }
+              })
+              .catch(err => console.error('Erro ao carregar menu:', err));
+          
+          
+          // Abrir menu
+          menuIcon.addEventListener('click', function() {
+            menuOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Impede scroll quando menu está aberto
+          });
+          
+          // Fechar menu
+          function closeMenuFunction() {
+            menuContainer.style.animation = 'slideIn 0.4s ease reverse forwards';
+            setTimeout(() => {
+              menuOverlay.style.display = 'none';
+              document.body.style.overflow = 'auto';
+            }, 300);
+          }
+          
+          closeMenu.addEventListener('click', closeMenuFunction);
+          
+          // Fechar ao clicar fora
+          menuOverlay.addEventListener('click', function(e) {
+            if (e.target === menuOverlay) {
+              closeMenuFunction();
             }
-          })
-          .catch(err => console.error('Erro ao carregar menu:', err));
+          });
+          
+          // Adiciona efeito flutuante aleatório aos cards
+          const cards = document.querySelectorAll('.feedback-card');
+          cards.forEach((card, index) => {
+            // Tempo de animação diferente para cada card
+            card.style.animationDuration = `${0.5 + (index * 0.1)}s`;
+          });
+          
+          // Efeito flutuante no logo
+          const logo = document.querySelector('.header-img img');
+          setInterval(() => {
+            logo.style.transform = `translateX(-50%) translateY(${Math.sin(Date.now() / 800) * 5}px)`;
+          }, 50);
+        });
       </script>
 </body>
 </html>
