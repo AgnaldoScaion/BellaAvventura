@@ -13,6 +13,7 @@ body {
     min-height: 100vh;
 }
 
+  /* Cabeçalho com Grid */
   header {
     background-color: #A7D096;
     padding: 20px;
@@ -37,39 +38,40 @@ body {
   }
   
   .logo img {
-    width: 120px; 
-    height: auto;
-  }
-  
+    width: 100px; /* Ajuste proporcional do tamanho da logo */
+    height: 100px;
+  }  
   .banner {
     display: flex;
     justify-content: center;
-    padding:20%; /* igual ao .content */
-    margin-top: 20px;
+    padding: 40px 0;
 }
 
 .banner img {
     width: 100%;
+    max-width: 800px; 
     height: auto;
-    border-radius: 15px; /* opcional para combinar com os cards */
+    border-radius: 10px;
 }
 
 .apresetacao{
   text-align: center;
-  font-size: 28px;
+  font-size: 1.4rem;
+  padding: 20px;
 }
 .conteudo-geral {
-  padding: 150px;
+  padding: 30px;
   display: grid;
   gap: 20px;
+  margin: 50px;
 }
 
 .intro {
     background-color: #f1f1f1;
-    padding: 30px;
+    padding: 35px;
     border-radius: 10px;
     text-align: center;
-    font-size: larger;
+    font-size: 1rem;
 }
 
 .restaurants-grid {
