@@ -13,34 +13,52 @@ body {
     min-height: 100vh;
 }
 
-  /* Cabeçalho com Grid */
-  header {
-    background-color: #A7D096;
-    padding: 20px;
-  }
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: #A7D096;
+  position: relative;
   
-  .top-bar {
-    display: grid;
-    grid-template-columns: auto 1fr auto; /* Menu à esquerda, logo no centro, login à direita */
-    align-items: center;
-  }
-  
-  .menu-button,
-  .login-button {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .logo {
-    text-align: center;
-  }
-  
-  .logo img {
-    width: 100px; /* Ajuste proporcional do tamanho da logo */
-    height: 100px;
-  }  
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.user-header {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Header Logo */
+.header {
+  background-color: #A7D096;
+  position: relative;
+  height: 86px; /* Match the height of the image */
+}
+.header-img img {
+  height: 126px;
+}
+
+.header-img {
+  position:absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
   .banner {
     display: flex;
     justify-content: center;
@@ -101,18 +119,56 @@ body {
 }
 
   /* Rodapé com Grid */
-  footer {
+  .footer {
     background-color: #A7D096;
-    color: white;
+    padding: 20px;
+    color: #000;
+    font-size: 14px;
     text-align: center;
-    padding: 10px;
-    font-size: 16px;
-    margin-top: 40px;
   }
-  
-  footer a {
-    color: white;
+
+  .footer-top {
+    margin-bottom: 15px;
+    font-size: 33%;
+  }
+
+  .footer-top img {
+    width: 15%;
+    height: auto;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    flex: 1;
+    text-align: center;
+  }
+
+  .footer-left { text-align: left; }
+  .footer-right { text-align: right; }
+
+  .footer-bottom a {
     text-decoration: underline;
-    display: block;
-    margin-top: 5px;
+    color: black;
+  }
+
+  @media (max-width: 600px) {
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+      text-align: center;
+    }
   }
