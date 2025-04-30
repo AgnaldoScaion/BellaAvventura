@@ -20,6 +20,7 @@
       font-weight: 700;
       display: flex;
       flex-direction: column;
+      background-color: #f3f7f3;
     }
 
     .wrapper {
@@ -28,40 +29,20 @@
       flex-direction: column;
     }
 
-    /* Top Bar */
-    .top-bar {
-      background-color: #1a1a1a;
-      color: white;
-      padding: 8px 16px;
-      font-size: 14px;
-    }
-
-    /* Header */
-    .header {
-      background-color: #A7D096;
+    /* Top Header */
+    .top-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
-    }
-
-    .header-img{
-
-      display: flex;
-      align-items: center;
+      padding: 10px 30px;
+      background-color: #A7D096;
+      position: relative;
+      
     }
 
     .menu-icon {
       font-size: 24px;
       cursor: pointer;
-    }
-
-    .header-img img {
-      height: 111px; /* Increased height */
-    }
-
-    .logo {
-      height: 50px;
     }
 
     .user-header {
@@ -71,10 +52,29 @@
       gap: 6px;
     }
 
+    /* Header Logo */
+    .header {
+      background-color: #A7D096;
+      position: relative;
+      height: 126px; /* Match the height of the image */
+    }
+    .header-img img {
+      height: 126px;
+    }
+    
+    .header-img {
+      position:absolute;
+      top: -5 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+
     /* Main Title */
     .main-title {
       text-align: center;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
       margin: 30px 0 20px;
     }
@@ -108,14 +108,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .feedback-content .feedback-text {
-      margin-top: 10px;
+      margin-top: 12px;
       font-family: 'GaramondBold', serif;
       font-weight: bold;
-      font-size: 15px;
+      font-size: 17px;
       line-height: 1.6;
     }
 
@@ -137,6 +137,7 @@
       width: 32px;
     }
 
+    /* Footer */
     .footer {
       background-color: #A7D096;
       padding: 20px;
@@ -144,17 +145,17 @@
       font-size: 14px;
       text-align: center;
     }
-  
+
     .footer-top {
       margin-bottom: 15px;
-      font-size: 33%; /* Changed to percentage */
+      font-size: 33%;
     }
-  
+
     .footer-top img {
-      width: 30%;
+      width: 15%;
       height: auto;
     }
-  
+
     .footer-bottom {
       display: flex;
       justify-content: space-between;
@@ -162,33 +163,28 @@
       flex-wrap: wrap;
       gap: 10px;
     }
-  
+
     .footer-left,
     .footer-center,
     .footer-right {
       flex: 1;
       text-align: center;
     }
-  
-    .footer-left {
-      text-align: left;
-    }
-  
-    .footer-right {
-      text-align: right;
-    }
-  
+
+    .footer-left { text-align: left; }
+    .footer-right { text-align: right; }
+
     .footer-bottom a {
       text-decoration: underline;
       color: black;
     }
-  
+
     @media (max-width: 600px) {
       .footer-bottom {
         flex-direction: column;
         text-align: center;
       }
-  
+
       .footer-left,
       .footer-center,
       .footer-right {
@@ -201,17 +197,24 @@
 
   <div class="wrapper">
 
-
-    <div class="header">
+    <!-- Top Header -->
+    <div class="top-header">
       <div class="menu-icon">☰</div>
-      <div class="header-img"><img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="logo" /></div>
       <div class="user-header">
-        <span>👤</span> Usúario
+        <span>👤</span> Usuário
+      </div>
+    </div>
+
+    <!-- Logo -->
+    <div class="header">
+      <div class="header-img">
+        <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
       </div>
     </div>
 
     <div class="main-title">FEEDBACKS</div>
 
+    <!-- Feedbacks -->
     <div class="feedback-list">
 
       <div class="feedback-card">
@@ -267,6 +270,8 @@
 
     </div>
   </div>
+
+  <!-- Rodapé -->
   <footer class="footer">
     <div class="footer-top">
       <a href="https://www.bellaavventura.com.br/">
