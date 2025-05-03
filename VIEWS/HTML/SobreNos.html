@@ -44,16 +44,11 @@
             padding: 10px 30px;
             background-color: #A7D096;
             position: relative;
-          }
+        }
 
         .menu-icon {
             font-size: 24px;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-icon:hover {
-            transform: scale(1.2);
         }
 
         .user-header {
@@ -61,38 +56,31 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: transform 0.3s ease;
-        }
-
-        .user-header:hover {
-            transform: translateX(5px);
         }
 
         .header {
             background-color: #A7D096;
             position: relative;
             height: 86px;
-          }
-          
-          .header-img img {
+        }
+        
+        .header-img img {
             height: 126px;
-            transition: transform 0.5s ease;
-          }
-          
-          .header-img {
+        }
+        
+        .header-img {
             position: absolute;
             top: -50px;
-            left: 54%;
-            transform: translateX(-50%);
+            left: 50%;
+            transform: translateX(-5%);
             z-index: 1;
-          }
+        }
 
         /* Conteúdo Principal */
         .container {
             max-width: 1200px;
             margin: 4rem auto 2rem;
             padding: 0 2rem;
-            animation: fadeIn 0.8s ease;
         }
 
         .about-header {
@@ -105,7 +93,6 @@
             color: #5a8f3d;
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
-            animation: slideInUp 0.8s ease;
         }
 
         .about-content {
@@ -114,13 +101,10 @@
             border-radius: 12px;
             border: 3px solid #D8E6D9;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
         }
 
         .about-section {
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease forwards;
-            opacity: 0;
         }
 
         .about-section h2 {
@@ -160,14 +144,15 @@
             box-shadow: 0 8px 24px rgba(167, 208, 150, 0.15);
         }
 
-        /* Footer */
+        /* Footer Styles */
         .footer {
             background-color: #A7D096;
             padding: 20px;
             color: #000;
             font-size: 14px;
             text-align: center;
-            animation: fadeIn 1s ease;
+            width: auto;
+            flex-shrink: 0; /* Impede que o footer encolha */
         }
         
         .footer-top {
@@ -198,12 +183,6 @@
         .footer-right {
             flex: 1;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-left:hover, 
-        .footer-right:hover {
-            transform: translateY(-3px);
         }
         
         .footer-left { text-align: left; }
@@ -212,50 +191,17 @@
         .footer-bottom a {
             text-decoration: underline;
             color: black;
-            transition: color 0.3s ease;
         }
         
         .footer-bottom a:hover {
             color: #5a8f3d;
         }
         
-        /* Animações */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(0); }
-        }
-        
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
+        /* Animação de flutuação */
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translate(-50%, 0px); }
+            50% { transform: translate(-50%, -5px); }
+            100% { transform: translate(-50%, 0px); }
         }
         
         .floating {
@@ -274,35 +220,9 @@
                 text-align: center;
             }
             
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
             .header-img img {
                 height: 100px;
                 top: -30px;
-            }
-            
-            .features-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .feature-card {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .menu-container {
-                width: 250px;
-            }
-            
-            .menu-items a {
-                font-size: 16px;
             }
         }
     </style>
@@ -321,10 +241,12 @@
         <div class="header">
             <div class="header-img">
                 <a href="Entrada.html">
-                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Bella Avventura">
+                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Bella Avventura" class="floating">
                 </a>
             </div>
         </div>
+
+        <div id="menuContainer"></div>
 
         <!-- Conteúdo Principal -->
         <main class="container">
@@ -333,12 +255,12 @@
             </section>
 
             <div class="about-content">
-                <section class="about-section" style="animation-delay: 0.2s">
+                <section class="about-section">
                     <h2>Nossa Missão</h2>
                     <p>Na Bella Avventura, transformamos sonhos em experiências memoráveis. Desde 2020, conectamos viajantes aos destinos mais incríveis do mundo, oferecendo roteiros personalizados e serviços de alta qualidade.</p>
                 </section>
 
-                <section class="about-section" style="animation-delay: 0.4s">
+                <section class="about-section">
                     <h2>Nossa Equipe</h2>
                     <p>Contamos com especialistas em viagens de mais de 15 países, todos apaixonados por explorar novas culturas e compartilhar conhecimento local autêntico.</p>
                 </section>
@@ -360,44 +282,34 @@
                     </article>
                 </section>
 
-                <section class="about-section" style="animation-delay: 0.6s">
+                <section class="about-section">
                     <h2>Compromisso Sustentável</h2>
                     <p>Implementamos programas de turismo responsável em todos os destinos, garantindo que 5% de cada reserva seja reinvestido em comunidades locais.</p>
                 </section>
             </div>
         </main>
 
-        
-      <!-- Rodapé -->
-      <footer class="footer">
-        <div class="footer-top">
-          <a href="https://www.bellaavventura.com.br/">
-            <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
-          </a>
-        </div>
-        <div class="footer-bottom">
-          <div class="footer-left">
-            <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
-          </div>
-          <div class="footer-center">© 2025 Bella Avventura</div>
-          <div class="footer-right">
-            <a href="#">Termos e condições</a>
-          </div>
-        </div>
-      </footer>
+        <!-- Rodapé -->
+        <footer class="footer">
+            <div class="footer-top">
+                <a href="https://www.bellaavventura.com.br/">
+                    <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+                </div>
+                <div class="footer-center">© 2025 Bella Avventura</div>
+                <div class="footer-right">
+                    <a href="TermosCondicoes.html">Termos e condições</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Animação flutuante do logo
-            const logo = document.querySelector('.header-img img');
-            function floatLogo() {
-                const floatValue = Math.sin(Date.now() / 800) * 8;
-                logo.style.transform = `translateX(-50%) translateY(${floatValue}px)`;
-                requestAnimationFrame(floatLogo);
-            }
-            floatLogo();
-
             // Carregamento do menu
             fetch('../HTML/MenuNaoLogado.html')
                 .then(response => response.text())
