@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lençóis Maranhenses</title>
+  <link rel="stylesheet" href="../CSS/praia_copacabana.css">
+</head>
+<body>
+
+  <!-- Cabeçalho com menu, login e logo -->
+  <header>
+    <div class="wrapper">
+
+      <!-- Top Header -->
+      <div class="top-header">
+        <div class="menu-icon">☰</div>
+        <div class="user-header">
+          <span>👤</span> Usuário
+        </div>
+      </div>
+  
+      <div id="menuContainer1"></div>
+
+      <!-- Logo -->
+      <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+  </header>
+
+  <main class="grid-container">
+    <div class="pilastra-verde"></div>
+    <div class="conteudo">
+      <!-- Seção do destino principal -->
+      <section class="destino">
+        <h1>Lençóis Maranhenses</h1>
+        <img src="../IMAGENS/praia_copacabanaprincipal.jpeg" alt="Lençóis Maranhenses" />
+        <p class="localiza">Praia de Copacabana, Rio de Janeiro • Brasil</p>
+        <div class="estrelas">★★★★★</div>
+      </section>
+  
+      <!-- Seção sobre o destino -->
+      <section class="sobre">
+        
+        <h2>Sobre o destino</h2>
+                <!-- Localização com ícone -->
+<div class="info-localizacao">
+  <span>📍 Avenida Atlântica, Copacabana, Rio de Janeiro - RJ, Brasil.</span>
+</div>
+        <p>
+            A Praia de Copacabana, no Rio de Janeiro, tem 4,5 km de extensão e é um dos principais cartões-postais do Brasil. 
+       Além da bela orla e do famoso calçadão de pedras portuguesas, a região conta com hotéis, restaurantes e quiosques. 
+       É palco de grandes eventos, como o Réveillon e shows gratuitos, incluindo Madonna em 2024 e Lady Gaga prevista para 2025. 
+       A praia é muito movimentada, especialmente em feriados, e recomenda-se atenção à segurança.
+        </p>
+      </section>
+  
+      <!-- Galeria de imagens secundárias -->
+      <section class="imagens-secundarias">
+        <img src="../IMAGENS/praia_copacabana1.jpg" alt="foto 1">
+        <img src="../IMAGENS/praia_copacabana2.jpg" alt="foto 2">
+      </section>
+  
+      <!-- Comentários de visitantes -->
+      <section class="comentarios">
+        <h2>Comentários <span>(1.279 avaliações)</span></h2>
+  
+        <div class="comentario">“A Praia de Copacabana é incrível! Areia macia, mar refrescante e um calçadão icônico criam uma atmosfera 
+          vibrante. Quiosques animados e uma vista deslumbrante tornam a experiência inesquecível. Altamente recomendado!”</div>
+        <div class="comentario">“Copacabana encanta com sua orla vibrante, mar deslumbrante e clima sempre animado.”</div>
+      </section>
+  
+      <!-- Seção de feedback -->
+      <section class="feedback">
+        <p>Gostou? Deixe sua avaliação!</p>
+        <button>Enviar feedback</button>
+      </section>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="TermosCondicoes.html">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carregamento do menu
+      fetch('../HTML/MenuNaoLogado.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          const menuIcon = document.querySelector('.menu-icon');
+          const menu = document.getElementById('menu-nao-logado');
+          
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
+    });
+  </script>
+</body>
+</html>
