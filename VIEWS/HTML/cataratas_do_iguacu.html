@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bella Avventura</title>
+  <link rel="stylesheet" href="../CSS/cataratas_do_iguacu.css">
+</head>
+<body>
+
+  <!-- Cabeçalho com menu, login e logo -->
+  <header>
+    <div class="wrapper">
+
+      <!-- Top Header -->
+      <div class="top-header">
+        <div class="menu-icon">☰</div>
+        <div class="user-header">
+          <span>👤</span> Usuário
+        </div>
+      </div>
+  
+      <div id="menuContainer1"></div>
+
+      <!-- Logo -->
+      <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+  </header>
+
+  <main class="grid-container">
+    <div class="pilastra-verde"></div>
+    <div class="conteudo">
+      <!-- Seção do destino principal -->
+      <section class="destino">
+        <h1>Cataratas do Iguaçu</h1>
+        <img src="../IMAGENS/cataratas_do_iguacu_principal.jpg" alt="Cataratas do Iguaçu" />
+        <p class="localiza">Foz do Iguaçu, Paraná • Brasil</p>
+        <div class="estrelas">★★★★★</div>
+      </section>
+  
+      <!-- Seção sobre o destino -->
+      <section class="sobre">
+        
+        <h2>Sobre o destino</h2>
+                <!-- Localização com ícone -->
+<div class="info-localizacao">
+  <span>📍 AParque Nacional do Iguaçu Rodovia BR-469, Km 18 - Foz do Iguaçu, PR, 85855-750, Brasil.</span>
+</div>
+        <p>
+          As Cataratas do Iguaçu, localizadas na fronteira entre Brasil e Argentina, são uma das maiores e mais impressionantes quedas 
+          d'água do mundo. Com mais de 270 saltos, elas se estendem por quase 2,7 quilômetros e oferecem uma vista deslumbrante. 
+          O Parque Nacional do Iguaçu, onde as cataratas estão localizadas, é considerado Patrimônio Mundial da Humanidade e atrai 
+          turistas de todo o mundo. Além de sua beleza natural, as cataratas são um importante ponto de preservação da biodiversidade,
+          sendo um verdadeiro espetáculo da natureza.
+        </p>
+      </section>
+  
+      <!-- Galeria de imagens secundárias -->
+      <section class="imagens-secundarias">
+        <img src="../IMAGENS/cataratas_do_iguacu1.jpg" alt="foto 1">
+        <img src="../IMAGENS/cataratas_do_iguacu2.jpg" alt="foto 2">
+      </section>
+  
+      <!-- Comentários de visitantes -->
+      <section class="comentarios">
+        <h2>Comentários <span>(2.784 avaliações)</span></h2>
+  
+        <div class="comentario">“Visitar as Cataratas do Iguaçu foi incrível! A beleza e a grandiosidade das quedas d'água são 
+            impressionantes. A vista e o som da água caindo são inesquecíveis. Um dos lugares mais incríveis que já visitei!”</div>
+        <div class="comentario">“As Cataratas do Iguaçu impressionam com sua força e beleza, oferecendo um espetáculo natural único entre Brasil e Argentina.”</div>
+      </section>
+  
+      <!-- Seção de feedback -->
+      <section class="feedback">
+        <p>Gostou? Deixe sua avaliação!</p>
+        <button>Enviar feedback</button>
+      </section>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="TermosCondicoes.html">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carregamento do menu
+      fetch('../HTML/MenuNaoLogado.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          const menuIcon = document.querySelector('.menu-icon');
+          const menu = document.getElementById('menu-nao-logado');
+          
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
+    });
+  </script>
+</body>
+</html>

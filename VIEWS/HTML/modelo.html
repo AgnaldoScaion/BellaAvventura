@@ -3,20 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lençóis Maranhenses</title>
+  <title>Bella Avventura</title>
   <link rel="stylesheet" href="../CSS/modelo.css">
 </head>
 <body>
 
   <!-- Cabeçalho com menu, login e logo -->
   <header>
-    <div class="top-bar">
-      <button class="menu-button">☰</button>
-      <span class="logo">
-        <img src="../IMAGENS/mídia_logo/logo_bella_image2.png" alt="Bella Aventura Logo" />
-      </span>
-      <button class="login-button">👤</button>
-    </div>
+    <div class="wrapper">
+
+      <!-- Top Header -->
+      <div class="top-header">
+        <div class="menu-icon">☰</div>
+        <div class="user-header">
+          <span>👤</span> Usuário
+        </div>
+      </div>
+  
+      <div id="menuContainer1"></div>
+
+      <!-- Logo -->
+      <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
   </header>
 
   <main class="grid-container">
@@ -68,10 +81,37 @@
   </main>
 
   <!-- Rodapé -->
-  <footer>
-    <p>© 2025 Bella Aventura. Todos os direitos reservados.</p>
-    <a href="#">Política de Privacidade</a>
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="TermosCondicoes.html">Termos e condições</a>
+      </div>
+    </div>
   </footer>
-
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carregamento do menu
+      fetch('../HTML/MenuNaoLogado.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          const menuIcon = document.querySelector('.menu-icon');
+          const menu = document.getElementById('menu-nao-logado');
+          
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
+    });
+  </script>
 </body>
 </html>
