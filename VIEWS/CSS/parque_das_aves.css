@@ -1,0 +1,347 @@
+/* Reset e fonte base */
+@font-face {
+    font-family: 'GaramondBold';
+    src: local('Garamond'), serif;
+    font-weight: bold;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f7f3;
+  }
+ 
+  .wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    background-color: #A7D096;
+    position: relative;
+    height: 86px;
+  }
+ 
+  .header-img img {
+    height: 126px;
+    transition: transform 0.5s ease;
+  }
+ 
+  .header-img {
+    position:absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+ 
+  /* Header Styles */
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #A7D096;
+    position: relative;
+  }
+ 
+  .menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+ 
+  .menu-icon:hover {
+    transform: scale(1.1);
+  }
+ 
+  .user-header {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+    /* Grid principal do conteúdo */
+    .grid-container {
+      display: grid;
+      gap: 40px;
+      max-width: 66%; /* Ajustado para 2/3 da largura da tela */
+      margin: 50px auto; /* Centralizando e adicionando margem maior */
+      padding: 20px; /* Reduzindo o padding interno */
+      background-color: #fff; /* Fundo branco para destacar */
+      border-radius: 8px; /* Bordas arredondadas */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adicionando sombra */
+      position: relative;
+      display: flex; /* Usando flexbox para alinhar a pilastra e o conteúdo */
+    }
+   
+    /* Pilastra verde */
+    .pilastra-verde {
+      width: 55px; /* Espessura da pilastra */
+      background-color: #B1C6B1; /* Cor da pilastra */
+      border-radius: 8px; /* Bordas arredondadas na pilastra */
+      margin-right: 20px; /* Espaço entre a pilastra e o conteúdo */
+    }
+   
+    /* Conteúdo principal */
+    .conteudo {
+      flex: 1; /* O conteúdo ocupa o restante do espaço */
+    }
+   
+    /* Seção destino principal */
+    .destino {
+      display: grid;
+      grid-template-rows: auto auto auto auto;
+      justify-items: center;
+      background-color: #B1C6B1;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+   
+    .destino img {
+      width: 100%;
+      max-width: 500px; /* Limitando o tamanho da imagem */
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+   
+    .localiza {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+   
+    .estrelas {
+      color: #5B8F45;
+      font-size: 20px;
+    }
+   
+    /* Seção sobre o destino */
+    .sobre {
+      display: grid;
+      gap: 10px;
+    }
+   
+    .sobre h2 {
+      color: #2e4e2e;
+    }
+   
+    /* Galeria com Grid */
+    .imagens-secundarias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
+      margin-bottom: 40px;
+      border-radius: 1em; /* Espaço maior entre as fotos e os comentários */
+    }
+   
+    .imagens-secundarias img {
+      width: 100%;
+      max-width: 350px; /* Limitando o tamanho das imagens */
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+      place-self: center;
+      border: 15px solid #B1C6B1; /* Moldura verde */
+    }
+   
+    /* Seção de comentários */
+    .comentarios {
+      display: grid;
+      gap: 20px;
+      background-color: #CBDACF;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 40px; /* Garantindo espaço superior, caso necessário */
+    }
+   
+    .comentarios h2 span {
+      font-size: 14px;
+      color: #666;
+    }
+   
+    .comentario {
+      background: #fff;
+      border-left: 5px solid #B1C6B1;
+      padding: 10px;
+      border-radius: 4px;
+    }
+   
+    /* Feedback com botão centralizado */
+    .feedback {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      text-align: center;
+    }
+   
+    .feedback button {
+      background-color: #9fba9f;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+   
+ 
+    /* Footer Styles */
+    .footer {
+        background-color: #A7D096;
+        padding: 20px;
+        color: #000;
+        font-size: 14px;
+        text-align: center;
+        animation: fadeIn 1s ease;
+    }
+   
+    .footer-top {
+        margin-bottom: 15px;
+        font-size: 33%;
+    }
+   
+    .footer-top img {
+        width: 15%;
+        height: auto;
+        transition: transform 0.5s ease;
+    }
+   
+    .footer-top:hover img {
+        transform: rotate(5deg) scale(1.05);
+    }
+   
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+   
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        flex: 1;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+   
+    .footer-left:hover,
+    .footer-right:hover {
+        transform: translateY(-3px);
+    }
+   
+    .footer-left { text-align: left; }
+    .footer-right { text-align: right; }
+   
+    .footer-bottom a {
+        text-decoration: underline;
+        color: black;
+        transition: color 0.3s ease;
+    }
+   
+    .footer-bottom a:hover {
+        color: #5a8f3d;
+    }
+   
+    /* Animações */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+   
+    @keyframes slideIn {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(0); }
+    }
+   
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+   
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+   
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+    }
+   
+    .floating {
+        animation: float 3s ease-in-out infinite;
+    }
+   
+    @media (max-width: 600px) {
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+   
+        .footer-left,
+        .footer-center,
+        .footer-right {
+            text-align: center;
+        }
+       
+        .hero h1 {
+            font-size: 2rem;
+        }
+       
+        .hero p {
+            font-size: 1rem;
+        }
+       
+        .header-img img {
+            height: 100px;
+            top: -30px;
+        }
+       
+        .features-container {
+            flex-direction: column;
+            align-items: center;
+        }
+       
+        .feature-card {
+            width: 100%;
+            max-width: 300px;
+        }
+       
+        .menu-container {
+            width: 250px;
+        }
+       
+        .menu-items a {
+            font-size: 16px;
+        }
+    }
+ 
+    /* Localização com ícone e linha */
+  .info-localizacao {
+    font-size: 14px;
+    color: #000000;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+ 

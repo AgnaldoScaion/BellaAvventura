@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bella Avventura</title>
+  <link rel="stylesheet" href="../CSS/parque_das_aves.css">
+</head>
+<body>
+
+  <!-- Cabeçalho com menu, login e logo -->
+  <header>
+    <div class="wrapper">
+
+      <!-- Top Header -->
+      <div class="top-header">
+        <div class="menu-icon">☰</div>
+        <div class="user-header">
+          <span>👤</span> Usuário
+        </div>
+      </div>
+  
+      <div id="menuContainer1"></div>
+
+      <!-- Logo -->
+      <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+  </header>
+
+  <main class="grid-container">
+    <div class="pilastra-verde"></div>
+    <div class="conteudo">
+      <!-- Seção do destino principal -->
+      <section class="destino">
+        <h1>Parque das Aves</h1>
+        <img src="../IMAGENS/parque_das_aves_principal (1).jpg" alt="Parque das Aves" />
+        <p class="localiza">Barreirinhas, Maranhão • Brasil</p>
+        <div class="estrelas">★★★★☆</div>
+      </section>
+  
+      <!-- Seção sobre o destino -->
+      <section class="sobre">
+        
+        <h2>Sobre o destino</h2>
+                <!-- Localização com ícone -->
+<div class="info-localizacao">
+  <span>📍 Avenida Atlântica, Copacabana, Rio de Janeiro - RJ, Brasil.</span>
+</div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
+          Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+          Cras elementum ultrices diam. Lorem lorem lorem lorem lorem lorem lorem.
+        </p>
+      </section>
+  
+      <!-- Galeria de imagens secundárias -->
+      <section class="imagens-secundarias">
+        <img src="../IMAGENS/parque_das_aves1.jpg" alt="foto 1">
+        <img src="../IMAGENS/parque_das_aves2.jpg" alt="foto 2">
+      </section>
+  
+      <!-- Comentários de visitantes -->
+      <section class="comentarios">
+        <h2>Comentários <span>(2.340 avaliações)</span></h2>
+  
+        <div class="comentario">“Um dos lugares mais lindos que já visitei! Voltaria com certeza.”</div>
+        <div class="comentario">“Perfeito para quem ama natureza e tranquilidade.”</div>
+      </section>
+  
+      <!-- Seção de feedback -->
+      <section class="feedback">
+        <p>Gostou? Deixe sua avaliação!</p>
+        <button>Enviar feedback</button>
+      </section>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="TermosCondicoes.html">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carregamento do menu
+      fetch('../HTML/MenuNaoLogado.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          const menuIcon = document.querySelector('.menu-icon');
+          const menu = document.getElementById('menu-nao-logado');
+          
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
+    });
+  </script>
+</body>
+</html>
