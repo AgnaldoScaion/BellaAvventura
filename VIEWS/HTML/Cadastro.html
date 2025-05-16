@@ -211,9 +211,29 @@
         text-align: center;
       }
     }
+        .notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 25px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease, top 0.3s ease;
+      background-color: #4CAF50;
+    }
+    
+    .notification.show {
+      top: 30px;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
+  
   <div class="wrapper">
     <!-- Header -->
     <div class="top-header">
@@ -233,6 +253,7 @@
 
     <!-- Menu Hamburger -->
     <div id="menuContainer1"></div>
+    <div id="notification" class="notification"></div>
 
     <!-- Conteúdo -->
     <main class="main-content">
@@ -285,7 +306,7 @@
   </div>
 
   <script>
-    // Máscara para CPF
+ // Máscara para CPF
     document.addEventListener('DOMContentLoaded', function() {
       const cpfInput = document.getElementById('cpf');
       cpfInput.addEventListener('input', function(e) {
@@ -295,39 +316,82 @@
         value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
         e.target.value = value;
       });
+
+      // Carrega menu não logado
+      fetch('MenuNaoLogado.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          setupMenu();
+        });
     });
 
-    // Menu hamburguer
-    fetch('../HTML/MenuNaoLogado.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('menuContainer1').innerHTML = html;
-
-        const menu = document.getElementById('menu-nao-logado');
-        const menuIcon = document.querySelector('.menu-icon');
-
-        if (menu && menuIcon) {
-          menuIcon.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('visible');
-          });
-        }
-      })
-      .catch(err => console.error('Erro ao carregar menu:', err));
+    function setupMenu() {
+      const menu = document.getElementById('menu-nao-logado');
+      const menuIcon = document.querySelector('.menu-icon');
+      
+      if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          menu.classList.toggle('visible');
+        });
+      }
+    }
 
     function realizarCadastro() {
-      // Simulação: salvar no localStorage
       const nome = document.getElementById('nome').value;
       const cpf = document.getElementById('cpf').value;
       const email = document.getElementById('email').value;
       const senha = document.getElementById('senha').value;
 
-      const usuario = { nome, cpf, email, senha };
-      localStorage.setItem('usuario', JSON.stringify(usuario));
+      if (!nome || !cpf || !email || !senha) {
+        showNotification('Preencha todos os campos!', 'error');
+        return;
+      }
 
-      // Redirecionar para Login
-      alert('Cadastro realizado com sucesso!');
-      window.location.href = "Login.html";
+      // Pega usuários existentes ou cria array vazio
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      
+      // Verifica se CPF já existe
+      if (usuarios.some(u => u.cpf === cpf)) {
+        showNotification('CPF já cadastrado!', 'error');
+        return;
+      }
+
+      // Cria novo usuário
+      const novoUsuario = {
+        firstName: nome.split(' ')[0],
+        lastName: nome.split(' ').slice(1).join(' '),
+        nome,
+        cpf,
+        email,
+        senha
+      };
+
+      // Adiciona ao array e salva
+      usuarios.push(novoUsuario);
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+      
+      // Salva como usuário atual
+      localStorage.setItem('currentUser', JSON.stringify(novoUsuario));
+      
+      showNotification('Cadastro realizado com sucesso!', 'success');
+      
+      // Redireciona após 2 segundos
+      setTimeout(() => {
+        window.location.href = 'Entrada.html?msg=cadastro';
+      }, 2000);
+    }
+
+    function showNotification(message, type) {
+      const notif = document.getElementById('notification');
+      notif.textContent = message;
+      notif.style.backgroundColor = type === 'success' ? '#4CAF50' : '#F44336';
+      notif.classList.add('show');
+      
+      setTimeout(() => {
+        notif.classList.remove('show');
+      }, 3000);
     }
   </script>
 </body>
