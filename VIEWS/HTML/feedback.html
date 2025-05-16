@@ -4,13 +4,81 @@
   <meta charset="UTF-8">
   <title>Feedback Enviado</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f2f2f2;
-      text-align: center;
-      padding: 50px;
-    }
+    @font-face {
+    font-family: 'GaramondBold';
+    src: local('Garamond'), serif;
+    font-weight: bold;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #f3f7f3;
+  }
+  h1 {
+    color: #27ae60;
+  }
+  .card {
+    padding: 50px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+  
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    background-color: #A7D096;
+    position: relative;
+    height: 86px;
+  }
+  
+  .header-img img {
+    height: 126px;
+    transition: transform 0.5s ease;
+  }
+  
+  .header-img {
+    position:absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
 
+/* Header Styles */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #A7D096;
+    position: relative;
+  }
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon:hover {
+    transform: scale(1.1);
+}
+
+.user-header {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
     .box {
       background-color: #fff;
       padding: 30px;
@@ -19,17 +87,196 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
-    h1 {
-      color: #27ae60;
-     
-    }
+  /* Footer Styles */
+  .footer {
+      background-color: #A7D096;
+      padding: 20px;
+      color: #000;
+      font-size: 14px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+  }
+  
+  .footer-top {
+      margin-bottom: 15px;
+      font-size: 33%;
+  }
+  
+  .footer-top img {
+      width: 15%;
+      height: auto;
+      transition: transform 0.5s ease;
+  }
+  
+  .footer-top:hover img {
+      transform: rotate(5deg) scale(1.05);
+  }
+  
+  .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+  }
+  
+  .footer-left,
+  .footer-center,
+  .footer-right {
+      flex: 1;
+      text-align: center;
+      transition: all 0.3s ease;
+  }
+  
+  .footer-left:hover, 
+  .footer-right:hover {
+      transform: translateY(-3px);
+  }
+  
+  .footer-left { text-align: left; }
+  .footer-right { text-align: right; }
+  
+  .footer-bottom a {
+      text-decoration: underline;
+      color: black;
+      transition: color 0.3s ease;
+  }
+  
+  .footer-bottom a:hover {
+      color: #5a8f3d;
+  }
+  
+  /* Animações */
+  @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+  }
+  
+  @keyframes slideUp {
+      from { 
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      to { 
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+  
+  @keyframes fadeInUp {
+      from { 
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      to { 
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+  
+  @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+  }
+  
+  .floating {
+      animation: float 3s ease-in-out infinite;
+  }
+  
+  @media (max-width: 600px) {
+      .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+      }
+  
+      .footer-left,
+      .footer-center,
+      .footer-right {
+          text-align: center;
+      }
+      
+      .hero h1 {
+          font-size: 2rem;
+      }
+      
+      .hero p {
+          font-size: 1rem;
+      }
+      
+      .header-img img {
+          height: 100px;
+          top: -30px;
+      }
+      
+      .features-container {
+          flex-direction: column;
+          align-items: center;
+      }
+      
+      .feature-card {
+          width: 100%;
+          max-width: 300px;
+      }
+      
+      .menu-container {
+          width: 250px;
+      }
+      
+      .menu-items a {
+          font-size: 16px;
+      }
+  }
+
 </style>
 <body>
+      <div class="wrapper">
+
+        <!-- Top Header -->
+        <div class="top-header">
+          <div class="menu-icon">☰</div>
+          <div class="user-header">
+            <span>👤</span> Usuário
+          </div>
+        </div>
+        
+        <!--Apague o 1 para jogar o menu em paginas ja logadas, ou deixe para paginas de nao logado-->
+        <div id="menuContainer1"></div>
+      
+        <!-- Logo -->
+        <div class="header">
+          <div class="header-img">
+            <a href="Entrada.html">
+            <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+            </a>
+          </div>
+        </div>
   <div class="card">
     <h1>Feedback enviado com sucesso!</h1>
     <p>Obrigado por sua colaboração. Sua opinião é muito importante para nós.</p>
-    <a href="index.html" class="btn">Voltar à página inicial</a>
+    <a href="Entrada.html" class="btn">Voltar à página inicial</a>
   </div>
-
+        <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="#">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
