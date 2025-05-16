@@ -539,7 +539,7 @@
         <div class="top-header">
             <div class="menu-icon">☰</div>
             <div class="user-header">
-                <span>👤</span> Usuário
+                <span>👤</span> Visitante
             </div>
         </div>
 
@@ -630,86 +630,85 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const menuIcon = document.querySelector('.menu-icon');
-            const closeMenu = document.getElementById('closeMenu');
-            const menuOverlay = document.getElementById('menuOverlay');
-            const menuContainer = document.querySelector('.menu-container');
+            // Verifica autenticação
+            checkAuth();
 
+            // Configura menu
+            setupMenu();
 
-            // Carrega o menu externo
-            fetch('../HTML/MenuNaoLogado.html')
+            // Verifica mensagem de sucesso
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get('msg');
+
+            if (msg === 'login') {
+                showNotification('Login realizado com sucesso!', 'success');
+            } else if (msg === 'cadastro') {
+                showNotification('Cadastro realizado com sucesso!', 'success');
+            }
+        });
+
+        function checkAuth() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (userData) {
+                // Atualiza header
+                document.querySelector('.user-header').innerHTML = `
+                <span>👤</span> ${userData.firstName}
+            `;
+
+                // Carrega menu logado
+                loadMenu('MenuLogado.html');
+            } else {
+                // Carrega menu não logado
+                loadMenu('MenuNaoLogado.html');
+            }
+        }
+
+        function loadMenu(menuFile) {
+            fetch(menuFile)
                 .then(res => res.text())
                 .then(html => {
                     document.getElementById('menuContainer').innerHTML = html;
+                    setupMenu();
+                });
+        }
 
-                    const menu = document.getElementById('menu-nao-logado');
-                    const menuIcon = document.querySelector('.menu-icon');
+        function setupMenu() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const menu = document.querySelector('.menu-box');
 
-                    if (menu && menuIcon) {
-                        menuIcon.addEventListener('click', () => {
-                            menu.classList.toggle('hidden');
-                            menu.classList.toggle('visible');
-                        });
-                    }
-                })
-                .catch(err => console.error('Erro ao carregar menu:', err));
-
-
-            // Abrir menu
-            menuIcon.addEventListener('click', function () {
-                menuOverlay.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // Impede scroll quando menu está aberto
-            });
-
-            // Fechar menu
-            function closeMenuFunction() {
-                menuContainer.style.animation = 'slideIn 0.4s ease reverse forwards';
-                setTimeout(() => {
-                    menuOverlay.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }, 300);
+            if (menu && menuIcon) {
+                menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                });
             }
 
-            closeMenu.addEventListener('click', closeMenuFunction);
-
-            // Fechar ao clicar fora
-            menuOverlay.addEventListener('click', function (e) {
-                if (e.target === menuOverlay) {
-                    closeMenuFunction();
-                }
-            });
-
-            // Adiciona efeito flutuante aleatório aos cards
-            const cards = document.querySelectorAll('.feedback-card');
-            cards.forEach((card, index) => {
-                // Tempo de animação diferente para cada card
-                card.style.animationDuration = `${0.5 + (index * 0.1)}s`;
-            });
-
-            // Efeito flutuante no logo
-            const logo = document.querySelector('.header-img img');
-            setInterval(() => {
-                logo.style.transform = `translateX(-50%) translateY(${Math.sin(Date.now() / 800) * 5}px)`;
-            }, 50);
-        });
-
-
-        //login
-        const params = new URLSearchParams(window.location.search);
-        const msg = params.get("msg");
-
-        if (msg) {
-            const notif = document.getElementById("notificacao");
-            if (msg === "login") {
-                notif.textContent = "Login realizado com sucesso!";
-            } else if (msg === "cadastro") {
-                notif.textContent = "Cadastro realizado com sucesso!";
+            // Configura logout se existir
+            const logoutBtn = document.getElementById('logout-link');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'Entrada.html';
+                });
             }
-            notif.classList.add("show");
+        }
+
+        function showNotification(message, type) {
+            const notif = document.createElement('div');
+            notif.className = `notification ${type}`;
+            notif.textContent = message;
+            document.body.appendChild(notif);
 
             setTimeout(() => {
-                notif.classList.remove("show");
-            }, 4000);
+                notif.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                notif.classList.remove('show');
+                setTimeout(() => notif.remove(), 300);
+            }, 3000);
         }
     </script>
 </body>

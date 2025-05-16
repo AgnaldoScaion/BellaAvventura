@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar Senha - Bella Avventura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'GaramondBold';
+      src: local('Garamond'), serif;
+      font-weight: bold;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      background-color: #f3f7f3;
+    }
+
+    .wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: #A7D096;
+      position: relative;
+      height: 86px;
+    }
+
+    .header-img img {
+      height: 126px;
+    }
+
+    .header-img {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    /* Header Styles */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      background-color: #A7D096;
+      position: relative;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .user-header {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Centralize the recovery container */
+    .main-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .recovery-container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      border: 3px solid #D8E6D9;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .recovery-title {
+      font-family: 'GaramondBold', serif;
+      color: #5a8f3d;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #5a8f3d;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 92%;
+      padding: 0.8rem;
+      border: 2px solid #D8E6D9;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .recovery-button {
+      background-color: #5a8f3d;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .recovery-button:hover {
+      background-color: #4a7d2d;
+    }
+
+    .back-button {
+      display: inline-block;
+      color: #5a8f3d;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 25px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease, top 0.3s ease;
+      background-color: #4CAF50;
+    }
+
+    .notification.show {
+      top: 30px;
+      opacity: 1;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background-color: #A7D096;
+      padding: 20px;
+      color: #000;
+      font-size: 14px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .footer-top {
+      margin-bottom: 15px;
+      font-size: 33%;
+    }
+
+    .footer-top img {
+      width: 15%;
+      height: auto;
+      transition: transform 0.5s ease;
+    }
+
+    .footer-top:hover img {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+      flex: 1;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-left:hover,
+    .footer-right:hover {
+      transform: translateY(-3px);
+    }
+
+    .footer-left { text-align: left; }
+    .footer-right { text-align: right; }
+
+    .footer-bottom a {
+      text-decoration: underline;
+      color: black;
+      transition: color 0.3s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: #5a8f3d;
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @media (max-width: 600px) {
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-left,
+      .footer-center,
+      .footer-right {
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .header-img img {
+        height: 100px;
+        top: -30px;
+      }
+
+      .features-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .feature-card {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .menu-container {
+        width: 250px;
+      }
+
+      .menu-items a {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Top Header -->
+    <div class="top-header">
+      <div class="menu-icon">☰</div>
+      <div class="user-header">
+        <span>👤</span> Visitante
+      </div>
+    </div>
+
+    <div id="menuContainer1"></div>
+
+    <!-- Logo -->
+    <div class="header">
+      <div class="header-img">
+        <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="recovery-container">
+        <h1 class="recovery-title">Recuperar Senha</h1>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
+        </div>
+        <button type="button" class="recovery-button" onclick="enviarLinkRecuperacao()">Enviar Link de Recuperação</button>
+        <a href="Login.html" class="back-button">Voltar para o Login</a>
+      </div>
+    </main>
+
+    <div id="notification" class="notification"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="#">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    //Footer
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuIcon = document.querySelector('.menu-icon');
+      const closeMenu = document.getElementById('closeMenu');
+      const menuOverlay = document.getElementById('menuOverlay');
+      const menuContainer = document.querySelector('.menu-container');
+
+      // Adiciona efeito flutuante aleatório aos cards
+      const cards = document.querySelectorAll('.feedback-card');
+      cards.forEach((card, index) => {
+        // Tempo de animação diferente para cada card
+        card.style.animationDuration = `${0.5 + (index * 0.1)}s`;
+      });
+    });
+
+    function enviarLinkRecuperacao() {
+      const email = document.getElementById('email').value;
+
+      if (!email) {
+        showNotification('Por favor, insira seu e-mail.', 'error');
+        return;
+      }
+
+      // Simulação de envio de e-mail
+      console.log('Link de recuperação enviado para:', email);
+      showNotification('Link de recuperação enviado para ' + email, 'success');
+
+      // Redirecionar para a página de login após alguns segundos
+      setTimeout(() => {
+        window.location.href = 'Login.html';
+      }, 3000);
+    }
+
+    function showNotification(message, type) {
+      const notif = document.getElementById('notification');
+      notif.textContent = message;
+      notif.style.backgroundColor = type === 'success' ? '#4CAF50' : '#F44336';
+      notif.classList.add('show');
+
+      setTimeout(() => {
+        notif.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

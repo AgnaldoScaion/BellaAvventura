@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Bella Avventura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GaramondBold';
+            src: local('Garamond'), serif;
+            font-weight: bold;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            background-color: #f3f7f3;
+        }
+
+        .wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .header {
+            background-color: #A7D096;
+            position: relative;
+            height: 86px;
+        }
+
+        .header-img img {
+            height: 126px;
+            transition: transform 0.5s ease;
+        }
+
+        .header-img {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background-color: #A7D096;
+            position: relative;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .user-header {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 3px solid #D8E6D9;
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #D8E6D9;
+            padding-bottom: 1rem;
+        }
+
+        .profile-title {
+            font-family: 'GaramondBold', serif;
+            color: #5a8f3d;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .edit-button {
+            background-color: #5a8f3d;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .edit-button:hover {
+            background-color: #4a7d2d;
+        }
+
+        .profile-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .info-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #5a8f3d;
+            font-weight: bold;
+        }
+
+        .info-value {
+            padding: 0.8rem;
+            background-color: #f3f7f3;
+            border-radius: 8px;
+            border: 1px solid #D8E6D9;
+        }
+
+        .profile-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .action-button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .save-button {
+            background-color: #5a8f3d;
+            color: white;
+            border: none;
+            display: none;
+        }
+
+        .save-button:hover {
+            background-color: #4a7d2d;
+        }
+
+        .cancel-button {
+            background-color: transparent;
+            border: 2px solid #d32f2f;
+            color: #d32f2f;
+            display: none;
+        }
+
+        .cancel-button:hover {
+            background-color: #ffeeee;
+        }
+
+        .edit-form {
+            display: none;
+        }
+
+        .edit-form input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #D8E6D9;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .footer {
+            background-color: #A7D096;
+            padding: 20px;
+            color: #000;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .footer-top {
+            margin-bottom: 15px;
+            font-size: 33%;
+        }
+
+        .footer-top img {
+            width: 15%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .footer-top:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-left,
+        .footer-center,
+        .footer-right {
+            flex: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer-left:hover,
+        .footer-right:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .footer-bottom a {
+            text-decoration: underline;
+            color: black;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            color: #5a8f3d;
+        }
+
+        @media (max-width: 768px) {
+            .profile-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-actions {
+                flex-direction: column;
+            }
+            
+            .action-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-img img {
+                height: 100px;
+                top: -30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-left,
+            .footer-center,
+            .footer-right {
+                text-align: center;
+            }
+        }
+
+        /* Estilos do menu */
+        .menu-box {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            background-color: #d6e3d6;
+            border-radius: 8px;
+            padding: 20px;
+            width: 260px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-family: 'Garamond', serif;
+            z-index: 10;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .hidden {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .visible {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Notificação */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease, top 0.3s ease;
+        }
+
+        .notification.show {
+            top: 30px;
+            opacity: 1;
+        }
+
+        .success {
+            background-color: #4CAF50;
+        }
+
+        .error {
+            background-color: #F44336;
+        }
+            @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    </style>
+</head>
+<body>
+    <div id="notification" class="notification"></div>
+
+    <div class="wrapper">
+        <!-- Top Header -->
+        <div class="top-header">
+            <div class="menu-icon">☰</div>
+            <div class="user-header">
+                <span>👤</span> Usuário
+            </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="header">
+            <div class="header-img">
+                <a href="Entrada.html">
+                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating"/>
+                </a>
+            </div>
+        </div>
+
+        <!-- Menu -->
+        <div id="menuContainer"></div>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <h1 class="profile-title">Meu Perfil</h1>
+                    <button id="editButton" class="edit-button">Editar Perfil</button>
+                </div>
+
+                <div class="profile-info">
+                    <div class="info-group">
+                        <span class="info-label">Nome Completo</span>
+                        <div id="nomeValue" class="info-value"></div>
+                        <div class="edit-form">
+                            <input type="text" id="nomeInput" placeholder="Digite seu nome completo">
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <span class="info-label">CPF</span>
+                        <div id="cpfValue" class="info-value"></div>
+                    </div>
+
+                    <div class="info-group">
+                        <span class="info-label">E-mail</span>
+                        <div id="emailValue" class="info-value"></div>
+                        <div class="edit-form">
+                            <input type="email" id="emailInput" placeholder="Digite seu e-mail">
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <span class="info-label">Senha</span>
+                        <div class="info-value">••••••••</div>
+                        <div class="edit-form">
+                            <input type="password" id="senhaInput" placeholder="Digite sua nova senha">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button id="cancelButton" class="action-button cancel-button">Cancelar</button>
+                    <button id="saveButton" class="action-button save-button">Salvar Alterações</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <div class="footer-top">
+                <a href="https://www.bellaavventura.com.br/">
+                    <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+                </div>
+                <div class="footer-center">© 2025 Bella Avventura</div>
+                <div class="footer-right">
+                    <a href="TermosCondicoes.html">Termos e condições</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verifica se o usuário está logado
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Carrega o menu apropriado
+            fetch('MenuLogado.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('menuContainer').innerHTML = html;
+                    setupMenu();
+                })
+                .catch(err => console.error('Erro ao carregar menu:', err));
+
+            // Atualiza o header com o nome do usuário
+            document.querySelector('.user-header').innerHTML = `
+                <span>👤</span> ${userData.firstName}
+            `;
+
+            // Preenche os dados do perfil
+            loadProfileData(userData);
+
+            // Configura os botões de edição
+            setupEditButtons(userData);
+        });
+
+        function setupMenu() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const menu = document.querySelector('.menu-box');
+            
+            if (menu && menuIcon) {
+                menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                });
+            }
+            
+            // Configura logout se existir
+            const logoutBtn = document.getElementById('logout-link');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'Entrada.html';
+                });
+            }
+        }
+
+        function loadProfileData(userData) {
+            document.getElementById('nomeValue').textContent = userData.nome || 'Não informado';
+            document.getElementById('cpfValue').textContent = userData.cpf || 'Não informado';
+            document.getElementById('emailValue').textContent = userData.email || 'Não informado';
+        }
+
+        function setupEditButtons(userData) {
+            const editButton = document.getElementById('editButton');
+            const cancelButton = document.getElementById('cancelButton');
+            const saveButton = document.getElementById('saveButton');
+            const editForms = document.querySelectorAll('.edit-form');
+            const infoValues = document.querySelectorAll('.info-value');
+
+            editButton.addEventListener('click', function() {
+                // Preenche os formulários com os valores atuais
+                document.getElementById('nomeInput').value = userData.nome || '';
+                document.getElementById('emailInput').value = userData.email || '';
+                document.getElementById('senhaInput').value = '';
+
+                // Mostra formulários e esconde valores
+                editForms.forEach(form => form.style.display = 'block');
+                infoValues.forEach(value => value.style.display = 'none');
+
+                // Mostra botões de ação
+                cancelButton.style.display = 'block';
+                saveButton.style.display = 'block';
+                editButton.style.display = 'none';
+            });
+
+            cancelButton.addEventListener('click', function() {
+                // Esconde formulários e mostra valores
+                editForms.forEach(form => form.style.display = 'none');
+                infoValues.forEach(value => value.style.display = 'block');
+
+                // Esconde botões de ação
+                cancelButton.style.display = 'none';
+                saveButton.style.display = 'none';
+                editButton.style.display = 'block';
+            });
+
+            saveButton.addEventListener('click', function() {
+                const newNome = document.getElementById('nomeInput').value;
+                const newEmail = document.getElementById('emailInput').value;
+                const newSenha = document.getElementById('senhaInput').value;
+
+                if (!newNome || !newEmail) {
+                    showNotification('Preencha todos os campos obrigatórios!', 'error');
+                    return;
+                }
+
+                // Atualiza os dados do usuário
+                userData.nome = newNome;
+                userData.email = newEmail;
+                userData.firstName = newNome.split(' ')[0];
+                userData.lastName = newNome.split(' ').slice(1).join(' ');
+
+                if (newSenha) {
+                    userData.senha = newSenha;
+                }
+
+                // Atualiza no localStorage
+                updateUserData(userData);
+
+                // Recarrega os dados na tela
+                loadProfileData(userData);
+
+                // Volta para modo de visualização
+                cancelButton.click();
+
+                showNotification('Perfil atualizado com sucesso!', 'success');
+            });
+        }
+
+        function updateUserData(updatedUser) {
+            // Atualiza o usuário atual
+            localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+
+            // Atualiza na lista de usuários
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const userIndex = usuarios.findIndex(u => u.cpf === updatedUser.cpf);
+            
+            if (userIndex !== -1) {
+                usuarios[userIndex] = updatedUser;
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            }
+        }
+
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

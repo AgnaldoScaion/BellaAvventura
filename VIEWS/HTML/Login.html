@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Bella Avventura</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
     <style>
         @font-face {
             font-family: 'GaramondBold';
@@ -48,12 +49,8 @@
             position: absolute;
             top: -50px;
             left: 50%;
-            transform: translateX(-5%);
+            transform: translateX(-50%);
             z-index: 1;
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
         }
 
         .top-header {
@@ -96,7 +93,7 @@
             padding: 2rem;
             border-radius: 12px;
             border: 3px solid #D8E6D9;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
@@ -188,18 +185,37 @@
             text-align: center;
         }
 
-        .footer-left { text-align: left; }
-        .footer-right { text-align: right; }
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
 
         .footer-bottom a {
             text-decoration: underline;
             color: black;
         }
 
-        @keyframes float {
-            0% { transform: translate(-50%, 0px); }
-            50% { transform: translate(-50%, -5px); }
-            100% { transform: translate(-50%, 0px); }
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease, top 0.3s ease;
+            background-color: #4CAF50;
+        }
+
+        .notification.show {
+            top: 30px;
+            opacity: 1;
         }
 
         @media (max-width: 600px) {
@@ -224,26 +240,45 @@
                 text-align: center;
             }
         }
+            @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
     </style>
 </head>
+
 <body>
     <div class="wrapper">
         <div class="top-header">
             <div class="menu-icon">☰</div>
             <div class="user-header">
-                <span>👤</span> Usuário
+                <span>👤</span> Visitante
             </div>
         </div>
 
         <div class="header">
             <div class="header-img">
                 <a href="Entrada.html">
-                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating" />
+                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating"/>
                 </a>
             </div>
         </div>
 
         <div id="menuContainer1"></div>
+        <div id="notification" class="notification"></div>
 
         <main class="main-content">
             <div class="login-container">
@@ -252,7 +287,7 @@
                 <div class="login-box">
                     <div class="form-group">
                         <label for="cpf">CPF</label>
-                        <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF">
+                        <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" maxlength="14">
                     </div>
 
                     <div class="form-group">
@@ -260,12 +295,13 @@
                         <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
                     </div>
 
-                    <a href="#" class="forgot-password">Esqueci minha senha</a>
+                    <a href="recuperar_senha.html" class="forgot-password">Esqueci minha senha</a>
 
                     <button type="button" class="login-button" id="loginButton">Entrar</button>
 
                     <a href="Entrada.html" class="back-button">Voltar</a>
                 </div>
+                
             </div>
         </main>
 
@@ -288,50 +324,111 @@
     </div>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function () {
         // Máscara CPF
-        document.addEventListener('DOMContentLoaded', function () {
-            const cpfInput = document.getElementById('cpf');
-            cpfInput.addEventListener('input', function (e) {
-                let value = e.target.value.replace(/\D/g, '');
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-                e.target.value = value;
+        const cpfInput = document.getElementById('cpf');
+        cpfInput.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) {
+                value = value.substring(0, 11);
+            }
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            e.target.value = value;
+        });
+
+        // Carrega menu não logado
+        fetch('MenuNaoLogado.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('menuContainer1').innerHTML = html;
+                setupMenu();
             });
-        });
 
-        // Validação e login
+        // Verifica se veio do cadastro
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('from') === 'cadastro') {
+            showNotification('Cadastro realizado! Faça login.', 'success');
+        }
+
+        // Configura botão de login
         document.getElementById('loginButton').addEventListener('click', function () {
-            const cpf = document.getElementById('cpf').value.trim();
-            const senha = document.getElementById('senha').value.trim();
+            const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
+            const senha = document.getElementById('senha').value;
 
+            if (!cpf || !senha) {
+                showNotification('Preencha todos os campos!', 'error');
+                return;
+            }
+
+            // Verifica usuários no localStorage
             const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-            const usuarioEncontrado = usuarios.find(user => user.cpf === cpf && user.senha === senha);
+            
+            // Adiciona usuário padrão se não existir
+            if (usuarios.length === 0) {
+                const usuarioPadrao = {
+                    firstName: "Admin",
+                    nome: "Administrador Padrão",
+                    cpf: "12312312312",
+                    email: "admin@bellaavventura.com",
+                    senha: "123"
+                };
+                usuarios.push(usuarioPadrao);
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            }
 
-            if (usuarioEncontrado) {
-                localStorage.setItem('mensagemLogin', 'Login Realizado');
-                window.location.href = 'Entrada.html';
+            // Busca usuário
+            const usuario = usuarios.find(u => u.cpf === cpf && u.senha === senha);
+
+            if (usuario) {
+                // Salva usuário atual
+                localStorage.setItem('currentUser', JSON.stringify(usuario));
+                showNotification('Login realizado com sucesso!', 'success');
+
+                // Redireciona após 1 segundo
+                setTimeout(() => {
+                    window.location.href = 'Entrada.html?msg=login';
+                }, 1000);
             } else {
-                alert('CPF ou senha inválidos!');
+                showNotification('CPF ou senha incorretos!', 'error');
             }
         });
 
-        // Menu
-        fetch('../HTML/MenuNaoLogado.html')
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById('menuContainer1').innerHTML = html;
-            const menu = document.getElementById('menu-nao-logado');
-            const menuIcon = document.querySelector('.menu-icon');
+        // Função para limpar localStorage (para testes)
+        function clearLocalStorage() {
+            localStorage.clear();
+            console.log('LocalStorage limpo!');
+            showNotification('LocalStorage foi limpo!', 'success');
+        }
 
-            if (menu && menuIcon) {
-                menuIcon.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                    menu.classList.toggle('visible');
-                });
-            }
-        })
-        .catch(err => console.error('Erro ao carregar menu:', err));
+        // Adiciona esta linha se quiser um botão para limpar (apenas para desenvolvimento)
+        // document.getElementById('limparStorage').addEventListener('click', clearLocalStorage);
+    });
+
+    function setupMenu() {
+        const menu = document.getElementById('menu-nao-logado');
+        const menuIcon = document.querySelector('.menu-icon');
+
+        if (menu && menuIcon) {
+            menuIcon.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('visible');
+            });
+        }
+    }
+
+    function showNotification(message, type) {
+        const notif = document.getElementById('notification');
+        notif.textContent = message;
+        notif.style.backgroundColor = type === 'success' ? '#4CAF50' : '#F44336';
+        notif.classList.add('show');
+
+        setTimeout(() => {
+            notif.classList.remove('show');
+        }, 3000);
+    }
     </script>
 </body>
+
 </html>

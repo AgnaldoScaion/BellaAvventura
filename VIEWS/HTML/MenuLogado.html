@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menu - Não Logados</title>
+  <title>Menu - Usuário Logado</title>
   <style>
     .menu-box {
         position: absolute;
@@ -73,38 +73,30 @@
   </style>
 </head>
 <body>
-
-<!-- menu-nao-logado.html -->
-<div id="menu-nao-logado" class="menu-box hidden">
+  <div id="menu-logado" class="menu-box hidden">
     <div class="menu-lateral"></div>
     <div class="menu-conteudo">
-      <h2>MENU</h2>
+      <h2>MENU <span class="user-name" id="menu-user-name">Usuário</span></h2>
       <ul>
-        <li><a href="cadastro.html"> Fazer cadastro</a></li>
-        <li><a href="login.html"> Logar na conta</a></li>
+        <li><a href="perfil.html">Meu Perfil</a></li>
+        <li><a href="restaurantes.html"> Restaurantes</a></li>
+        <li><a href="hoteis.html">Hotéis</a></li>
+        <li><a href="pontos-turisticos.html">Pontos Turísticos</a></li>
+        <li><a href="feedbacks.html"> Meus Feedbacks</a></li>
         <li><a href="SobreNos.html"> Sobre nós</a></li>
+        <li><a href="#" id="logout-link"><span class="logout-btn">Sair</span></a></li>
       </ul>
     </div>
   </div>
-<!-- Script para carregar o menu nas outras guias
+
   <script>
-    // Carrega o menu externo
-    fetch('../HTML/MenuNaoLogado.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('menuContainer1').innerHTML = html;
-  
-        const menu = document.getElementById('menu-nao-logado');
-        const menuIcon = document.querySelector('.menu-icon');
-  
-        if (menu && menuIcon) {
-          menuIcon.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('visible');
-          });
-        }
-      })
-      .catch(err => console.error('Erro ao carregar menu:', err));
-  </script> -->
+    // Atualiza nome do usuário
+    document.addEventListener('DOMContentLoaded', function() {
+      const userData = JSON.parse(localStorage.getItem('currentUser'));
+      if (userData) {
+        document.getElementById('menu-user-name').textContent = userData.firstName;
+      }
+    });
+  </script>
 </body>
 </html>

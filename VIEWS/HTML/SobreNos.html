@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,8 @@
             font-weight: bold;
         }
 
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -63,17 +65,35 @@
             position: relative;
             height: 86px;
         }
-        
+
         .header-img img {
             height: 126px;
         }
-        
+
         .header-img {
             position: absolute;
             top: -50px;
             left: 50%;
-            transform: translateX(-5%);
+            transform: translateX(-50%);
             z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
         }
 
         /* Conteúdo Principal */
@@ -100,7 +120,7 @@
             padding: 2rem;
             border-radius: 12px;
             border: 3px solid #D8E6D9;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .about-section {
@@ -152,24 +172,25 @@
             font-size: 14px;
             text-align: center;
             width: auto;
-            flex-shrink: 0; /* Impede que o footer encolha */
+            flex-shrink: 0;
+            /* Impede que o footer encolha */
         }
-        
+
         .footer-top {
             margin-bottom: 15px;
             font-size: 33%;
         }
-        
+
         .footer-top img {
             width: 15%;
             height: auto;
             transition: transform 0.5s ease;
         }
-        
+
         .footer-top:hover img {
             transform: rotate(5deg) scale(1.05);
         }
-        
+
         .footer-bottom {
             display: flex;
             justify-content: space-between;
@@ -177,56 +198,135 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        
+
         .footer-left,
         .footer-center,
         .footer-right {
             flex: 1;
             text-align: center;
         }
-        
-        .footer-left { text-align: left; }
-        .footer-right { text-align: right; }
-        
+
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
         .footer-bottom a {
             text-decoration: underline;
             color: black;
         }
-        
+
         .footer-bottom a:hover {
             color: #5a8f3d;
         }
-        
-        /* Animação de flutuação */
-        @keyframes float {
-            0% { transform: translate(-50%, 0px); }
-            50% { transform: translate(-50%, -5px); }
-            100% { transform: translate(-50%, 0px); }
-        }
-        
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-        
+
         @media (max-width: 600px) {
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
             }
-        
+
             .footer-left,
             .footer-center,
             .footer-right {
                 text-align: center;
             }
-            
+
             .header-img img {
                 height: 100px;
                 top: -30px;
             }
         }
+
+        /* Menu */
+                .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .user-header {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Estilos do Menu */
+        .menu-box {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            background-color: #d6e3d6;
+            border-radius: 8px;
+            padding: 20px;
+            width: 260px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-family: 'Garamond', serif;
+            z-index: 10;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .menu-lateral {
+            background-color: #88b68b;
+            width: 24px;
+            border-radius: 8px;
+        }
+
+        .menu-conteudo {
+            flex: 1;
+        }
+
+        .menu-conteudo h2 {
+            font-size: 20px;
+            margin: 0;
+            border-bottom: 1px solid #999;
+            padding-bottom: 10px;
+        }
+
+        .menu-conteudo ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .menu-conteudo li {
+            margin: 15px 0;
+        }
+
+        .menu-conteudo a {
+            text-decoration: none;
+            color: black;
+            transition: color 0.2s;
+        }
+
+        .menu-conteudo a:hover {
+            color: #3a6545;
+        }
+
+        .hidden {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .visible {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
+
 <body>
     <div class="wrapper">
         <!-- Header -->
@@ -237,11 +337,13 @@
             </div>
         </div>
 
+        <div id="menuContainer"></div>
+
         <!-- Logo -->
         <div class="header">
             <div class="header-img">
                 <a href="Entrada.html">
-                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Bella Avventura" class="floating">
+                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Bella Avventura" class="floating" />
                 </a>
             </div>
         </div>
@@ -257,12 +359,15 @@
             <div class="about-content">
                 <section class="about-section">
                     <h2>Nossa Missão</h2>
-                    <p>Na Bella Avventura, transformamos sonhos em experiências memoráveis. Desde 2020, conectamos viajantes aos destinos mais incríveis do mundo, oferecendo roteiros personalizados e serviços de alta qualidade.</p>
+                    <p>Na Bella Avventura, transformamos sonhos em experiências memoráveis. Desde 2020, conectamos
+                        viajantes aos destinos mais incríveis do mundo, oferecendo roteiros personalizados e serviços de
+                        alta qualidade.</p>
                 </section>
 
                 <section class="about-section">
                     <h2>Nossa Equipe</h2>
-                    <p>Contamos com especialistas em viagens de mais de 15 países, todos apaixonados por explorar novas culturas e compartilhar conhecimento local autêntico.</p>
+                    <p>Contamos com especialistas em viagens de mais de 15 países, todos apaixonados por explorar novas
+                        culturas e compartilhar conhecimento local autêntico.</p>
                 </section>
 
                 <section class="values-section">
@@ -270,12 +375,12 @@
                         <h3>Experiência</h3>
                         <p>Mais de 50 mil viagens realizadas com excelência</p>
                     </article>
-                    
+
                     <article class="value-card">
                         <h3>Segurança</h3>
                         <p>Parceria com os melhores fornecedores do mercado</p>
                     </article>
-                    
+
                     <article class="value-card">
                         <h3>Inovação</h3>
                         <p>Tecnologia exclusiva de planejamento de viagens</p>
@@ -284,7 +389,8 @@
 
                 <section class="about-section">
                     <h2>Compromisso Sustentável</h2>
-                    <p>Implementamos programas de turismo responsável em todos os destinos, garantindo que 5% de cada reserva seja reinvestido em comunidades locais.</p>
+                    <p>Implementamos programas de turismo responsável em todos os destinos, garantindo que 5% de cada
+                        reserva seja reinvestido em comunidades locais.</p>
                 </section>
             </div>
         </main>
@@ -309,20 +415,88 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Carregamento do menu
-            fetch('../HTML/MenuNaoLogado.html')
-                .then(response => response.text())
+        document.addEventListener('DOMContentLoaded', function () {
+            // Verifica autenticação
+            checkAuth();
+
+            // Configura menu
+            setupMenu();
+
+            // Verifica mensagem de sucesso
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get('msg');
+
+            if (msg === 'login') {
+                showNotification('Login realizado com sucesso!', 'success');
+            } else if (msg === 'cadastro') {
+                showNotification('Cadastro realizado com sucesso!', 'success');
+            }
+        });
+
+        function checkAuth() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (userData) {
+                // Atualiza header
+                document.querySelector('.user-header').innerHTML = `
+                <span>👤</span> ${userData.firstName}
+            `;
+
+                // Carrega menu logado
+                loadMenu('MenuLogado.html');
+            } else {
+                // Carrega menu não logado
+                loadMenu('MenuNaoLogado.html');
+            }
+        }
+
+        function loadMenu(menuFile) {
+            fetch(menuFile)
+                .then(res => res.text())
                 .then(html => {
                     document.getElementById('menuContainer').innerHTML = html;
-                    const menuIcon = document.querySelector('.menu-icon');
-                    const menu = document.getElementById('menu-nao-logado');
-                    
-                    menuIcon.addEventListener('click', () => {
-                        menu.classList.toggle('visible');
-                    });
+                    setupMenu();
                 });
-        });
+        }
+
+        function setupMenu() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const menu = document.querySelector('.menu-box');
+
+            if (menu && menuIcon) {
+                menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                });
+            }
+
+            // Configura logout se existir
+            const logoutBtn = document.getElementById('logout-link');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'Entrada.html';
+                });
+            }
+        }
+
+        function showNotification(message, type) {
+            const notif = document.createElement('div');
+            notif.className = `notification ${type}`;
+            notif.textContent = message;
+            document.body.appendChild(notif);
+
+            setTimeout(() => {
+                notif.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                notif.classList.remove('show');
+                setTimeout(() => notif.remove(), 300);
+            }, 3000);
+        }
     </script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,8 @@
       font-weight: bold;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       height: 100%;
@@ -95,7 +97,7 @@
       padding: 2rem;
       border-radius: 12px;
       border: 3px solid #D8E6D9;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .form-group {
@@ -172,13 +174,20 @@
       gap: 10px;
     }
 
-    .footer-left, .footer-center, .footer-right {
+    .footer-left,
+    .footer-center,
+    .footer-right {
       flex: 1;
       text-align: center;
     }
 
-    .footer-left { text-align: left; }
-    .footer-right { text-align: right; }
+    .footer-left {
+      text-align: left;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
 
     .footer-bottom a {
       text-decoration: underline;
@@ -186,9 +195,17 @@
     }
 
     @keyframes float {
-      0% { transform: translate(-50%, 0px); }
-      50% { transform: translate(-50%, -5px); }
-      100% { transform: translate(-50%, 0px); }
+      0% {
+        transform: translate(-50%, 0px);
+      }
+
+      50% {
+        transform: translate(-50%, -5px);
+      }
+
+      100% {
+        transform: translate(-50%, 0px);
+      }
     }
 
     @media (max-width: 600px) {
@@ -207,11 +224,14 @@
         text-align: center;
       }
 
-      .footer-left, .footer-center, .footer-right {
+      .footer-left,
+      .footer-center,
+      .footer-right {
         text-align: center;
       }
     }
-        .notification {
+
+    .notification {
       position: fixed;
       top: 20px;
       left: 50%;
@@ -225,15 +245,16 @@
       transition: opacity 0.3s ease, top 0.3s ease;
       background-color: #4CAF50;
     }
-    
+
     .notification.show {
       top: 30px;
       opacity: 1;
     }
   </style>
 </head>
+
 <body>
-  
+
   <div class="wrapper">
     <!-- Header -->
     <div class="top-header">
@@ -267,7 +288,7 @@
 
           <div class="form-group">
             <label for="cpf">CPF</label>
-            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
+            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14">
           </div>
 
           <div class="form-group">
@@ -306,11 +327,14 @@
   </div>
 
   <script>
- // Máscara para CPF
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
+      // Máscara para CPF
       const cpfInput = document.getElementById('cpf');
-      cpfInput.addEventListener('input', function(e) {
+      cpfInput.addEventListener('input', function (e) {
         let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) {
+          value = value.substring(0, 11); // Limita a 11 dígitos
+        }
         value = value.replace(/(\d{3})(\d)/, '$1.$2');
         value = value.replace(/(\d{3})(\d)/, '$1.$2');
         value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
@@ -329,7 +353,7 @@
     function setupMenu() {
       const menu = document.getElementById('menu-nao-logado');
       const menuIcon = document.querySelector('.menu-icon');
-      
+
       if (menu && menuIcon) {
         menuIcon.addEventListener('click', () => {
           menu.classList.toggle('hidden');
@@ -351,7 +375,7 @@
 
       // Pega usuários existentes ou cria array vazio
       const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-      
+
       // Verifica se CPF já existe
       if (usuarios.some(u => u.cpf === cpf)) {
         showNotification('CPF já cadastrado!', 'error');
@@ -371,12 +395,12 @@
       // Adiciona ao array e salva
       usuarios.push(novoUsuario);
       localStorage.setItem('usuarios', JSON.stringify(usuarios));
-      
+
       // Salva como usuário atual
       localStorage.setItem('currentUser', JSON.stringify(novoUsuario));
-      
+
       showNotification('Cadastro realizado com sucesso!', 'success');
-      
+
       // Redireciona após 2 segundos
       setTimeout(() => {
         window.location.href = 'Entrada.html?msg=cadastro';
@@ -388,11 +412,12 @@
       notif.textContent = message;
       notif.style.backgroundColor = type === 'success' ? '#4CAF50' : '#F44336';
       notif.classList.add('show');
-      
+
       setTimeout(() => {
         notif.classList.remove('show');
       }, 3000);
     }
   </script>
 </body>
+
 </html>
