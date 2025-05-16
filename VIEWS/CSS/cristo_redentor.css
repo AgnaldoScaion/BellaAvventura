@@ -68,7 +68,7 @@ html, body {
   /* Grid principal do conteúdo */
   .grid-container {
     display: grid;
-    gap: 40px;
+    gap: 6%;
     max-width: 66%; /* Ajustado para 2/3 da largura da tela */
     margin: 50px auto; /* Centralizando e adicionando margem maior */
     padding: 20px; /* Reduzindo o padding interno */
@@ -78,20 +78,20 @@ html, body {
     position: relative;
     display: flex; /* Usando flexbox para alinhar a pilastra e o conteúdo */
   }
-  
+ 
   /* Pilastra verde */
   .pilastra-verde {
-    width: 55px; /* Espessura da pilastra */
+    width: 12%; /* Espessura da pilastra */
     background-color: #B1C6B1; /* Cor da pilastra */
     border-radius: 8px; /* Bordas arredondadas na pilastra */
-    margin-right: 20px; /* Espaço entre a pilastra e o conteúdo */
+    margin-right: 3%; /* Espaço entre a pilastra e o conteúdo */
   }
-  
+ 
   /* Conteúdo principal */
   .conteudo {
     flex: 1; /* O conteúdo ocupa o restante do espaço */
   }
-  
+ 
   /* Seção destino principal */
   .destino {
     display: grid;
@@ -102,53 +102,53 @@ html, body {
     border-radius: 8px;
     text-align: center;
   }
-  
+ 
   .destino img {
     width: 100%;
-    max-width: 500px; /* Limitando o tamanho da imagem */
+    max-width: 500%; /* Limitando o tamanho da imagem */
     height: auto;
     border-radius: 8px;
     object-fit: cover;
   }
-  
+ 
   .localiza {
     font-size: 14px;
     margin-top: 10px;
   }
-  
+ 
   .estrelas {
     color: #5B8F45;
     font-size: 20px;
   }
-  
+ 
   /* Seção sobre o destino */
   .sobre {
     display: grid;
     gap: 10px;
   }
-  
+ 
   .sobre h2 {
     color: #2e4e2e;
   }
-  
+ 
   /* Galeria com Grid */
   .imagens-secundarias {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 8px;
+    gap: 5%;
     margin-bottom: 40px; /* Espaço maior entre as fotos e os comentários */
   }
-  
+ 
   .imagens-secundarias img {
     width: 100%;
-    max-width: 350px; /* Limitando o tamanho das imagens */
+    max-width: 92%; /* Limitando o tamanho das imagens */
     height: auto;
     border-radius: 8px;
     object-fit: cover;
     place-self: center;
     border: 15px solid #B1C6B1; /* Moldura verde */
   }
-  
+ 
   /* Seção de comentários */
   .comentarios {
     display: grid;
@@ -158,19 +158,19 @@ html, body {
     border-radius: 8px;
     margin-top: 40px; /* Garantindo espaço superior, caso necessário */
   }
-  
+ 
   .comentarios h2 span {
     font-size: 14px;
     color: #666;
   }
-  
+ 
   .comentario {
     background: #fff;
     border-left: 5px solid #B1C6B1;
     padding: 10px;
     border-radius: 4px;
   }
-  
+ 
   /* Feedback com botão centralizado */
   .feedback {
     display: grid;
@@ -178,7 +178,7 @@ html, body {
     justify-items: center;
     text-align: center;
   }
-  
+ 
   .feedback button {
     background-color: #9fba9f;
     border: none;
@@ -187,7 +187,7 @@ html, body {
     border-radius: 4px;
     cursor: pointer;
   }
-  
+ 
 
   /* Footer Styles */
   .footer {
@@ -198,22 +198,22 @@ html, body {
       text-align: center;
       animation: fadeIn 1s ease;
   }
-  
+ 
   .footer-top {
       margin-bottom: 15px;
       font-size: 33%;
   }
-  
+ 
   .footer-top img {
       width: 15%;
       height: auto;
       transition: transform 0.5s ease;
   }
-  
+ 
   .footer-top:hover img {
       transform: rotate(5deg) scale(1.05);
   }
-  
+ 
   .footer-bottom {
       display: flex;
       justify-content: space-between;
@@ -221,7 +221,7 @@ html, body {
       flex-wrap: wrap;
       gap: 10px;
   }
-  
+ 
   .footer-left,
   .footer-center,
   .footer-right {
@@ -229,107 +229,107 @@ html, body {
       text-align: center;
       transition: all 0.3s ease;
   }
-  
-  .footer-left:hover, 
+ 
+  .footer-left:hover,
   .footer-right:hover {
       transform: translateY(-3px);
   }
-  
+ 
   .footer-left { text-align: left; }
   .footer-right { text-align: right; }
-  
+ 
   .footer-bottom a {
       text-decoration: underline;
       color: black;
       transition: color 0.3s ease;
   }
-  
+ 
   .footer-bottom a:hover {
       color: #5a8f3d;
   }
-  
+ 
   /* Animações */
   @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
   }
-  
+ 
   @keyframes slideIn {
       from { transform: translateX(-100%); }
       to { transform: translateX(0); }
   }
-  
+ 
   @keyframes slideUp {
-      from { 
+      from {
           opacity: 0;
           transform: translateY(20px);
       }
-      to { 
+      to {
           opacity: 1;
           transform: translateY(0);
       }
   }
-  
+ 
   @keyframes fadeInUp {
-      from { 
+      from {
           opacity: 0;
           transform: translateY(20px);
       }
-      to { 
+      to {
           opacity: 1;
           transform: translateY(0);
       }
   }
-  
+ 
   @keyframes float {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-5px); }
       100% { transform: translateY(0px); }
   }
-  
+ 
   .floating {
       animation: float 3s ease-in-out infinite;
   }
-  
+ 
   @media (max-width: 600px) {
       .footer-bottom {
           flex-direction: column;
           text-align: center;
       }
-  
+ 
       .footer-left,
       .footer-center,
       .footer-right {
           text-align: center;
       }
-      
+     
       .hero h1 {
           font-size: 2rem;
       }
-      
+     
       .hero p {
           font-size: 1rem;
       }
-      
+     
       .header-img img {
           height: 100px;
           top: -30px;
       }
-      
+     
       .features-container {
           flex-direction: column;
           align-items: center;
       }
-      
+     
       .feature-card {
           width: 100%;
           max-width: 300px;
       }
-      
+     
       .menu-container {
           width: 250px;
       }
-      
+     
       .menu-items a {
           font-size: 16px;
       }
@@ -344,3 +344,4 @@ html, body {
   gap: 5px;
   margin-bottom: 10px;
 }
+

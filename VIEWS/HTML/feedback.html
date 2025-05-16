@@ -4,32 +4,329 @@
   <meta charset="UTF-8">
   <title>Feedback Enviado</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f2f2f2;
-      text-align: center;
-      padding: 50px;
+    @font-face {
+      font-family: 'GaramondBold';
+      src: local('Garamond'), serif;
+      font-weight: bold;
     }
 
-    .box {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      display: inline-block;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      background-color: #f3f7f3;
     }
 
     h1 {
       color: #27ae60;
-     
     }
-</style>
+
+    .card {
+      padding: 50px;
+      border-radius: 10px;
+      display: inline-block;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin: auto;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header {
+      background-color: #A7D096;
+      position: relative;
+      height: 86px;
+    }
+
+    .header-img img {
+      height: 126px;
+      transition: transform 0.5s ease;
+    }
+
+    .header-img {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      background-color: #A7D096;
+      position: relative;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-icon:hover {
+      transform: scale(1.1);
+    }
+        .menu-box {
+        position: absolute;
+        top: 50px;
+        left: 20px;
+        background-color: #d6e3d6;
+        border-radius: 8px;
+        padding: 20px;
+        width: 260px;
+        display: flex;
+        gap: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-family: 'Garamond', serif;
+        z-index: 10;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+    
+      .menu-lateral {
+        background-color: #88b68b;
+        width: 24px;
+        border-radius: 8px;
+      }
+    
+      .menu-conteudo {
+        flex: 1;
+      }
+    
+      .menu-conteudo h2 {
+        font-size: 20px;
+        margin: 0;
+        border-bottom: 1px solid #999;
+        padding-bottom: 10px;
+      }
+    
+      .menu-conteudo ul {
+        list-style: none;
+        text-align: left;
+        padding: 0;
+        margin-top: 15px;
+      }
+    
+      .menu-conteudo li {
+        margin: 15px 0;
+      }
+    
+      .menu-conteudo a {
+        text-decoration: none;
+        color: black;
+        transition: color 0.2s;
+      }
+    
+      .menu-conteudo a:hover {
+        color: #3a6545;
+      }
+    
+      /* Esconde o menu inicialmente */
+      .hidden {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+    
+      .visible {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+    
+    .user-header {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer {
+      background-color: #A7D096;
+      padding: 20px;
+      color: #000;
+      font-size: 14px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .footer-top {
+      margin-bottom: 15px;
+      font-size: 33%;
+    }
+
+    .footer-top img {
+      width: 15%;
+      height: auto;
+      transition: transform 0.5s ease;
+    }
+
+    .footer-top:hover img {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+      flex: 1;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-left:hover,
+    .footer-right:hover {
+      transform: translateY(-3px);
+    }
+
+    .footer-left {
+      text-align: left;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-bottom a {
+      text-decoration: underline;
+      color: black;
+      transition: color 0.3s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: #5a8f3d;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-left,
+      .footer-center,
+      .footer-right {
+        text-align: center;
+      }
+
+      .header-img img {
+        height: 100px;
+        top: -30px;
+      }
+    }
+  </style>
+</head>
 <body>
-  <div class="card">
-    <h1>Feedback enviado com sucesso!</h1>
-    <p>Obrigado por sua colaboração. Sua opinião é muito importante para nós.</p>
-    <a href="index.html" class="btn">Voltar à página inicial</a>
+  <div class="wrapper">
+
+    <!-- Top Header -->
+    <div class="top-header">
+      <div class="menu-icon">☰</div>
+      <div class="user-header">
+        <span>👤</span> <span id="nome-usuario">Usuário</span>
+      </div>
+    </div>
+
+    <!-- Menu JS (separado) -->
+    <div id="menuContainer1"></div>
+
+    <!-- Logo -->
+    <div class="header">
+      <div class="header-img">
+        <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="content">
+      <div class="card">
+        <h1>Feedback enviado com sucesso!</h1>
+        <p>Obrigado por sua colaboração. Sua opinião é muito importante para nós.</p>
+        <a href="Entrada.html" class="btn">Voltar à página inicial</a>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+      <div class="footer-top">
+        <a href="https://www.bellaavventura.com.br/">
+          <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-left">
+          <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+        </div>
+        <div class="footer-center">© 2025 Bella Avventura</div>
+        <div class="footer-right">
+          <a href="#">Termos e condições</a>
+        </div>
+      </div>
+    </footer>
   </div>
 
+  <!-- Script para exibir nome do usuário -->
+  <script>
+    fetch('../HTML/MenuNaoLogado.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('menuContainer1').innerHTML = html;
+  
+        const menu = document.getElementById('menu-nao-logado');
+        const menuIcon = document.querySelector('.menu-icon');
+  
+        if (menu && menuIcon) {
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
+          });
+        }
+      })
+      .catch(err => console.error('Erro ao carregar menu:', err));
+    document.addEventListener("DOMContentLoaded", () => {
+      const nomeUsuario = localStorage.getItem("primeiroNome");
+      const elementoUsuario = document.getElementById("nome-usuario");
+
+      if (nomeUsuario && elementoUsuario) {
+        elementoUsuario.textContent = nomeUsuario;
+      }
+    });
+
+    // Simulação: para testar, execute no console:
+    // localStorage.setItem("primeiroNome", "João");
+  </script>
 </body>
 </html>

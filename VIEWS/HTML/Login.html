@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Login - Bella Avventura</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
     <style>
         @font-face {
             font-family: 'GaramondBold';
             src: local('Garamond'), serif;
             font-weight: bold;
         }
-        
+
         html, body {
             margin: 0;
             padding: 0;
@@ -27,24 +27,23 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            
         }
-        
+
         .main-content {
-            flex: 1; /* Faz o conteúdo principal ocupar todo o espaço disponível */
-            padding-bottom: 20px; /* Espaço para o footer */
+            flex: 1;
+            padding-bottom: 20px;
         }
-        
+
         .header {
             background-color: #A7D096;
             position: relative;
             height: 86px;
         }
-        
+
         .header-img img {
             height: 126px;
         }
-        
+
         .header-img {
             position: absolute;
             top: -50px;
@@ -57,7 +56,6 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Header Styles */
         .top-header {
             display: flex;
             justify-content: space-between;
@@ -78,22 +76,21 @@
             align-items: center;
             gap: 6px;
         }
-        
-        /* Login Content */
+
         .login-container {
             max-width: 400px;
             margin: 5rem auto;
             padding: 2rem;
             text-align: center;
         }
-        
+
         .login-title {
             font-family: 'GaramondBold', serif;
             color: #5a8f3d;
             font-size: 2rem;
             margin-bottom: 2rem;
         }
-        
+
         .login-box {
             background-color: white;
             padding: 2rem;
@@ -101,27 +98,27 @@
             border: 3px solid #D8E6D9;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        
+
         .form-group {
             margin-bottom: 1.5rem;
             text-align: left;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             color: #5a8f3d;
             font-weight: bold;
         }
-        
+
         .form-group input {
-            width: 100%;
+            width: 92%;
             padding: 0.8rem;
             border: 2px solid #D8E6D9;
             border-radius: 8px;
             font-size: 1rem;
         }
-        
+
         .forgot-password {
             display: block;
             text-align: right;
@@ -129,7 +126,7 @@
             color: #5a8f3d;
             text-decoration: none;
         }
-        
+
         .login-button {
             background-color: #5a8f3d;
             color: white;
@@ -143,11 +140,11 @@
             margin-bottom: 1rem;
             transition: background-color 0.3s;
         }
-        
+
         .login-button:hover {
             background-color: #4a7d2d;
         }
-        
+
         .back-button {
             display: inline-block;
             color: #5a8f3d;
@@ -155,8 +152,7 @@
             font-weight: bold;
             margin-top: 1rem;
         }
-        
-        /* Footer Styles */
+
         .footer {
             background-color: #A7D096;
             padding: 20px;
@@ -164,19 +160,19 @@
             font-size: 14px;
             text-align: center;
             width: auto;
-            flex-shrink: 0; /* Impede que o footer encolha */
+            flex-shrink: 0;
         }
-        
+
         .footer-top {
             margin-bottom: 15px;
             font-size: 33%;
         }
-        
+
         .footer-top img {
             width: 15%;
             height: auto;
         }
-        
+
         .footer-bottom {
             display: flex;
             justify-content: space-between;
@@ -184,45 +180,44 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        
+
         .footer-left,
         .footer-center,
         .footer-right {
             flex: 1;
             text-align: center;
         }
-        
+
         .footer-left { text-align: left; }
         .footer-right { text-align: right; }
-        
+
         .footer-bottom a {
             text-decoration: underline;
             color: black;
         }
-        
-        /* Animação de flutuação */
+
         @keyframes float {
             0% { transform: translate(-50%, 0px); }
             50% { transform: translate(-50%, -5px); }
             100% { transform: translate(-50%, 0px); }
         }
-        
+
         @media (max-width: 600px) {
             .login-container {
                 padding: 1rem;
                 margin: 3rem auto;
             }
-            
+
             .header-img img {
                 height: 100px;
                 top: -30px;
             }
-            
+
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
             }
-        
+
             .footer-left,
             .footer-center,
             .footer-right {
@@ -233,15 +228,13 @@
 </head>
 <body>
     <div class="wrapper">
-        <!-- Top Header -->
         <div class="top-header">
             <div class="menu-icon">☰</div>
             <div class="user-header">
                 <span>👤</span> Usuário
             </div>
         </div>
-    
-        <!-- Logo -->
+
         <div class="header">
             <div class="header-img">
                 <a href="Entrada.html">
@@ -252,32 +245,30 @@
 
         <div id="menuContainer1"></div>
 
-        <!-- Login Content -->
         <main class="main-content">
             <div class="login-container">
                 <h1 class="login-title">Login</h1>
-                
+
                 <div class="login-box">
                     <div class="form-group">
                         <label for="cpf">CPF</label>
                         <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="senha">Senha</label>
                         <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
                     </div>
-                    
+
                     <a href="#" class="forgot-password">Esqueci minha senha</a>
-                    
-                    <button type="submit" class="login-button">Entrar</button>
-                    
+
+                    <button type="button" class="login-button" id="loginButton">Entrar</button>
+
                     <a href="Entrada.html" class="back-button">Voltar</a>
                 </div>
             </div>
         </main>
-        
-        <!-- Rodapé -->
+
         <footer class="footer">
             <div class="footer-top">
                 <a href="https://www.bellaavventura.com.br/">
@@ -297,10 +288,10 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Máscara para CPF
+        // Máscara CPF
+        document.addEventListener('DOMContentLoaded', function () {
             const cpfInput = document.getElementById('cpf');
-            cpfInput.addEventListener('input', function(e) {
+            cpfInput.addEventListener('input', function (e) {
                 let value = e.target.value.replace(/\D/g, '');
                 value = value.replace(/(\d{3})(\d)/, '$1.$2');
                 value = value.replace(/(\d{3})(\d)/, '$1.$2');
@@ -308,21 +299,37 @@
                 e.target.value = value;
             });
         });
-         
+
+        // Validação e login
+        document.getElementById('loginButton').addEventListener('click', function () {
+            const cpf = document.getElementById('cpf').value.trim();
+            const senha = document.getElementById('senha').value.trim();
+
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const usuarioEncontrado = usuarios.find(user => user.cpf === cpf && user.senha === senha);
+
+            if (usuarioEncontrado) {
+                localStorage.setItem('mensagemLogin', 'Login Realizado');
+                window.location.href = 'Entrada.html';
+            } else {
+                alert('CPF ou senha inválidos!');
+            }
+        });
+
+        // Menu
         fetch('../HTML/MenuNaoLogado.html')
         .then(res => res.text())
         .then(html => {
-          document.getElementById('menuContainer1').innerHTML = html;
-    
-          const menu = document.getElementById('menu-nao-logado');
-          const menuIcon = document.querySelector('.menu-icon');
-    
-          if (menu && menuIcon) {
-            menuIcon.addEventListener('click', () => {
-              menu.classList.toggle('hidden');
-              menu.classList.toggle('visible');
-            });
-          }
+            document.getElementById('menuContainer1').innerHTML = html;
+            const menu = document.getElementById('menu-nao-logado');
+            const menuIcon = document.querySelector('.menu-icon');
+
+            if (menu && menuIcon) {
+                menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                });
+            }
         })
         .catch(err => console.error('Erro ao carregar menu:', err));
     </script>
