@@ -19,4 +19,3 @@ Para que **todos os menus e redirecionamentos funcionem corretamente**, é neces
 
 > ⚠️ Importante: Devido a problemas locais com o banco de dados (Workbench), o armazenamento de usuários está temporariamente simulado via `localStorage`.
 
-## 📁 Estrutura do Projeto
