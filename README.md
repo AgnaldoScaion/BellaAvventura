@@ -6,7 +6,9 @@
 ![GitHub issues](https://img.shields.io/github/issues/AgnaldoScaion/bellaavventura?style=for-the-badge)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/AgnaldoScaion/bellaavventura?style=for-the-badge)
 
-<img href="https://i.ibb.co/Z6yNTM91/image.png" alt="Logo do Bella Avventura" width="400"/>
+<p align="center">
+    <img src="https://i.ibb.co/vx2Dzj9v/image.png" alt="Logo do Bella Avventura" width="400"/>
+</p>
 
 > O **Bella Avventura** é um site de viagens que visa simplificar o planejamento turístico de forma intuitiva, moderna e responsiva. Explore **hotéis**, **restaurantes** e **pontos turísticos** com facilidade e design pensado para proporcionar uma excelente experiência de navegação.
 
