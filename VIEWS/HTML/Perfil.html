@@ -187,7 +187,7 @@
         }
 
         .edit-form input {
-            width: 100%;
+            width: 94%;
             padding: 0.8rem;
             border: 2px solid #D8E6D9;
             border-radius: 8px;
@@ -388,50 +388,58 @@
         <div id="menuContainer"></div>
 
         <!-- Conteúdo Principal -->
-        <main class="main-content">
-            <div class="profile-container">
-                <div class="profile-header">
-                    <h1 class="profile-title">Meu Perfil</h1>
-                    <button id="editButton" class="edit-button">Editar Perfil</button>
-                </div>
+     <main class="main-content">
+        <div class="profile-container">
+            <div class="profile-header">
+                <h1 class="profile-title">Meu Perfil</h1>
+                <button id="editButton" class="edit-button">Editar Perfil</button>
+            </div>
 
-                <div class="profile-info">
-                    <div class="info-group">
-                        <span class="info-label">Nome Completo</span>
-                        <div id="nomeValue" class="info-value"></div>
-                        <div class="edit-form">
-                            <input type="text" id="nomeInput" placeholder="Digite seu nome completo">
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <span class="info-label">CPF</span>
-                        <div id="cpfValue" class="info-value"></div>
-                    </div>
-
-                    <div class="info-group">
-                        <span class="info-label">E-mail</span>
-                        <div id="emailValue" class="info-value"></div>
-                        <div class="edit-form">
-                            <input type="email" id="emailInput" placeholder="Digite seu e-mail">
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <span class="info-label">Senha</span>
-                        <div class="info-value">••••••••</div>
-                        <div class="edit-form">
-                            <input type="password" id="senhaInput" placeholder="Digite sua nova senha">
-                        </div>
+            <div class="profile-info">
+                <div class="info-group">
+                    <span class="info-label">Nome Completo</span>
+                    <div id="nomeValue" class="info-value"></div>
+                    <div class="edit-form">
+                        <input type="text" id="nomeInput" placeholder="Digite seu nome completo">
                     </div>
                 </div>
 
-                <div class="profile-actions">
-                    <button id="cancelButton" class="action-button cancel-button">Cancelar</button>
-                    <button id="saveButton" class="action-button save-button">Salvar Alterações</button>
+                <div class="info-group" id="cpfGroup">
+                    <span class="info-label">CPF</span>
+                    <div id="cpfValue" class="info-value"></div>
+                </div>
+                
+                <!-- Campo de senha antiga que será movido para o local do CPF durante edição -->
+                <div class="info-group" id="senhaAntigaGroup" style="display: none;">
+                    <span class="info-label">Senha Atual</span>
+                    <div class="edit-form" style="display: block;">
+                        <input type="password" id="senhaAntigaInput" placeholder="Digite sua senha atual">
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <span class="info-label">E-mail</span>
+                    <div id="emailValue" class="info-value"></div>
+                    <div class="edit-form">
+                        <input type="email" id="emailInput" placeholder="Digite seu e-mail">
+                    </div>
+                </div>
+
+                <div class="info-group" id="senhaGroup">
+                    <span class="info-label">Senha</span>
+                    <div class="info-value">••••••••</div>
+                    <div class="edit-form">
+                        <input type="password" id="novaSenhaInput" placeholder="Digite sua nova senha">
+                    </div>
                 </div>
             </div>
-        </main>
+
+            <div class="profile-actions">
+                <button id="cancelButton" class="action-button cancel-button">Cancelar</button>
+                <button id="saveButton" class="action-button save-button">Salvar Alterações</button>
+            </div>
+        </div>
+    </main>
 
         <!-- Rodapé -->
         <footer class="footer">
@@ -506,7 +514,11 @@
 
         function loadProfileData(userData) {
             document.getElementById('nomeValue').textContent = userData.nome || 'Não informado';
-            document.getElementById('cpfValue').textContent = userData.cpf || 'Não informado';
+            
+            // Formata o CPF para exibição
+            const cpfFormatado = userData.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            document.getElementById('cpfValue').textContent = cpfFormatado || 'Não informado';
+            
             document.getElementById('emailValue').textContent = userData.email || 'Não informado';
         }
 
@@ -521,11 +533,16 @@
                 // Preenche os formulários com os valores atuais
                 document.getElementById('nomeInput').value = userData.nome || '';
                 document.getElementById('emailInput').value = userData.email || '';
-                document.getElementById('senhaInput').value = '';
+                document.getElementById('senhaAntigaInput').value = '';
+                document.getElementById('novaSenhaInput').value = '';
 
                 // Mostra formulários e esconde valores
                 editForms.forEach(form => form.style.display = 'block');
                 infoValues.forEach(value => value.style.display = 'none');
+
+                // Esconde grupo do CPF e mostra grupo da senha antiga em seu lugar
+                document.getElementById('cpfGroup').style.display = 'none';
+                document.getElementById('senhaAntigaGroup').style.display = 'block';
 
                 // Mostra botões de ação
                 cancelButton.style.display = 'block';
@@ -538,6 +555,10 @@
                 editForms.forEach(form => form.style.display = 'none');
                 infoValues.forEach(value => value.style.display = 'block');
 
+                // Mostra grupo do CPF e esconde grupo da senha antiga
+                document.getElementById('cpfGroup').style.display = 'block';
+                document.getElementById('senhaAntigaGroup').style.display = 'none';
+
                 // Esconde botões de ação
                 cancelButton.style.display = 'none';
                 saveButton.style.display = 'none';
@@ -547,10 +568,23 @@
             saveButton.addEventListener('click', function() {
                 const newNome = document.getElementById('nomeInput').value;
                 const newEmail = document.getElementById('emailInput').value;
-                const newSenha = document.getElementById('senhaInput').value;
+                const senhaAntiga = document.getElementById('senhaAntigaInput').value;
+                const novaSenha = document.getElementById('novaSenhaInput').value;
 
                 if (!newNome || !newEmail) {
                     showNotification('Preencha todos os campos obrigatórios!', 'error');
+                    return;
+                }
+
+                // Verifica se a senha antiga está correta
+                if (senhaAntiga !== userData.senha) {
+                    showNotification('Senha atual incorreta!', 'error');
+                    
+                    // Redireciona para página de recuperação após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = 'recuperar_senha.html';
+                    }, 2000);
+                    
                     return;
                 }
 
@@ -560,8 +594,8 @@
                 userData.firstName = newNome.split(' ')[0];
                 userData.lastName = newNome.split(' ').slice(1).join(' ');
 
-                if (newSenha) {
-                    userData.senha = newSenha;
+                if (novaSenha) {
+                    userData.senha = novaSenha;
                 }
 
                 // Atualiza no localStorage
