@@ -13,7 +13,8 @@
             font-weight: bold;
         }
 
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -240,23 +241,24 @@
                 text-align: center;
             }
         }
-            @keyframes float {
-      0% {
-        transform: translateY(0px);
-      }
 
-      50% {
-        transform: translateY(-5px);
-      }
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
 
-      100% {
-        transform: translateY(0px);
-      }
-    }
+            50% {
+                transform: translateY(-5px);
+            }
 
-    .floating {
-      animation: float 3s ease-in-out infinite;
-    }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -272,7 +274,7 @@
         <div class="header">
             <div class="header-img">
                 <a href="Entrada.html">
-                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating"/>
+                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating" />
                 </a>
             </div>
         </div>
@@ -301,7 +303,7 @@
 
                     <a href="Entrada.html" class="back-button">Voltar</a>
                 </div>
-                
+
             </div>
         </main>
 
@@ -324,110 +326,112 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Máscara CPF
-        const cpfInput = document.getElementById('cpf');
-        cpfInput.addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 11) {
-                value = value.substring(0, 11);
-            }
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-            e.target.value = value;
-        });
-
-        // Carrega menu não logado
-        fetch('MenuNaoLogado.html')
-            .then(res => res.text())
-            .then(html => {
-                document.getElementById('menuContainer1').innerHTML = html;
-                setupMenu();
+        document.addEventListener('DOMContentLoaded', function () {
+            // Máscara CPF
+            const cpfInput = document.getElementById('cpf');
+            cpfInput.addEventListener('input', function (e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) {
+                    value = value.substring(0, 11);
+                }
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
             });
 
-        // Verifica se veio do cadastro
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('from') === 'cadastro') {
-            showNotification('Cadastro realizado! Faça login.', 'success');
-        }
+            // Carrega menu não logado
+            fetch('MenuNaoLogado.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('menuContainer1').innerHTML = html;
+                    setupMenu();
+                });
 
-        // Configura botão de login
-        document.getElementById('loginButton').addEventListener('click', function () {
-            const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
-            const senha = document.getElementById('senha').value;
-
-            if (!cpf || !senha) {
-                showNotification('Preencha todos os campos!', 'error');
-                return;
+            // Verifica se veio do cadastro
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('from') === 'cadastro') {
+                showNotification('Cadastro realizado! Faça login.', 'success');
             }
 
-            // Verifica usuários no localStorage
-            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-            
-            // Adiciona usuário padrão se não existir
-            if (usuarios.length === 0) {
-                const usuarioPadrao = {
-                    firstName: "Admin",
-                    nome: "Administrador Padrão",
-                    cpf: "12312312312",
-                    email: "admin@bellaavventura.com",
-                    senha: "123"
-                };
-                usuarios.push(usuarioPadrao);
-                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            // Configura botão de login
+            document.getElementById('loginButton').addEventListener('click', function () {
+                const cpf = document.getElementById('cpf').value.replace(/\D/g, ''); // Remove formatação
+                const senha = document.getElementById('senha').value;
+
+                if (!cpf || !senha) {
+                    showNotification('Preencha todos os campos!', 'error');
+                    return;
+                }
+
+                // Verifica usuários no localStorage
+                const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+                // Adiciona usuário padrão se não existir (apenas para demonstração)
+                if (usuarios.length === 0) {
+                    const usuarioPadrao = {
+                        id: "1",
+                        firstName: "Admin",
+                        nome: "Administrador Padrão",
+                        cpf: "12312312312",
+                        email: "admin@bellaavventura.com",
+                        senha: "123",
+                        dataCadastro: new Date().toISOString()
+                    };
+                    usuarios.push(usuarioPadrao);
+                    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+                }
+
+                // Busca usuário (comparando CPF sem formatação)
+                const usuario = usuarios.find(u => u.cpf === cpf && u.senha === senha);
+
+                if (usuario) {
+                    // Salva usuário atual
+                    localStorage.setItem('currentUser', JSON.stringify(usuario));
+                    showNotification('Login realizado com sucesso!', 'success');
+
+                    // Redireciona após 1 segundo
+                    setTimeout(() => {
+                        window.location.href = 'Entrada.html?msg=login';
+                    }, 1000);
+                } else {
+                    showNotification('CPF ou senha incorretos!', 'error');
+                }
+            });
+
+            // Função para limpar localStorage (para testes)
+            function clearLocalStorage() {
+                localStorage.clear();
+                console.log('LocalStorage limpo!');
+                showNotification('LocalStorage foi limpo!', 'success');
             }
 
-            // Busca usuário
-            const usuario = usuarios.find(u => u.cpf === cpf && u.senha === senha);
-
-            if (usuario) {
-                // Salva usuário atual
-                localStorage.setItem('currentUser', JSON.stringify(usuario));
-                showNotification('Login realizado com sucesso!', 'success');
-
-                // Redireciona após 1 segundo
-                setTimeout(() => {
-                    window.location.href = 'Entrada.html?msg=login';
-                }, 1000);
-            } else {
-                showNotification('CPF ou senha incorretos!', 'error');
-            }
+            // Adiciona esta linha se quiser um botão para limpar (apenas para desenvolvimento)
+            // document.getElementById('limparStorage').addEventListener('click', clearLocalStorage);
         });
 
-        // Função para limpar localStorage (para testes)
-        function clearLocalStorage() {
-            localStorage.clear();
-            console.log('LocalStorage limpo!');
-            showNotification('LocalStorage foi limpo!', 'success');
+        function setupMenu() {
+            const menu = document.getElementById('menu-nao-logado');
+            const menuIcon = document.querySelector('.menu-icon');
+
+            if (menu && menuIcon) {
+                menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                });
+            }
         }
 
-        // Adiciona esta linha se quiser um botão para limpar (apenas para desenvolvimento)
-        // document.getElementById('limparStorage').addEventListener('click', clearLocalStorage);
-    });
+        function showNotification(message, type) {
+            const notif = document.getElementById('notification');
+            notif.textContent = message;
+            notif.style.backgroundColor = type === 'success' ? '#4CAF50' : '#F44336';
+            notif.classList.add('show');
 
-    function setupMenu() {
-        const menu = document.getElementById('menu-nao-logado');
-        const menuIcon = document.querySelector('.menu-icon');
-
-        if (menu && menuIcon) {
-            menuIcon.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                menu.classList.toggle('visible');
-            });
+            setTimeout(() => {
+                notif.classList.remove('show');
+            }, 3000);
         }
-    }
-
-    function showNotification(message, type) {
-        const notif = document.getElementById('notification');
-        notif.textContent = message;
-        notif.style.backgroundColor = type === 'success' ? '#4CAF50' : '#F44336';
-        notif.classList.add('show');
-
-        setTimeout(() => {
-            notif.classList.remove('show');
-        }, 3000);
-    }
     </script>
 </body>
 

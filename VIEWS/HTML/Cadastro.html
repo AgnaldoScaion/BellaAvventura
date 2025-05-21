@@ -363,33 +363,53 @@
     }
 
     function realizarCadastro() {
-      const nome = document.getElementById('nome').value;
-      const cpf = document.getElementById('cpf').value;
-      const email = document.getElementById('email').value;
+      const nome = document.getElementById('nome').value.trim();
+      const cpf = document.getElementById('cpf').value.replace(/\D/g, ''); // Remove formatação
+      const email = document.getElementById('email').value.trim();
       const senha = document.getElementById('senha').value;
 
+      // Validação dos campos
       if (!nome || !cpf || !email || !senha) {
         showNotification('Preencha todos os campos!', 'error');
+        return;
+      }
+
+      // Validação básica de CPF (11 dígitos)
+      if (cpf.length !== 11) {
+        showNotification('CPF inválido! Deve conter 11 dígitos.', 'error');
+        return;
+      }
+
+      // Validação básica de email
+      if (!email.includes('@') || !email.includes('.')) {
+        showNotification('Email inválido!', 'error');
         return;
       }
 
       // Pega usuários existentes ou cria array vazio
       const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-      // Verifica se CPF já existe
+      // Verifica se CPF ou email já existem
       if (usuarios.some(u => u.cpf === cpf)) {
         showNotification('CPF já cadastrado!', 'error');
         return;
       }
 
+      if (usuarios.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+        showNotification('Email já cadastrado!', 'error');
+        return;
+      }
+
       // Cria novo usuário
       const novoUsuario = {
+        id: Date.now().toString(), // ID único
         firstName: nome.split(' ')[0],
         lastName: nome.split(' ').slice(1).join(' '),
         nome,
         cpf,
-        email,
-        senha
+        email: email.toLowerCase(), // Armazena em minúsculas
+        senha,
+        dataCadastro: new Date().toISOString()
       };
 
       // Adiciona ao array e salva
@@ -401,9 +421,9 @@
 
       showNotification('Cadastro realizado com sucesso!', 'success');
 
-      // Redireciona após 2 segundos
+      // Redireciona para a página de login após 2 segundos
       setTimeout(() => {
-        window.location.href = 'Entrada.html?msg=cadastro';
+        window.location.href = 'Login.html?from=cadastro';
       }, 2000);
     }
 
