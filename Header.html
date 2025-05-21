@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Header - Bella Avventura</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+  <!-- Copie e cole o conteudo abaixo embaixo da linkagem do css, do jeito que esta aqui, para a imagem ficar no topo da guia. -->
   <style>
     @font-face {
       font-family: 'GaramondBold';
@@ -190,87 +192,87 @@
 
   <!-- Scripts Incorporados -->
   <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Verifica autenticação
-            checkAuth();
+    document.addEventListener('DOMContentLoaded', function () {
+      // Verifica autenticação
+      checkAuth();
 
-            // Configura menu
-            setupMenu();
+      // Configura menu
+      setupMenu();
 
-            // Verifica mensagem de sucesso
-            const urlParams = new URLSearchParams(window.location.search);
-            const msg = urlParams.get('msg');
+      // Verifica mensagem de sucesso
+      const urlParams = new URLSearchParams(window.location.search);
+      const msg = urlParams.get('msg');
 
-            if (msg === 'login') {
-                showNotification('Login realizado com sucesso!', 'success');
-            } else if (msg === 'cadastro') {
-                showNotification('Cadastro realizado com sucesso!', 'success');
-            }
-        });
+      if (msg === 'login') {
+        showNotification('Login realizado com sucesso!', 'success');
+      } else if (msg === 'cadastro') {
+        showNotification('Cadastro realizado com sucesso!', 'success');
+      }
+    });
 
-        function checkAuth() {
-            const userData = JSON.parse(localStorage.getItem('currentUser'));
+    function checkAuth() {
+      const userData = JSON.parse(localStorage.getItem('currentUser'));
 
-            if (userData) {
-                // Atualiza header
-                document.querySelector('.user-header').innerHTML = `
+      if (userData) {
+        // Atualiza header
+        document.querySelector('.user-header').innerHTML = `
                 <span>👤</span> ${userData.firstName}
             `;
 
-                // Carrega menu logado
-                loadMenu('MenuLogado.html');
-            } else {
-                // Carrega menu não logado
-                loadMenu('MenuNaoLogado.html');
-            }
-        }
+        // Carrega menu logado
+        loadMenu('MenuLogado.html');
+      } else {
+        // Carrega menu não logado
+        loadMenu('MenuNaoLogado.html');
+      }
+    }
 
-        function loadMenu(menuFile) {
-            fetch(menuFile)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('menuContainer').innerHTML = html;
-                    setupMenu();
-                });
-        }
+    function loadMenu(menuFile) {
+      fetch(menuFile)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menuContainer').innerHTML = html;
+          setupMenu();
+        });
+    }
 
-        function setupMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const menu = document.querySelector('.menu-box');
+    function setupMenu() {
+      const menuIcon = document.querySelector('.menu-icon');
+      const menu = document.querySelector('.menu-box');
 
-            if (menu && menuIcon) {
-                menuIcon.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                    menu.classList.toggle('visible');
-                });
-            }
+      if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          menu.classList.toggle('visible');
+        });
+      }
 
-            // Configura logout se existir
-            const logoutBtn = document.getElementById('logout-link');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    localStorage.removeItem('currentUser');
-                    window.location.href = 'Entrada.html';
-                });
-            }
-        }
+      // Configura logout se existir
+      const logoutBtn = document.getElementById('logout-link');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          localStorage.removeItem('currentUser');
+          window.location.href = 'Entrada.html';
+        });
+      }
+    }
 
-        function showNotification(message, type) {
-            const notif = document.createElement('div');
-            notif.className = `notification ${type}`;
-            notif.textContent = message;
-            document.body.appendChild(notif);
+    function showNotification(message, type) {
+      const notif = document.createElement('div');
+      notif.className = `notification ${type}`;
+      notif.textContent = message;
+      document.body.appendChild(notif);
 
-            setTimeout(() => {
-                notif.classList.add('show');
-            }, 10);
+      setTimeout(() => {
+        notif.classList.add('show');
+      }, 10);
 
-            setTimeout(() => {
-                notif.classList.remove('show');
-                setTimeout(() => notif.remove(), 300);
-            }, 3000);
-        }
+      setTimeout(() => {
+        notif.classList.remove('show');
+        setTimeout(() => notif.remove(), 300);
+      }, 3000);
+    }
   </script>
 </body>
 
