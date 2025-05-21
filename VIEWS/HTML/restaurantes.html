@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurantes - Bella Avventura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+    <style>
+        @font-face {
+            font-family: 'GaramondBold';
+            src: local('Garamond'), serif;
+            font-weight: bold;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            background-color: #f3f7f3;
+        }
+
+        .wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #A7D096;
+            position: relative;
+            height: 86px;
+        }
+
+        .header-img img {
+            height: 126px;
+            transition: transform 0.5s ease;
+        }
+
+        .header-img {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        /* Header Styles */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background-color: #A7D096;
+            position: relative;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .user-header {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Menu Styles */
+        .menu-box {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            background-color: #d6e3d6;
+            border-radius: 8px;
+            padding: 20px;
+            width: 260px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-family: 'Garamond', serif;
+            z-index: 10;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .menu-lateral {
+            background-color: #88b68b;
+            width: 24px;
+            border-radius: 8px;
+        }
+
+        .menu-conteudo {
+            flex: 1;
+        }
+
+        .menu-conteudo h2 {
+            font-size: 20px;
+            margin: 0;
+            border-bottom: 1px solid #999;
+            padding-bottom: 10px;
+        }
+
+        .menu-conteudo ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .menu-conteudo li {
+            margin: 15px 0;
+        }
+
+        .menu-conteudo a {
+            text-decoration: none;
+            color: black;
+            transition: color 0.2s;
+        }
+
+        .menu-conteudo a:hover {
+            color: #3a6545;
+        }
+
+        /* Esconde o menu inicialmente */
+        .hidden {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .visible {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .page-title {
+            font-family: 'GaramondBold', serif;
+            text-align: center;
+            color: #5a8f3d;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            color: #333;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Filtros */
+        .filtros-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 3px solid #D8E6D9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .filtros-container h3 {
+            color: #5a8f3d;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .filtros-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filtro-grupo {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filtro-grupo label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .filtro-grupo select,
+        .filtro-grupo input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #D8E6D9;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .filtro-botoes {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-filtrar,
+        .btn-limpar {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-filtrar {
+            background-color: #5a8f3d;
+            color: white;
+        }
+
+        .btn-filtrar:hover {
+            background-color: #4a7d2d;
+        }
+
+        .btn-limpar {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-limpar:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Restaurantes Grid */
+        .restaurantes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .restaurante-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid #D8E6D9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .restaurante-card:nth-child(1) { animation-delay: 0.1s; }
+        .restaurante-card:nth-child(2) { animation-delay: 0.2s; }
+        .restaurante-card:nth-child(3) { animation-delay: 0.3s; }
+        .restaurante-card:nth-child(4) { animation-delay: 0.4s; }
+        .restaurante-card:nth-child(5) { animation-delay: 0.5s; }
+        .restaurante-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .restaurante-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .restaurante-img {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .restaurante-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .restaurante-card:hover .restaurante-img img {
+            transform: scale(1.1);
+        }
+
+        .restaurante-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #5a8f3d;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .restaurante-promocao {
+            background-color: #ff6b6b;
+        }
+
+        .restaurante-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .restaurante-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurante-title {
+            font-size: 1.3rem;
+            color: #5a8f3d;
+            margin: 0;
+        }
+
+        .restaurante-rating {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .star {
+            color: #FFD700;
+            margin-right: 3px;
+        }
+
+        .restaurante-tipos {
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .restaurante-info {
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .restaurante-info p {
+            margin: 0.5rem 0;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+        }
+
+        .restaurante-info p span {
+            margin-right: 0.5rem;
+        }
+
+        .preco {
+            font-weight: bold;
+            color: #5a8f3d;
+        }
+
+        .restaurante-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            border-top: 1px solid #D8E6D9;
+            padding-top: 1rem;
+        }
+
+        .btn-reservar,
+        .btn-ver-mais {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-reservar {
+            background-color: #5a8f3d;
+            color: white;
+            flex: 1;
+            margin-right: 0.5rem;
+        }
+
+        .btn-reservar:hover {
+            background-color: #4a7d2d;
+        }
+
+        .btn-ver-mais {
+            background-color: #f0f0f0;
+            color: #333;
+            width: 40%;
+        }
+
+        .btn-ver-mais:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Paginação */
+        .paginacao {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            gap: 0.5rem;
+        }
+
+        .pagina-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #D8E6D9;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .pagina-btn:hover,
+        .pagina-btn.active {
+            background-color: #5a8f3d;
+            color: white;
+        }
+
+        .pagina-seta {
+            font-size: 1.2rem;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #A7D096;
+            padding: 20px;
+            color: #000;
+            font-size: 14px;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .footer-top {
+            margin-bottom: 15px;
+            font-size: 33%;
+        }
+
+        .footer-top img {
+            width: 15%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .footer-top:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-left,
+        .footer-center,
+        .footer-right {
+            flex: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer-left:hover,
+        .footer-right:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .footer-bottom a {
+            text-decoration: underline;
+            color: black;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            color: #5a8f3d;
+        }
+
+        /* Notificação */
+        .notificacao {
+            background-color: #5a8f3d;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 300px;
+        }
+
+        .notificacao.show {
+            display: block;
+            animation: fadeOut 4s forwards;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .restaurantes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .filtros-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-left,
+            .footer-center,
+            .footer-right {
+                text-align: center;
+            }
+
+            .header-img img {
+                height: 100px;
+                top: -30px;
+            }
+
+            .restaurante-footer {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .btn-ver-mais {
+                width: 100%;
+            }
+
+            .btn-reservar {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="notificacao" class="notificacao"></div>
+
+    <div class="wrapper">
+        <!-- Top Header -->
+        <div class="top-header">
+            <div class="menu-icon">☰</div>
+            <div class="user-header">
+                <span>👤</span> Visitante
+            </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="header">
+            <div class="header-img">
+                <a href="Entrada.html">
+                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating" />
+                </a>
+            </div>
+        </div>
+
+        <!-- Menu -->
+        <div id="menuContainer"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1 class="page-title">Restaurantes</h1>
+            <p class="page-subtitle">Descubra os melhores sabores locais e internacionais. Filtre por tipo de cozinha, preço e avaliações para encontrar o restaurante perfeito para sua experiência gastronômica.</p>
+
+            <!-- Filtros -->
+            <div class="filtros-container">
+                <h3>Filtros</h3>
+                <form class="filtros-form">
+                    <div class="filtro-grupo">
+                        <label for="tipo-cozinha">Tipo de Cozinha</label>
+                        <select id="tipo-cozinha">
+                            <option value="">Todas</option>
+                            <option value="italiana">Italiana</option>
+                            <option value="japonesa">Japonesa</option>
+                            <option value="brasileira">Brasileira</option>
+                            <option value="francesa">Francesa</option>
+                            <option value="mexicana">Mexicana</option>
+                            <option value="arabe">Árabe</option>
+                            <option value="chinesa">Chinesa</option>
+                            <option value="indiana">Indiana</option>
+                        </select>
+                    </div>
+                    <div class="filtro-grupo">
+                        <label for="preco">Faixa de Preço</label>
+                        <select id="preco">
+                            <option value="">Todos</option>
+                            <option value="economico">$ - Econômico</option>
+                            <option value="medio">$$ - Médio</option>
+                            <option value="alto">$$$ - Alto</option>
+                            <option value="luxo">$$$$ - Luxo</option>
+                        </select>
+                    </div>
+                    <div class="filtro-grupo">
+                        <label for="avaliacao">Avaliação Mínima</label>
+                        <select id="avaliacao">
+                            <option value="">Qualquer</option>
+                            <option value="3">3+ Estrelas</option>
+                            <option value="4">4+ Estrelas</option>
+                            <option value="4.5">4.5+ Estrelas</option>
+                        </select>
+                    </div>
+                    <div class="filtro-grupo">
+                        <label for="localizacao">Cidade</label>
+                        <select id="localizacao">
+                            <option value="">Todas</option>
+                            <option value="roma">Roma</option>
+                            <option value="florenca">Florença</option>
+                            <option value="veneza">Veneza</option>
+                            <option value="milao">Milão</option>
+                            <option value="napoles">Nápoles</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro-botoes">
+                        <button type="button" class="btn-filtrar">Aplicar Filtros</button>
+                        <button type="button" class="btn-limpar">Limpar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Restaurantes Grid -->
+            <div class="restaurantes-grid">
+                <!-- Restaurante 1 -->
+                <div class="restaurante-card">
+                    <div class="restaurante-img">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Trattoria Bella Napoli">
+                        <div class="restaurante-badge">Popular</div>
+                    </div>
+                    <div class="restaurante-content">
+                        <div class="restaurante-header">
+                            <h3 class="restaurante-title">Trattoria Bella Napoli</h3>
+                            <div class="restaurante-rating">
+                                <span class="star">★</span>4.8
+                            </div>
+                        </div>
+                        <div class="restaurante-tipos">Italiana • Pizza • Massa</div>
+                        <div class="restaurante-info">
+                            <p><span>📍</span> Via Roma, 123 - Roma</p>
+                            <p><span>⏰</span> 12:00 - 23:00 (Fecha as segundas)</p>
+                            <p><span>💰</span> <span class="preco">$$</span> Médio</p>
+                        </div>
+                        <div class="restaurante-footer">
+                            <a href="#" class="btn-reservar">Reservar Mesa</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurante 2 -->
+                <div class="restaurante-card">
+                    <div class="restaurante-img">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Osteria del Gambero Rosso">
+                        <div class="restaurante-badge restaurante-promocao">Promoção</div>
+                    </div>
+                    <div class="restaurante-content">
+                        <div class="restaurante-header">
+                            <h3 class="restaurante-title">Osteria del Gambero Rosso</h3>
+                            <div class="restaurante-rating">
+                                <span class="star">★</span>4.6
+                            </div>
+                        </div>
+                        <div class="restaurante-tipos">Italiana • Frutos do Mar • Regional</div>
+                        <div class="restaurante-info">
+                            <p><span>📍</span> Via Firenze, 45 - Florença</p>
+                            <p><span>⏰</span> 18:30 - 23:30 (Todos os dias)</p>
+                            <p><span>💰</span> <span class="preco">$$$</span> Alto</p>
+                        </div>
+                        <div class="restaurante-footer">
+                            <a href="#" class="btn-reservar">Reservar Mesa</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurante 3 -->
+                <div class="restaurante-card">
+                    <div class="restaurante-img">
+                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sushi Venezia">
+                    </div>
+                    <div class="restaurante-content">
+                        <div class="restaurante-header">
+                            <h3 class="restaurante-title">Sushi Venezia</h3>
+                            <div class="restaurante-rating">
+                                <span class="star">★</span>4.5
+                            </div>
+                        </div>
+                        <div class="restaurante-tipos">Japonesa • Fusion • Sushi</div>
+                        <div class="restaurante-info">
+                            <p><span>📍</span> Calle Grande, 75 - Veneza</p>
+                            <p><span>⏰</span> 12:00 - 15:00, 19:00 - 23:00</p>
+                            <p><span>💰</span> <span class="preco">$$$</span> Alto</p>
+                        </div>
+                        <div class="restaurante-footer">
+                            <a href="#" class="btn-reservar">Reservar Mesa</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurante 4 -->
+                <div class="restaurante-card">
+                    <div class="restaurante-img">
+                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cantina della Nonna">
+                    </div>
+                    <div class="restaurante-content">
+                        <div class="restaurante-header">
+                            <h3 class="restaurante-title">Cantina della Nonna</h3>
+                            <div class="restaurante-rating">
+                                <span class="star">★</span>4.9
+                            </div>
+                        </div>
+                        <div class="restaurante-tipos">Italiana • Caseira • Regional</div>
+                        <div class="restaurante-info">
+                            <p><span>📍</span> Via Napoli, 89 - Nápoles</p>
+                            <p><span>⏰</span> 12:00 - 22:00 (Fecha aos domingos)</p>
+                            <p><span>💰</span> <span class="preco">$</span> Econômico</p>
+                        </div>
+                        <div class="restaurante-footer">
+                            <a href="#" class="btn-reservar">Reservar Mesa</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurante 5 -->
+                <div class="restaurante-card">
+                    <div class="restaurante-img">
+                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Le Bistrot Français">
+                    </div>
+                    <div class="restaurante-content">
+                        <div class="restaurante-header">
+                            <h3 class="restaurante-title">Le Bistrot Français</h3>
+                            <div class="restaurante-rating">
+                                <span class="star">★</span>4.7
+                            </div>
+                        </div>
+                        <div class="restaurante-tipos">Francesa • Gourmet • Vinhos</div>
+                        <div class="restaurante-info">
+                            <p><span>📍</span> Via Milano, 234 - Milão</p>
+                            <p><span>⏰</span> 19:00 - 00:00 (Terça a Sábado)</p>
+                            <p><span>💰</span> <span class="preco">$$$$</span> Luxo</p>
+                        </div>
+                        <div class="restaurante-footer">
+                            <a href="#" class="btn-reservar">Reservar Mesa</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurante 6 -->
+                <div class="restaurante-card">
+                    <div class="restaurante-img">
+                        <img src="https://images.unsplash.com/photo-1579027989536-b7b1f875659b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Taqueria El Mariachi">
+                        <div class="restaurante-badge restaurante-promocao">Happy Hour</div>
+                    </div>
+                    <div class="restaurante-content">
+                        <div class="restaurante-header">
+                            <h3 class="restaurante-title">Taqueria El Mariachi</h3>
+                            <div class="restaurante-rating">
+                                <span class="star">★</span>4.4
+                            </div>
+                        </div>
+                        <div class="restaurante-tipos">Mexicana • Tex-Mex • Drinks</div>
+                        <div class="restaurante-info">
+                            <p><span>📍</span> Via Veneto, 56 - Roma</p>
+                            <p><span>⏰</span> 18:00 - 02:00 (Todos os dias)</p>
+                            <p><span>💰</span> <span class="preco">$$</span> Médio</p>
+                        </div>
+                        <div class="restaurante-footer">
+                            <a href="#" class="btn-reservar">Reservar Mesa</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paginação -->
+            <div class="paginacao">
+                <div class="pagina-btn active">1</div>
+                <div class="pagina-btn">2</div>
+                <div class="pagina-btn">3</div>
+                <div class="pagina-btn">4</div>
+                <div class="pagina-btn">5</div>
+            </div>
+        </main>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <div class="footer-top">
+                <a href="https://www.bellaavventura.com.br/">
+                    <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+                </div>
+                <div class="footer-center">© 2025 Bella Avventura</div>
+                <div class="footer-right">
+                    <a href="TermosCondicoes.html">Termos e condições</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Verifica autenticação
+            checkAuth();
+
+            // Configura o menu
+            setupMenu();
+
+            // Configura os botões de filtro
+            setupFilterButtons();
+
+            // Configura a paginação
+            setupPagination();
+
+            // Verifica mensagem de sucesso
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get('msg');
+
+            if (msg) {
+                showNotification(getNotificationMessage(msg), 'success');
+            }
+        });
+
+        function checkAuth() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (userData) {
+                // Atualiza header
+                document.querySelector('.user-header').innerHTML = `
+                    <span>👤</span> ${userData.firstName}
+                `;
+
+                // Carrega menu logado
+                loadMenu('MenuLogado.html');
+            } else {
+                // Carrega menu não logado
+                loadMenu('MenuNaoLogado.html');
+            }
+        }
+
+        function loadMenu(menuFile) {
+            fetch(menuFile)
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('menuContainer').innerHTML = html;
+                    setupMenu();
+                })
+                .catch(err => {
+                    console.error('Erro ao carregar menu:', err);
+
+                    // Mostra uma mensagem em caso de erro
+                    showNotification('Erro ao carregar o menu. Por favor, recarregue a página.', 'error');
+                });
+        }
+
+        function setupMenu() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const menu = document.querySelector('.menu-box');
+
+            if (menu && menuIcon) {
+                menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                });
+            }
+
+            // Configura logout se existir
+            const logoutBtn = document.getElementById('logout-link');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'Entrada.html';
+                });
+            }
+        }
+
+        function setupFilterButtons() {
+            const btnFiltrar = document.querySelector('.btn-filtrar');
+            const btnLimpar = document.querySelector('.btn-limpar');
+
+            btnFiltrar.addEventListener('click', function() {
+                // Lógica para filtrar restaurantes
+                showNotification('Filtro aplicado com sucesso!', 'success');
+            });
+
+            btnLimpar.addEventListener('click', function() {
+                // Limpa os campos do filtro
+                document.getElementById('tipo-cozinha').value = '';
+                document.getElementById('preco').value = '';
+                document.getElementById('avaliacao').value = '';
+                document.getElementById('localizacao').value = '';
+
+                showNotification('Filtros limpos!', 'success');
+            });
+        }
+
+        function setupPagination() {
+            const paginaBtns = document.querySelectorAll('.pagina-btn');
+
+            paginaBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove a classe 'active' de todos os botões
+                    paginaBtns.forEach(b => b.classList.remove('active'));
+
+                    // Adiciona a classe 'active' ao botão clicado
+                    this.classList.add('active');
+
+                    // Lógica para carregar a página correspondente
+                    showNotification(`Página ${this.textContent} carregada!`, 'success');
+                });
+            });
+        }
+
+        function getNotificationMessage(msgType) {
+            const messages = {
+                'login': 'Login realizado com sucesso!',
+                'cadastro': 'Cadastro realizado com sucesso!',
+                'reserva': 'Reserva realizada com sucesso!',
+                'avaliacao': 'Avaliação enviada com sucesso!'
+            };
+
+            return messages[msgType] || 'Operação realizada com sucesso!';
+        }
+
+        function showNotification(message, type) {
+            const notificacao = document.getElementById('notificacao');
+            notificacao.textContent = message;
+            notificacao.className = `notificacao ${type} show`;
+
+            setTimeout(() => {
+                notificacao.classList.remove('show');
+            }, 4000);
+        }
+    </script>
+</body>
+
+</html>
