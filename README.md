@@ -35,7 +35,7 @@ Para garantir o funcionamento correto de todos os recursos:
 2. Clique com o botão direito no arquivo `index.html`.
 3. Selecione **"Open with Live Server"**.
 
-> 🛠️ **Importante:** O sistema de banco de dados real (MySQL) está em desenvolvimento. O cadastro/login utiliza `localStorage` temporariamente. Usuário e senha padrão, 123.123.123-12 e 123
+> 🛠️ **Importante:** O sistema de banco de dados real (MySQL) está em desenvolvimento. O cadastro/login utiliza `localStorage` temporariamente.
 ---
 
 ## 📌 Planejamento de Melhorias

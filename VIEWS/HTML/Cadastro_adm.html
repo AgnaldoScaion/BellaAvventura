@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escolha do cadastro</title>
-    <link rel="stylesheet" href="../CSS/Escolha_Cadastro.css">
-    <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
-     <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Bella Avventura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+  <style>
     @font-face {
       font-family: 'GaramondBold';
       src: local('Garamond'), serif;
@@ -252,8 +253,10 @@
     }
   </style>
 </head>
+
 <body>
-     <div class="wrapper">
+
+  <div class="wrapper">
     <!-- Header -->
     <div class="top-header">
       <div class="menu-icon">☰</div>
@@ -274,18 +277,38 @@
     <div id="menuContainer1"></div>
     <div id="notification" class="notification"></div>
 
-    <div class="body">
-    <div class="quadrado">
-        <h1>Cadastros</h1>
-        <div class="botoes-container">
-        <a href="Cadastro.html" div class="botao">Cadastrar como usuário</a>
-        <a href="Cadastro_adm.html" div class="botao2">Cadastrar como admin</a> </div>
-        <a href="" div class="botao3">Voltar</a>
-</div>
-</div>
-</div>
+    <!-- Conteúdo -->
+    <main class="main-content">
+      <div class="cadastro-container">
+        <h1 class="cadastro-title">Cadastre-se como adm</h1>
+        <div class="cadastro-box">
+          <div class="form-group">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
+          </div>
 
-<!-- Rodapé -->
+          <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14">
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="email@exemplo.com">
+          </div>
+
+          <div class="form-group">
+            <label for="senha">Senha adm</label>
+            <input type="password" id="senha" name="senha" placeholder="Crie uma senha">
+          </div>
+
+          <button type="submit" class="cadastro-button" onclick="realizarCadastro()">Cadastrar</button>
+          <a href="Login.html" class="back-button">Voltar para o Login</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Rodapé -->
     <footer class="footer">
       <div class="footer-top">
         <a href="https://www.bellaavventura.com.br/">
@@ -304,5 +327,118 @@
     </footer>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Máscara para CPF
+      const cpfInput = document.getElementById('cpf');
+      cpfInput.addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) {
+          value = value.substring(0, 11); // Limita a 11 dígitos
+        }
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        e.target.value = value;
+      });
+
+      // Carrega menu não logado
+      fetch('MenuNaoLogado.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          setupMenu();
+        });
+    });
+
+    function setupMenu() {
+      const menu = document.getElementById('menu-nao-logado');
+      const menuIcon = document.querySelector('.menu-icon');
+
+      if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          menu.classList.toggle('visible');
+        });
+      }
+    }
+
+    function realizarCadastro() {
+      const nome = document.getElementById('nome').value.trim();
+      const cpf = document.getElementById('cpf').value.replace(/\D/g, ''); // Remove formatação
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha adm').value;
+
+      // Validação dos campos
+      if (!nome || !cpf || !email || !senha) {
+        showNotification('Preencha todos os campos!', 'error');
+        return;
+      }
+
+      // Validação básica de CPF (11 dígitos)
+      if (cpf.length !== 11) {
+        showNotification('CPF inválido! Deve conter 11 dígitos.', 'error');
+        return;
+      }
+
+      // Validação básica de email
+      if (!email.includes('@') || !email.includes('.')) {
+        showNotification('Email inválido!', 'error');
+        return;
+      }
+
+      // Pega usuários existentes ou cria array vazio
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+      // Verifica se CPF ou email já existem
+      if (usuarios.some(u => u.cpf === cpf)) {
+        showNotification('CPF já cadastrado!', 'error');
+        return;
+      }
+
+      if (usuarios.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+        showNotification('Email já cadastrado!', 'error');
+        return;
+      }
+
+      // Cria novo usuário
+      const novoUsuario = {
+        id: Date.now().toString(), // ID único
+        firstName: nome.split(' ')[0],
+        lastName: nome.split(' ').slice(1).join(' '),
+        nome,
+        cpf,
+        email: email.toLowerCase(), // Armazena em minúsculas
+        senha,
+        dataCadastro: new Date().toISOString()
+      };
+
+      // Adiciona ao array e salva
+      usuarios.push(novoUsuario);
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+      // Salva como usuário atual
+      localStorage.setItem('currentUser', JSON.stringify(novoUsuario));
+
+      showNotification('Cadastro realizado com sucesso!', 'success');
+
+      // Redireciona para a página de login após 2 segundos
+      setTimeout(() => {
+        window.location.href = 'Login.html?from=cadastro';
+      }, 2000);
+    }
+
+    function showNotification(message, type) {
+      const notif = document.getElementById('notification');
+      notif.textContent = message;
+      notif.style.backgroundColor = type === 'success' ? '#4CAF50' : '#F44336';
+      notif.classList.add('show');
+
+      setTimeout(() => {
+        notif.classList.remove('show');
+      }, 3000);
+    }
+  </script>
 </body>
+
 </html>
