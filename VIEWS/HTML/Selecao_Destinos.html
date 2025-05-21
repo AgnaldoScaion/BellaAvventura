@@ -7,6 +7,7 @@
     <title>Selecione seu Destino - Bella Avventura</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @font-face {
             font-family: 'GaramondBold';
@@ -479,6 +480,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -488,9 +490,11 @@
             0% {
                 opacity: 1;
             }
+
             80% {
                 opacity: 1;
             }
+
             100% {
                 opacity: 0;
             }
@@ -501,6 +505,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -511,9 +516,11 @@
             0% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-5px);
             }
+
             100% {
                 transform: translateY(0px);
             }
@@ -529,16 +536,16 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .destino-card {
                 width: 100%;
                 max-width: 350px;
             }
-            
+
             .page-title {
                 font-size: 2rem;
             }
-            
+
             .instrucoes {
                 padding: 1.5rem;
             }
@@ -560,9 +567,52 @@
                 height: 100px;
                 top: -30px;
             }
-            
+
             .instrucoes-item {
                 padding-left: 2.5rem;
+            }
+        }
+
+        /* Botão Voltar ao Topo Ajustado */
+        .back-to-top {
+            position: fixed;
+            right: 30px;
+            background-color: #5a8f3d;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            bottom: 30px;
+            /* Posição padrão */
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #4a7d2d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Ajuste para dispositivos móveis */
+        @media (max-width: 768px) {
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                right: 20px;
+                bottom: 20px;
             }
         }
     </style>
@@ -595,20 +645,23 @@
         <!-- Main Content -->
         <main class="main-content">
             <h1 class="page-title">Escolha seu próximo destino</h1>
-            <p class="page-subtitle">Selecione entre nossos hotéis, restaurantes ou pontos turísticos e comece a planejar sua Bella Avventura</p>
+            <p class="page-subtitle">Selecione entre nossos hotéis, restaurantes ou pontos turísticos e comece a
+                planejar sua Bella Avventura</p>
 
             <div class="destinos-container">
                 <!-- Hotel Card -->
                 <div class="destino-card">
                     <div class="destino-img">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hotéis">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Hotéis">
                         <div class="destino-overlay">
                             <button class="destino-overlay-btn">Ver Hotéis</button>
                         </div>
                     </div>
                     <div class="destino-content">
                         <h3 class="destino-title">Hotéis</h3>
-                        <p class="destino-desc">Encontre os melhores hotéis para sua estadia. Diferentes categorias, avaliações reais e preços acessíveis para todos os tipos de viajantes.</p>
+                        <p class="destino-desc">Encontre os melhores hotéis para sua estadia. Diferentes categorias,
+                            avaliações reais e preços acessíveis para todos os tipos de viajantes.</p>
                         <div class="destino-stats">
                             <div class="destino-stat">
                                 <span class="stat-value">200+</span>
@@ -632,14 +685,16 @@
                 <!-- Restaurante Card -->
                 <div class="destino-card">
                     <div class="destino-img">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Restaurantes">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Restaurantes">
                         <div class="destino-overlay">
                             <button class="destino-overlay-btn">Ver Restaurantes</button>
                         </div>
                     </div>
                     <div class="destino-content">
                         <h3 class="destino-title">Restaurantes</h3>
-                        <p class="destino-desc">Descubra a gastronomia local com os melhores restaurantes. Culinária variada, preços para todos os bolsos e experiências inesquecíveis.</p>
+                        <p class="destino-desc">Descubra a gastronomia local com os melhores restaurantes. Culinária
+                            variada, preços para todos os bolsos e experiências inesquecíveis.</p>
                         <div class="destino-stats">
                             <div class="destino-stat">
                                 <span class="stat-value">500+</span>
@@ -663,14 +718,16 @@
                 <!-- Pontos Turísticos Card -->
                 <div class="destino-card">
                     <div class="destino-img">
-                        <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pontos Turísticos">
+                        <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Pontos Turísticos">
                         <div class="destino-overlay">
                             <button class="destino-overlay-btn">Ver Pontos Turísticos</button>
                         </div>
                     </div>
                     <div class="destino-content">
                         <h3 class="destino-title">Pontos Turísticos</h3>
-                        <p class="destino-desc">Conheça os pontos turísticos mais populares e os tesouros escondidos. Atrações naturais, históricas e culturais para todos os gostos.</p>
+                        <p class="destino-desc">Conheça os pontos turísticos mais populares e os tesouros escondidos.
+                            Atrações naturais, históricas e culturais para todos os gostos.</p>
                         <div class="destino-stats">
                             <div class="destino-stat">
                                 <span class="stat-value">350+</span>
@@ -690,6 +747,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
             </div>
 
             <!-- Instruções -->
@@ -697,23 +757,28 @@
                 <h3>Como utilizar nosso sistema</h3>
                 <ol class="instrucoes-lista">
                     <li class="instrucoes-item">
-                        <strong>Escolha uma categoria:</strong> Selecione entre hotéis, restaurantes ou pontos turísticos com base no seu interesse atual.
+                        <strong>Escolha uma categoria:</strong> Selecione entre hotéis, restaurantes ou pontos
+                        turísticos com base no seu interesse atual.
                     </li>
                     <li class="instrucoes-item">
-                        <strong>Explore as opções:</strong> Veja as diversas opções disponíveis, filtre por avaliações, preço, localização ou outros critérios relevantes.
+                        <strong>Explore as opções:</strong> Veja as diversas opções disponíveis, filtre por avaliações,
+                        preço, localização ou outros critérios relevantes.
                     </li>
                     <li class="instrucoes-item">
-                        <strong>Faça reservas ou planeje visitas:</strong> Para hotéis, faça reservas diretamente. Para restaurantes, verifique disponibilidade ou faça reservas. Para pontos turísticos, planeje sua visita.
+                        <strong>Faça reservas ou planeje visitas:</strong> Para hotéis, faça reservas diretamente. Para
+                        restaurantes, verifique disponibilidade ou faça reservas. Para pontos turísticos, planeje sua
+                        visita.
                     </li>
                     <li class="instrucoes-item">
-                        <strong>Compartilhe sua experiência:</strong> Após sua visita, avalie e compartilhe sua experiência para ajudar outros viajantes e acumular pontos para descontos futuros.
+                        <strong>Compartilhe sua experiência:</strong> Após sua visita, avalie e compartilhe sua
+                        experiência para ajudar outros viajantes e acumular pontos para descontos futuros.
                     </li>
                 </ol>
             </div>
         </main>
 
         <!-- Rodapé -->
-        <footer class="footer">
+        <footer class="footer" id="pageFooter">
             <div class="footer-top">
                 <a href="https://www.bellaavventura.com.br/">
                     <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
@@ -748,6 +813,56 @@
             }
         });
 
+        document.addEventListener('DOMContentLoaded', function () {
+            // ... (mantenha o código existente) ...
+
+            // Configuração do botão Voltar ao Topo
+            const backToTopButton = document.getElementById('backToTop');
+            const footer = document.getElementById('pageFooter');
+
+            function adjustBackToTopPosition() {
+                const footerRect = footer.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const footerTop = footerRect.top;
+
+                // Se o footer está visível na viewport
+                if (footerTop < viewportHeight) {
+                    // Ajusta a posição para ficar acima do footer
+                    const newBottom = (viewportHeight - footerTop) + 10;
+                    backToTopButton.style.bottom = `${newBottom}px`;
+                } else {
+                    // Posição normal
+                    backToTopButton.style.bottom = '30px';
+                }
+            }
+
+            window.addEventListener('scroll', function () {
+                // Mostra/oculta o botão
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+
+                // Ajusta a posição em relação ao footer
+                adjustBackToTopPosition();
+            });
+
+            // Rolagem suave ao clicar
+            backToTopButton.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Também verifica em caso de redimensionamento
+            window.addEventListener('resize', adjustBackToTopPosition);
+
+            // Verifica a posição inicial
+            adjustBackToTopPosition();
+        });
+
         function checkAuth() {
             const userData = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -774,7 +889,7 @@
                 })
                 .catch(err => {
                     console.error('Erro ao carregar menu:', err);
-                    
+
                     // Mostra uma mensagem em caso de erro
                     showNotification('Erro ao carregar o menu. Por favor, recarregue a página.', 'error');
                 });
@@ -804,9 +919,9 @@
 
         function setupCardOverlays() {
             const overlayButtons = document.querySelectorAll('.destino-overlay-btn');
-            
+
             overlayButtons.forEach((button, index) => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     // Redirect to the appropriate page based on index
                     const destinations = ['hoteis.html', 'restaurantes.html', 'pontos_turisticos.html'];
                     window.location.href = destinations[index];
@@ -821,7 +936,7 @@
                 'reserva': 'Reserva realizada com sucesso!',
                 'avaliacao': 'Avaliação enviada com sucesso!'
             };
-            
+
             return messages[msgType] || 'Operação realizada com sucesso!';
         }
 
@@ -829,7 +944,7 @@
             const notificacao = document.getElementById('notificacao');
             notificacao.textContent = message;
             notificacao.className = `notificacao ${type} show`;
-            
+
             setTimeout(() => {
                 notificacao.classList.remove('show');
             }, 4000);

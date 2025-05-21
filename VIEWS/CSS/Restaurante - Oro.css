@@ -343,4 +343,36 @@ html, body {
   gap: 5px;
   margin-bottom: 10px;
 }
+    /* Botão Voltar */
+    .btn-voltar {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: #5a8f3d;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      z-index: 998;
+    }
 
+    .btn-voltar:hover {
+      background-color: #4a7d2d;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Ajuste para mobile */
+    @media (max-width: 768px) {
+      .btn-voltar {
+        bottom: 80px;
+        left: 20px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+    }

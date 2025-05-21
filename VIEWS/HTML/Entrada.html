@@ -7,6 +7,7 @@
     <title>Bella Aventura - Planeje sua viagem perfeita</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @font-face {
             font-family: 'GaramondBold';
@@ -528,6 +529,50 @@
             padding: 2rem;
             text-align: center;
         }
+
+        /* Botão Voltar ao Topo ajustado */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #5a8f3d;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #4a7d2d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-top i {
+            font-size: 24px;
+        }
+
+        /* Ajuste para não sobrepor o footer */
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 80px;
+                /* Aumenta a distância do footer em mobile */
+            }
+        }
     </style>
 </head>
 
@@ -608,11 +653,14 @@
                     <p>Estes pontos podem ser convertidos em descontos para futuras viagens.</p>
                 </div>
             </div>
-        </section>
     </div>
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    </section>
 
     <!-- Rodapé -->
-    <footer class="footer">
+    <footer class="footer" id="pageFooter">
         <div class="footer-top">
             <a href="https://www.bellaavventura.com.br/">
                 <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
@@ -646,6 +694,50 @@
             } else if (msg === 'cadastro') {
                 showNotification('Cadastro realizado com sucesso!', 'success');
             }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // ... (código existente permanece o mesmo) ...
+
+            // Configura o botão Voltar ao Topo com verificação do footer
+            const backToTopButton = document.getElementById('backToTop');
+            const footer = document.getElementById('pageFooter');
+
+            function updateBackToTopPosition() {
+                const footerRect = footer.getBoundingClientRect();
+                const scrollPosition = window.innerHeight + window.pageYOffset;
+                const documentHeight = document.body.offsetHeight;
+
+                // Verifica se o usuário está perto do footer
+                if (scrollPosition >= documentHeight - footer.offsetHeight - 20) {
+                    // Ajusta a posição para ficar acima do footer
+                    backToTopButton.style.bottom = (window.innerHeight - footerRect.top + 30) + 'px';
+                } else {
+                    // Volta à posição padrão
+                    backToTopButton.style.bottom = '30px';
+                }
+            }
+
+            window.addEventListener('scroll', function () {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+
+                // Atualiza a posição em relação ao footer
+                updateBackToTopPosition();
+            });
+
+            backToTopButton.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Também verifica em caso de redimensionamento
+            window.addEventListener('resize', updateBackToTopPosition);
         });
 
         function checkAuth() {

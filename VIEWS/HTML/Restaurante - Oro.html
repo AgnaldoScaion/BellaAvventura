@@ -82,6 +82,10 @@
         <button>Enviar feedback</button>
       </section>
     </div>
+      <a href="restaurantes.html" class="btn-voltar">
+    <i class="fas fa-arrow-left"></i>
+    <span>Voltar aos Restaurantes</span>
+  </a>
   </main>
 
   <!-- Rodapé -->
@@ -115,6 +119,14 @@
             menu.classList.toggle('visible');
           });
         });
+
+      // Verifica se há usuário logado
+      const userData = JSON.parse(localStorage.getItem('currentUser'));
+      if (userData) {
+        document.querySelector('.user-header').innerHTML = `
+          <span>👤</span> ${userData.firstName}
+        `;
+      }
     });
   </script>
 </body>

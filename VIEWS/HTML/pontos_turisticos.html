@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurantes - Bella Avventura</title>
+    <title>Pontos Turísticos - Bella Avventura</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
     <style>
@@ -251,14 +251,14 @@
             background-color: #e0e0e0;
         }
 
-        /* Restaurantes Grid */
-        .restaurantes-grid {
+        /* Pontos Turísticos Grid */
+        .pontos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .restaurante-card {
+        .ponto-card {
             background: white;
             border-radius: 12px;
             overflow: hidden;
@@ -272,53 +272,53 @@
             transform: translateY(20px);
         }
 
-        .restaurante-card:nth-child(1) {
+        .ponto-card:nth-child(1) {
             animation-delay: 0.1s;
         }
 
-        .restaurante-card:nth-child(2) {
+        .ponto-card:nth-child(2) {
             animation-delay: 0.2s;
         }
 
-        .restaurante-card:nth-child(3) {
+        .ponto-card:nth-child(3) {
             animation-delay: 0.3s;
         }
 
-        .restaurante-card:nth-child(4) {
+        .ponto-card:nth-child(4) {
             animation-delay: 0.4s;
         }
 
-        .restaurante-card:nth-child(5) {
+        .ponto-card:nth-child(5) {
             animation-delay: 0.5s;
         }
 
-        .restaurante-card:nth-child(6) {
+        .ponto-card:nth-child(6) {
             animation-delay: 0.6s;
         }
 
-        .restaurante-card:hover {
+        .ponto-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .restaurante-img {
+        .ponto-img {
             height: 180px;
             overflow: hidden;
             position: relative;
         }
 
-        .restaurante-img img {
+        .ponto-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .restaurante-card:hover .restaurante-img img {
+        .ponto-card:hover .ponto-img img {
             transform: scale(1.1);
         }
 
-        .restaurante-badge {
+        .ponto-badge {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -330,31 +330,31 @@
             font-weight: bold;
         }
 
-        .restaurante-promocao {
+        .ponto-promocao {
             background-color: #ff6b6b;
         }
 
-        .restaurante-content {
+        .ponto-content {
             padding: 1.5rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .restaurante-header {
+        .ponto-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 0.5rem;
         }
 
-        .restaurante-title {
+        .ponto-title {
             font-size: 1.3rem;
             color: #5a8f3d;
             margin: 0;
         }
 
-        .restaurante-rating {
+        .ponto-rating {
             display: flex;
             align-items: center;
             font-weight: bold;
@@ -365,35 +365,35 @@
             margin-right: 3px;
         }
 
-        .restaurante-tipos {
+        .ponto-location {
             margin-bottom: 1rem;
             color: #666;
             font-size: 0.9rem;
             font-weight: 400;
         }
 
-        .restaurante-info {
+        .ponto-info {
             margin-bottom: 1rem;
             flex: 1;
         }
 
-        .restaurante-info p {
+        .ponto-info p {
             margin: 0.5rem 0;
             font-weight: 400;
             display: flex;
             align-items: center;
         }
 
-        .restaurante-info p span {
+        .ponto-info p span {
             margin-right: 0.5rem;
         }
 
-        .preco {
+        .ponto-price {
             font-weight: bold;
             color: #5a8f3d;
         }
 
-        .restaurante-footer {
+        .ponto-footer {
             display: flex;
             justify-content: space-between;
             margin-top: 1rem;
@@ -401,7 +401,7 @@
             padding-top: 1rem;
         }
 
-        .btn-reservar,
+        .btn-visitar,
         .btn-ver-mais {
             padding: 0.6rem 1rem;
             border: none;
@@ -413,14 +413,14 @@
             text-align: center;
         }
 
-        .btn-reservar {
+        .btn-visitar {
             background-color: #5a8f3d;
             color: white;
             flex: 1;
             margin-right: 0.5rem;
         }
 
-        .btn-reservar:hover {
+        .btn-visitar:hover {
             background-color: #4a7d2d;
         }
 
@@ -609,7 +609,7 @@
 
         /* Responsivo */
         @media (max-width: 768px) {
-            .restaurantes-grid {
+            .pontos-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -639,7 +639,7 @@
                 top: -30px;
             }
 
-            .restaurante-footer {
+            .ponto-footer {
                 flex-direction: column;
                 gap: 0.5rem;
             }
@@ -648,7 +648,7 @@
                 width: 100%;
             }
 
-            .btn-reservar {
+            .btn-visitar {
                 margin-right: 0;
             }
         }
@@ -681,36 +681,34 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <h1 class="page-title">Restaurantes</h1>
-            <p class="page-subtitle">Descubra os melhores sabores locais e internacionais. Filtre por tipo de cozinha,
-                preço e avaliações para encontrar o restaurante perfeito para sua experiência gastronômica.</p>
+            <h1 class="page-title">Pontos Turísticos</h1>
+            <p class="page-subtitle">Descubra os melhores pontos turísticos para sua visita. Filtre por tipo,
+                localização e avaliações para uma experiência personalizada.</p>
 
             <!-- Filtros -->
             <div class="filtros-container">
                 <h3>Filtros</h3>
                 <form class="filtros-form">
                     <div class="filtro-grupo">
-                        <label for="tipo-cozinha">Tipo de Cozinha</label>
-                        <select id="tipo-cozinha">
-                            <option value="">Todas</option>
-                            <option value="italiana">Italiana</option>
-                            <option value="japonesa">Japonesa</option>
-                            <option value="brasileira">Brasileira</option>
-                            <option value="francesa">Francesa</option>
-                            <option value="mexicana">Mexicana</option>
-                            <option value="arabe">Árabe</option>
-                            <option value="chinesa">Chinesa</option>
-                            <option value="indiana">Indiana</option>
+                        <label for="tipo">Tipo de Atração</label>
+                        <select id="tipo">
+                            <option value="">Todos</option>
+                            <option value="historico">Histórico</option>
+                            <option value="natural">Natural</option>
+                            <option value="cultural">Cultural</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="religioso">Religioso</option>
                         </select>
                     </div>
                     <div class="filtro-grupo">
-                        <label for="preco">Faixa de Preço</label>
-                        <select id="preco">
-                            <option value="">Todos</option>
-                            <option value="economico">$ - Econômico</option>
-                            <option value="medio">$$ - Médio</option>
-                            <option value="alto">$$$ - Alto</option>
-                            <option value="luxo">$$$$ - Luxo</option>
+                        <label for="localizacao">Localização</label>
+                        <select id="localizacao">
+                            <option value="">Todas</option>
+                            <option value="roma">Roma</option>
+                            <option value="florenca">Florença</option>
+                            <option value="veneza">Veneza</option>
+                            <option value="milao">Milão</option>
+                            <option value="napoles">Nápoles</option>
                         </select>
                     </div>
                     <div class="filtro-grupo">
@@ -723,14 +721,13 @@
                         </select>
                     </div>
                     <div class="filtro-grupo">
-                        <label for="localizacao">Cidade</label>
-                        <select id="localizacao">
-                            <option value="">Todas</option>
-                            <option value="roma">Roma</option>
-                            <option value="florenca">Florença</option>
-                            <option value="veneza">Veneza</option>
-                            <option value="milao">Milão</option>
-                            <option value="napoles">Nápoles</option>
+                        <label for="preco">Faixa de Preço</label>
+                        <select id="preco">
+                            <option value="">Todos</option>
+                            <option value="gratis">Gratuito</option>
+                            <option value="economico">Econômico</option>
+                            <option value="medio">Médio</option>
+                            <option value="alto">Alto</option>
                         </select>
                     </div>
 
@@ -741,161 +738,155 @@
                 </form>
             </div>
 
-            <!-- Restaurantes Grid -->
-            <div class="restaurantes-grid">
-                <!-- Restaurante 1 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            alt="Trattoria Bella Napoli">
-                        <div class="restaurante-badge">Popular</div>
+            <!-- Pontos Turísticos Grid -->
+            <div class="pontos-grid">
+                <!-- Ponto Turístico 1 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Coliseu">
+                        <div class="ponto-badge">Popular</div>
                     </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Trattoria Bella Napoli</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Italiana • Pizza • Massa</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Via Roma, 123 - Roma</p>
-                            <p><span>⏰</span> 12:00 - 23:00 (Fecha as segundas)</p>
-                            <p><span>💰</span> <span class="preco">$$</span> Médio</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Restaurante 2 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            alt="Osteria del Gambero Rosso">
-                        <div class="restaurante-badge restaurante-promocao">Promoção</div>
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Osteria del Gambero Rosso</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.6
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Italiana • Frutos do Mar • Regional</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Via Firenze, 45 - Florença</p>
-                            <p><span>⏰</span> 18:30 - 23:30 (Todos os dias)</p>
-                            <p><span>💰</span> <span class="preco">$$$</span> Alto</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Restaurante 3 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            alt="Sushi Venezia">
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Sushi Venezia</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.5
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Japonesa • Fusion • Sushi</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Calle Grande, 75 - Veneza</p>
-                            <p><span>⏰</span> 12:00 - 15:00, 19:00 - 23:00</p>
-                            <p><span>💰</span> <span class="preco">$$$</span> Alto</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Restaurante 4 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="../IMAGENS/Banner-Oro.png" alt="Oro Restaurante">
-                        <div class="restaurante-badge">Premium</div>
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Oro</h3>
-                            <div class="restaurante-rating">
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Coliseu</h3>
+                            <div class="ponto-rating">
                                 <span class="star">★</span>4.9
                             </div>
                         </div>
-                        <div class="restaurante-tipos">Brasileira • Gourmet • Contemporânea</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Av. Gen. San Martin, 889 - Leblon, Rio de Janeiro</p>
-                            <p><span>⏰</span> Terça a Sábado: 19:00 - 23:00</p>
-                            <p><span>💰</span> <span class="preco">$$$$</span> Luxo</p>
+                        <div class="ponto-location">📍 Roma, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Gratuito</span></p>
+                            <p><span>⭐</span> 12.500 avaliações</p>
                         </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="Restaurante - Oro.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Restaurante 5 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            alt="Le Bistrot Français">
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Le Bistrot Français</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.7
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Francesa • Gourmet • Vinhos</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Via Milano, 234 - Milão</p>
-                            <p><span>⏰</span> 19:00 - 00:00 (Terça a Sábado)</p>
-                            <p><span>💰</span> <span class="preco">$$$$</span> Luxo</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
                             <a href="#" class="btn-ver-mais">Ver Detalhes</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Restaurante 6 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1579027989536-b7b1f875659b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            alt="Taqueria El Mariachi">
-                        <div class="restaurante-badge restaurante-promocao">Happy Hour</div>
+                <!-- Ponto Turístico 2 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Museu do Vaticano">
+                        <div class="ponto-badge ponto-promocao">Promoção</div>
                     </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Taqueria El Mariachi</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.4
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Museu do Vaticano</h3>
+                            <div class="ponto-rating">
+                                <span class="star">★</span>4.8
                             </div>
                         </div>
-                        <div class="restaurante-tipos">Mexicana • Tex-Mex • Drinks</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Via Veneto, 56 - Roma</p>
-                            <p><span>⏰</span> 18:00 - 02:00 (Todos os dias)</p>
-                            <p><span>💰</span> <span class="preco">$$</span> Médio</p>
+                        <div class="ponto-location">📍 Vaticano, Roma</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Médio</span></p>
+                            <p><span>⭐</span> 9.800 avaliações</p>
                         </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ponto Turístico 3 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Canal Grande">
+                    </div>
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Canal Grande</h3>
+                            <div class="ponto-rating">
+                                <span class="star">★</span>4.7
+                            </div>
+                        </div>
+                        <div class="ponto-location">📍 Veneza, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Gratuito</span></p>
+                            <p><span>⭐</span> 8.200 avaliações</p>
+                        </div>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ponto Turístico 4 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1516559828984-f06785a8a9ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Ponte Vecchio">
+                    </div>
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Ponte Vecchio</h3>
+                            <div class="ponto-rating">
+                                <span class="star">★</span>4.6
+                            </div>
+                        </div>
+                        <div class="ponto-location">📍 Florença, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Gratuito</span></p>
+                            <p><span>⭐</span> 7.500 avaliações</p>
+                        </div>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ponto Turístico 5 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1506929562872-bb4224907236?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Pompeia">
+                    </div>
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Pompeia</h3>
+                            <div class="ponto-rating">
+                                <span class="star">★</span>4.9
+                            </div>
+                        </div>
+                        <div class="ponto-location">📍 Nápoles, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
+                            <p><span>⭐</span> 10.200 avaliações</p>
+                        </div>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ponto Turístico 6 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1516552167-7ba1f59ffc6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Torre de Pisa">
+                    </div>
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Torre de Pisa</h3>
+                            <div class="ponto-rating">
+                                <span class="star">★</span>4.5
+                            </div>
+                        </div>
+                        <div class="ponto-location">📍 Pisa, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Médio</span></p>
+                            <p><span>⭐</span> 6.800 avaliações</p>
+                        </div>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
                             <a href="#" class="btn-ver-mais">Ver Detalhes</a>
                         </div>
                     </div>
@@ -1013,16 +1004,16 @@
             const btnLimpar = document.querySelector('.btn-limpar');
 
             btnFiltrar.addEventListener('click', function () {
-                // Lógica para filtrar restaurantes
+                // Lógica para filtrar pontos turísticos
                 showNotification('Filtro aplicado com sucesso!', 'success');
             });
 
             btnLimpar.addEventListener('click', function () {
                 // Limpa os campos do filtro
-                document.getElementById('tipo-cozinha').value = '';
-                document.getElementById('preco').value = '';
-                document.getElementById('avaliacao').value = '';
+                document.getElementById('tipo').value = '';
                 document.getElementById('localizacao').value = '';
+                document.getElementById('avaliacao').value = '';
+                document.getElementById('preco').value = '';
 
                 showNotification('Filtros limpos!', 'success');
             });
