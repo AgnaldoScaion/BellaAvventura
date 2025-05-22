@@ -79,6 +79,73 @@
             gap: 6px;
         }
 
+        /* Menu Styles */
+        .menu-box {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            background-color: #d6e3d6;
+            border-radius: 8px;
+            padding: 20px;
+            width: 260px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-family: 'Garamond', serif;
+            z-index: 10;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .menu-lateral {
+            background-color: #88b68b;
+            width: 24px;
+            border-radius: 8px;
+        }
+
+        .menu-conteudo {
+            flex: 1;
+        }
+
+        .menu-conteudo h2 {
+            font-size: 20px;
+            margin: 0;
+            border-bottom: 1px solid #999;
+            padding-bottom: 10px;
+        }
+
+        .menu-conteudo ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .menu-conteudo li {
+            margin: 15px 0;
+        }
+
+        .menu-conteudo a {
+            text-decoration: none;
+            color: black;
+            transition: color 0.2s;
+        }
+
+        .menu-conteudo a:hover {
+            color: #3a6545;
+        }
+
+        /* Esconde o menu inicialmente */
+        .hidden {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .visible {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         /* Main Content */
         .main-content {
             padding: 2rem;
@@ -671,11 +738,10 @@
                             <option value="">Todas</option>
                             <option value="sao-paulo">São Paulo</option>
                             <option value="rio-de-janeiro">Rio de Janeiro</option>
-                            <option value="roma">Roma</option>
-                            <option value="florenca">Florença</option>
-                            <option value="veneza">Veneza</option>
-                            <option value="milao">Milão</option>
-                            <option value="napoles">Nápoles</option>
+                            <option value="rio-grande-do-sul">Rio Grande do Sul</option>
+                            <option value="maranhao">Maranhão</option>
+                            <option value="minas-gerais">Minas Gerais</option>
+                            <option value="parana">Paraná</option>
                         </select>
                     </div>
 
@@ -748,7 +814,7 @@
                 horario: "Terça a Sábado: 19:00 - 23:00",
                 preco: "alto",
                 precoTexto: "$$$",
-                cidade: "gramado",
+                cidade: "rio-grande-do-sul",
                 imagem: "https://i.ibb.co/sJyf79Pw/image.png",
                 badge: null,
                 promocao: false,
@@ -763,11 +829,11 @@
                 horario: "Quarta a Domingo: 18:00 - 22:00",
                 preco: "alto",
                 precoTexto: "$$$",
-                cidade: "gramado",
+                cidade: "rio-grande-do-sul",
                 imagem: "https://i.ibb.co/p6CszR4h/image.png",
                 badge: null,
                 promocao: false,
-                link: null
+                link: "RestauranteRS.html"
             },
             {
                 id: 4,
@@ -823,45 +889,59 @@
                 horario: "Segunda a Domingo: 11:30 - 22:00",
                 preco: "medio",
                 precoTexto: "$$",
-                cidade: "gramado",
+                cidade: "rio-grande-do-sul",
                 imagem: "https://i.ibb.co/jZBtDfjd/image.png",
                 badge: null,
                 promocao: false,
-                link: "res"
+                link: "RestauranteRS.html"
             },
             {
                 id: 8,
-                nome: "Casa Terracota",
-                tipos: ["gourmet", "inovador", "elegante"],
-                avaliacao: 4.7,
-                endereco: "Av. das Flores, 456 - Gramado, RS",
-                horario: "Terça a Sábado: 19:00 - 23:00",
+                nome: "Porto Canoas",
+                tipos: ["frutos-do-mar", "peixes"],
+                avaliacao: 4.5,
+                endereco: "Av. das Cataratas, 202 - Foz do Iguaçu, PR",
+                horario: "Todos os dias: 11:00 - 23:00",
                 preco: "alto",
                 precoTexto: "$$$",
-                cidade: "gramado",
-                imagem: "https://i.ibb.co/sJyf79Pw/image.png",
+                cidade: "parana",
+                imagem: "https://i.ibb.co/YBXdWS3Q/image.png",
                 badge: null,
                 promocao: false,
-                link: "#"
+                link: "RestauranteRS.html"
             },
             {
                 id: 9,
-                nome: "El Fuego",
-                tipos: ["fondue", "carne", "queijo"],
-                avaliacao: 4.6,
-                endereco: "Rua dos Pinheiros, 789 - Gramado, RS",
-                horario: "Quarta a Domingo: 18:00 - 22:00",
-                preco: "alto",
-                precoTexto: "$$$",
-                cidade: "gramado",
-                imagem: "https://i.ibb.co/p6CszR4h/image.png",
+                nome: "Rafain",
+                tipos: ["churrasco", "cultural"],
+                avaliacao: 4.3,
+                endereco: "Rua das Danças, 303 - Foz do Iguaçu, PR",
+                horario: "Quinta a Domingo: 19:00 - 00:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "parana",
+                imagem: "https://i.ibb.co/B50ZTNgP/image.png",
                 badge: null,
                 promocao: false,
-                link: "#"
+                link: "RestauranteRS.html"
             },
-
             {
                 id: 10,
+                nome: "La Mafia Trattoria",
+                tipos: ["italiana", "tradicional"],
+                avaliacao: 4.4,
+                endereco: "Rua das Tradições, 101 - Foz do Iguaçu, PR",
+                horario: "Segunda a Sábado: 18:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "parana",
+                imagem: "https://i.ibb.co/BVsmkHtL/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteRS.html"
+            },
+            {
+                id: 11,
                 nome: "Maharaja Palace",
                 tipos: ["indiana", "curry", "vegetariano"],
                 avaliacao: 4.4,
@@ -873,10 +953,10 @@
                 imagem: "https://i.ibb.co/wNDYyrGF/image.png",
                 badge: null,
                 promocao: false,
-                link: "#"
+                link: ""
             },
             {
-                id: 11,
+                id: 12,
                 nome: "Golden Dragon",
                 tipos: ["chinesa", "dim-sum", "tradicional"],
                 avaliacao: 4.2,
@@ -891,7 +971,7 @@
                 link: "#"
             },
             {
-                id: 12,
+                id: 13,
                 nome: "Habibi",
                 tipos: ["arabe", "libanesa", "tradicional"],
                 avaliacao: 4.6,
@@ -906,7 +986,7 @@
                 link: "#"
             },
             {
-                id: 13,
+                id: 14,
                 nome: "Il Castello",
                 tipos: ["italiana", "pizza", "massa"],
                 avaliacao: 4.5,
@@ -916,6 +996,96 @@
                 precoTexto: "$$",
                 cidade: "roma",
                 imagem: "https://i.ibb.co/wNDYyrGF/image.png",
+                badge: null,
+                promocao: false,
+                link: "#"
+            },
+            {
+                id: 15,
+                nome: "Bené da Flauta",
+                tipos: ["tradicional", "brasileira"],
+                avaliacao: 4.5,
+                endereco: "Rua das Tradições, 101 - Ouro Preto, MG",
+                horario: "Segunda a Sábado: 18:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "minas-gerais",
+                imagem: "https://i.ibb.co/5W1XfZVG/image.png",
+                badge: null,
+                promocao: false,
+                link: "#"
+            },
+            {
+                id: 16,
+                nome: "Gastro Pub",
+                tipos: ["moderna", "pub"],
+                avaliacao: 4.4,
+                endereco: "Rua dos Ingleses, 118 - Ouro Preto, MG",
+                horario: "Segunda a Sábado: 12:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "minas-gerais",
+                imagem: "https://i.ibb.co/DP0nRQ81/image.png",
+                badge: null,
+                promocao: false,
+                link: "#"
+            },
+            {
+                id: 17,
+                nome: "Contos dos Reis",
+                tipos: ["tradicional", "brasileira"],
+                avaliacao: 4.3,
+                endereco: "Rua das Danças, 303 - Ouro Preto, MG",
+                horario: "Quinta a Domingo: 19:00 - 00:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "minas-gerais",
+                imagem: "https://i.ibb.co/kVDCLyJK/image.png",
+                badge: null,
+                promocao: false,
+                link: "#"
+            },
+            {
+                id: 18,
+                nome: "Mangue",
+                tipos: ["regional", "frutos-do-mar"],
+                avaliacao: 4.5,
+                endereco: "Rua das Tradições, 101 - Barreirinhas, MA",
+                horario: "Segunda a Sábado: 18:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "maranhao",
+                imagem: "https://i.ibb.co/wNDYyrGF/image.png",
+                badge: null,
+                promocao: false,
+                link: "#"
+            },
+            {
+                id: 19,
+                nome: "A Canoa",
+                tipos: ["regional", "frutos-do-mar"],
+                avaliacao: 4.4,
+                endereco: "Rua dos Ingleses, 118 - Barreirinhas, MA",
+                horario: "Segunda a Sábado: 12:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "maranhao",
+                imagem: "https://i.ibb.co/NnswBt5Q/image.png",
+                badge: null,
+                promocao: false,
+                link: "#"
+            },
+            {
+                id: 20,
+                nome: "Terral",
+                tipos: ["regional", "frutos-do-mar"],
+                avaliacao: 4.3,
+                endereco: "Rua das Danças, 303 - Barreirinhas, MA",
+                horario: "Quinta a Domingo: 19:00 - 00:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "maranhao",
+                imagem: "https://i.ibb.co/Rk9CXfxM/image.png",
                 badge: null,
                 promocao: false,
                 link: "#"
@@ -1080,6 +1250,73 @@
 
             // Exibe os restaurantes inicialmente
             exibirRestaurantes();
+        });
+
+        // Verifica autenticação
+        function checkAuth() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (userData) {
+                // Atualiza header
+                document.querySelector('.user-header').innerHTML = `
+                    <span>👤</span> ${userData.firstName}
+                `;
+
+                // Carrega menu logado
+                loadMenu('MenuLogado.html');
+            } else {
+                // Carrega menu não logado
+                loadMenu('MenuNaoLogado.html');
+            }
+        }
+
+        // Carrega o menu
+        function loadMenu(menuFile) {
+            fetch(menuFile)
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('menuContainer').innerHTML = html;
+                    setupMenu();
+                });
+        }
+
+        // Configura o menu
+        function setupMenu() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const menu = document.querySelector('.menu-box');
+
+            if (menu && menuIcon) {
+                menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                });
+            }
+
+            // Configura logout se existir
+            const logoutBtn = document.getElementById('logout-link');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'Entrada.html';
+                });
+            }
+        }
+
+        // Verifica autenticação e configura o menu
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAuth();
+            setupMenu();
+
+            // Verifica mensagem de sucesso
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get('msg');
+
+            if (msg === 'login') {
+                showNotification('Login realizado com sucesso!', 'success');
+            } else if (msg === 'cadastro') {
+                showNotification('Cadastro realizado com sucesso!', 'success');
+            }
         });
     </script>
 </body>
