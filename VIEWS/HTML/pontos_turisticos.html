@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotéis - Bella Avventura</title>
+    <title>Pontos Turísticos - Bella Avventura</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
@@ -252,14 +252,14 @@
             background-color: #e0e0e0;
         }
 
-        /* Hotéis Grid */
-        .hoteis-grid {
+        /* Pontos Turísticos Grid */
+        .pontos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .hotel-card {
+        .ponto-card {
             background: white;
             border-radius: 12px;
             overflow: hidden;
@@ -273,36 +273,53 @@
             transform: translateY(20px);
         }
 
-        .hotel-card:nth-child(1) { animation-delay: 0.1s; }
-        .hotel-card:nth-child(2) { animation-delay: 0.2s; }
-        .hotel-card:nth-child(3) { animation-delay: 0.3s; }
-        .hotel-card:nth-child(4) { animation-delay: 0.4s; }
-        .hotel-card:nth-child(5) { animation-delay: 0.5s; }
-        .hotel-card:nth-child(6) { animation-delay: 0.6s; }
+        .ponto-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
 
-        .hotel-card:hover {
+        .ponto-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .ponto-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .ponto-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .ponto-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .ponto-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .ponto-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .hotel-img {
+        .ponto-img {
             height: 180px;
             overflow: hidden;
             position: relative;
         }
 
-        .hotel-img img {
+        .ponto-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .hotel-card:hover .hotel-img img {
+        .ponto-card:hover .ponto-img img {
             transform: scale(1.1);
         }
 
-        .hotel-badge {
+        .ponto-badge {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -314,31 +331,31 @@
             font-weight: bold;
         }
 
-        .hotel-promocao {
+        .ponto-promocao {
             background-color: #ff6b6b;
         }
 
-        .hotel-content {
+        .ponto-content {
             padding: 1.5rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .hotel-header {
+        .ponto-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 0.5rem;
         }
 
-        .hotel-title {
+        .ponto-title {
             font-size: 1.3rem;
             color: #5a8f3d;
             margin: 0;
         }
 
-        .hotel-rating {
+        .ponto-rating {
             display: flex;
             align-items: center;
             font-weight: bold;
@@ -349,35 +366,35 @@
             margin-right: 3px;
         }
 
-        .hotel-location {
+        .ponto-location {
             margin-bottom: 1rem;
             color: #666;
             font-size: 0.9rem;
             font-weight: 400;
         }
 
-        .hotel-info {
+        .ponto-info {
             margin-bottom: 1rem;
             flex: 1;
         }
 
-        .hotel-info p {
+        .ponto-info p {
             margin: 0.5rem 0;
             font-weight: 400;
             display: flex;
             align-items: center;
         }
 
-        .hotel-info p span {
+        .ponto-info p span {
             margin-right: 0.5rem;
         }
 
-        .hotel-price {
+        .ponto-price {
             font-weight: bold;
             color: #5a8f3d;
         }
 
-        .hotel-footer {
+        .ponto-footer {
             display: flex;
             justify-content: space-between;
             margin-top: 1rem;
@@ -385,7 +402,7 @@
             padding-top: 1rem;
         }
 
-        .btn-reservar,
+        .btn-visitar,
         .btn-ver-mais {
             padding: 0.6rem 1rem;
             border: none;
@@ -397,14 +414,14 @@
             text-align: center;
         }
 
-        .btn-reservar {
+        .btn-visitar {
             background-color: #5a8f3d;
             color: white;
             flex: 1;
             margin-right: 0.5rem;
         }
 
-        .btn-reservar:hover {
+        .btn-visitar:hover {
             background-color: #4a7d2d;
         }
 
@@ -541,6 +558,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -550,9 +568,11 @@
             0% {
                 opacity: 1;
             }
+
             80% {
                 opacity: 1;
             }
+
             100% {
                 opacity: 0;
             }
@@ -563,6 +583,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -573,9 +594,11 @@
             0% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-5px);
             }
+
             100% {
                 transform: translateY(0px);
             }
@@ -587,7 +610,7 @@
 
         /* Responsivo */
         @media (max-width: 768px) {
-            .hoteis-grid {
+            .pontos-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -617,7 +640,7 @@
                 top: -30px;
             }
 
-            .hotel-footer {
+            .ponto-footer {
                 flex-direction: column;
                 gap: 0.5rem;
             }
@@ -626,7 +649,7 @@
                 width: 100%;
             }
 
-            .btn-reservar {
+            .btn-visitar {
                 margin-right: 0;
             }
         }
@@ -659,54 +682,56 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <h1 class="page-title">Hotéis</h1>
-            <p class="page-subtitle">Encontre os melhores hotéis para sua estadia. Filtre por preço, localização e comodidades para uma experiência personalizada.</p>
+            <h1 class="page-title">Pontos Turísticos</h1>
+            <p class="page-subtitle">Descubra os melhores pontos turísticos para sua visita. Filtre por tipo,
+                localização e avaliações para uma experiência personalizada.</p>
 
             <!-- Filtros -->
             <div class="filtros-container">
                 <h3>Filtros</h3>
                 <form class="filtros-form">
                     <div class="filtro-grupo">
-                        <label for="destino">Destino</label>
-                        <input type="text" id="destino" placeholder="Para onde você vai?">
+                        <label for="tipo">Tipo de Atração</label>
+                        <select id="tipo">
+                            <option value="">Todos</option>
+                            <option value="historico">Histórico</option>
+                            <option value="natural">Natural</option>
+                            <option value="cultural">Cultural</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="religioso">Religioso</option>
+                        </select>
                     </div>
                     <div class="filtro-grupo">
-                        <label for="data-checkin">Check-in</label>
-                        <input type="date" id="data-checkin">
+                        <label for="localizacao">Localização</label>
+                        <select id="localizacao">
+                            <option value="">Todas</option>
+                            <option value="roma">Roma</option>
+                            <option value="florenca">Florença</option>
+                            <option value="veneza">Veneza</option>
+                            <option value="milao">Milão</option>
+                            <option value="napoles">Nápoles</option>
+                        </select>
                     </div>
                     <div class="filtro-grupo">
-                        <label for="data-checkout">Check-out</label>
-                        <input type="date" id="data-checkout">
-                    </div>
-                    <div class="filtro-grupo">
-                        <label for="hospedes">Hóspedes</label>
-                        <select id="hospedes">
-                            <option value="1">1 Adulto</option>
-                            <option value="2">2 Adultos</option>
-                            <option value="3">3 Adultos</option>
-                            <option value="4">4 Adultos</option>
-                            <option value="familiar">Família com crianças</option>
+                        <label for="avaliacao">Avaliação Mínima</label>
+                        <select id="avaliacao">
+                            <option value="">Qualquer</option>
+                            <option value="3">3+ Estrelas</option>
+                            <option value="4">4+ Estrelas</option>
+                            <option value="4.5">4.5+ Estrelas</option>
                         </select>
                     </div>
                     <div class="filtro-grupo">
                         <label for="preco">Faixa de Preço</label>
                         <select id="preco">
-                            <option value="todos">Qualquer preço</option>
-                            <option value="economico">Econômico (até R$200)</option>
-                            <option value="medio">Médio (R$200 - R$500)</option>
-                            <option value="premium">Premium (R$500+)</option>
+                            <option value="">Todos</option>
+                            <option value="gratis">Gratuito</option>
+                            <option value="economico">Econômico</option>
+                            <option value="medio">Médio</option>
+                            <option value="alto">Alto</option>
                         </select>
                     </div>
-                    <div class="filtro-grupo">
-                        <label for="classificacao">Classificação</label>
-                        <select id="classificacao">
-                            <option value="todos">Qualquer classificação</option>
-                            <option value="5">5 estrelas</option>
-                            <option value="4">4 estrelas</option>
-                            <option value="3">3 estrelas</option>
-                            <option value="2">2 estrelas</option>
-                        </select>
-                    </div>
+
                     <div class="filtro-botoes">
                         <button type="button" class="btn-filtrar">Aplicar Filtros</button>
                         <button type="button" class="btn-limpar">Limpar</button>
@@ -714,149 +739,155 @@
                 </form>
             </div>
 
-            <!-- Hotéis Grid -->
-            <div class="hoteis-grid">
-                <!-- Hotel 1 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Grande Hotel Milano">
-                        <div class="hotel-badge">Popular</div>
+            <!-- Pontos Turísticos Grid -->
+            <div class="pontos-grid">
+                <!-- Ponto Turístico 1 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Coliseu">
+                        <div class="ponto-badge">Popular</div>
                     </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Grande Hotel Milano</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Milão, Itália</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 650</span> /noite</p>
-                            <p><span>⭐</span> 520 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-                            <a href="#" class="btn-reservar">Reservar</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 2 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Palazzo Venezia">
-                        <div class="hotel-badge hotel-promocao">Promoção</div>
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Palazzo Venezia</h3>
-                            <div class="hotel-rating">
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Coliseu</h3>
+                            <div class="ponto-rating">
                                 <span class="star">★</span>4.9
                             </div>
                         </div>
-                        <div class="hotel-location">📍 Veneza, Itália</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 850</span> /noite</p>
-                            <p><span>⭐</span> 743 avaliações</p>
+                        <div class="ponto-location">📍 Roma, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Gratuito</span></p>
+                            <p><span>⭐</span> 12.500 avaliações</p>
                         </div>
-                        <div class="hotel-footer">
-                            <a href="#" class="btn-reservar">Reservar</a>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
                             <a href="#" class="btn-ver-mais">Ver Detalhes</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Hotel 3 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Roma Boutique">
+                <!-- Ponto Turístico 2 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Museu do Vaticano">
+                        <div class="ponto-badge ponto-promocao">Promoção</div>
                     </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Roma Boutique</h3>
-                            <div class="hotel-rating">
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Museu do Vaticano</h3>
+                            <div class="ponto-rating">
+                                <span class="star">★</span>4.8
+                            </div>
+                        </div>
+                        <div class="ponto-location">📍 Vaticano, Roma</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Médio</span></p>
+                            <p><span>⭐</span> 9.800 avaliações</p>
+                        </div>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ponto Turístico 3 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Canal Grande">
+                    </div>
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Canal Grande</h3>
+                            <div class="ponto-rating">
                                 <span class="star">★</span>4.7
                             </div>
                         </div>
-                        <div class="hotel-location">📍 Roma, Itália</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 550</span> /noite</p>
-                            <p><span>⭐</span> 398 avaliações</p>
+                        <div class="ponto-location">📍 Veneza, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Gratuito</span></p>
+                            <p><span>⭐</span> 8.200 avaliações</p>
                         </div>
-                        <div class="hotel-footer">
-                            <a href="#" class="btn-reservar">Reservar</a>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
                             <a href="#" class="btn-ver-mais">Ver Detalhes</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Hotel 4 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Florence Views">
+                <!-- Ponto Turístico 4 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1516559828984-f06785a8a9ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Ponte Vecchio">
                     </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Florence Views</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Florença, Itália</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 580</span> /noite</p>
-                            <p><span>⭐</span> 621 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-                            <a href="#" class="btn-reservar">Reservar</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 5 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="https://images.unsplash.com/photo-1518733057094-95b53143d2a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Amalfi Retreat">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Amalfi Retreat</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.9
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Costa Amalfitana, Itália</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 980</span> /noite</p>
-                            <p><span>⭐</span> 875 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-                            <a href="#" class="btn-reservar">Reservar</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 6 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sicilia Charm">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Sicilia Charm</h3>
-                            <div class="hotel-rating">
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Ponte Vecchio</h3>
+                            <div class="ponto-rating">
                                 <span class="star">★</span>4.6
                             </div>
                         </div>
-                        <div class="hotel-location">📍 Palermo, Sicília</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 480</span> /noite</p>
-                            <p><span>⭐</span> 456 avaliações</p>
+                        <div class="ponto-location">📍 Florença, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Gratuito</span></p>
+                            <p><span>⭐</span> 7.500 avaliações</p>
                         </div>
-                        <div class="hotel-footer">
-                            <a href="#" class="btn-reservar">Reservar</a>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ponto Turístico 5 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1506929562872-bb4224907236?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Pompeia">
+                    </div>
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Pompeia</h3>
+                            <div class="ponto-rating">
+                                <span class="star">★</span>4.9
+                            </div>
+                        </div>
+                        <div class="ponto-location">📍 Nápoles, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
+                            <p><span>⭐</span> 10.200 avaliações</p>
+                        </div>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ponto Turístico 6 -->
+                <div class="ponto-card">
+                    <div class="ponto-img">
+                        <img src="https://images.unsplash.com/photo-1516552167-7ba1f59ffc6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Torre de Pisa">
+                    </div>
+                    <div class="ponto-content">
+                        <div class="ponto-header">
+                            <h3 class="ponto-title">Torre de Pisa</h3>
+                            <div class="ponto-rating">
+                                <span class="star">★</span>4.5
+                            </div>
+                        </div>
+                        <div class="ponto-location">📍 Pisa, Itália</div>
+                        <div class="ponto-info">
+                            <p><span>💰</span> <span class="ponto-price">Médio</span></p>
+                            <p><span>⭐</span> 6.800 avaliações</p>
+                        </div>
+                        <div class="ponto-footer">
+                            <a href="#" class="btn-visitar">Visitar</a>
                             <a href="#" class="btn-ver-mais">Ver Detalhes</a>
                         </div>
                     </div>
@@ -973,19 +1004,17 @@
             const btnFiltrar = document.querySelector('.btn-filtrar');
             const btnLimpar = document.querySelector('.btn-limpar');
 
-            btnFiltrar.addEventListener('click', function() {
-                // Lógica para filtrar hotéis
+            btnFiltrar.addEventListener('click', function () {
+                // Lógica para filtrar pontos turísticos
                 showNotification('Filtro aplicado com sucesso!', 'success');
             });
 
-            btnLimpar.addEventListener('click', function() {
+            btnLimpar.addEventListener('click', function () {
                 // Limpa os campos do filtro
-                document.getElementById('destino').value = '';
-                document.getElementById('data-checkin').value = '';
-                document.getElementById('data-checkout').value = '';
-                document.getElementById('hospedes').value = '1';
-                document.getElementById('preco').value = 'todos';
-                document.getElementById('classificacao').value = 'todos';
+                document.getElementById('tipo').value = '';
+                document.getElementById('localizacao').value = '';
+                document.getElementById('avaliacao').value = '';
+                document.getElementById('preco').value = '';
 
                 showNotification('Filtros limpos!', 'success');
             });
@@ -995,7 +1024,7 @@
             const paginaBtns = document.querySelectorAll('.pagina-btn');
 
             paginaBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     // Remove a classe 'active' de todos os botões
                     paginaBtns.forEach(b => b.classList.remove('active'));
 
