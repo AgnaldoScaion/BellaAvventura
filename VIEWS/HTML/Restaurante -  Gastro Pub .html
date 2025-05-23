@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gastro Pub</title>
+  <link rel="stylesheet" href="../CSS/Geral.css">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+</head>
+<body>
+
+  <!-- Cabeçalho com menu, login e logo -->
+  <header>
+    <div class="wrapper">
+
+      <!-- Top Header -->
+      <div class="top-header">
+        <div class="menu-icon">☰</div>
+        <div class="user-header">
+          <span>👤</span> Visitante
+        </div>
+      </div>
+  
+      <div id="menuContainer1"></div>
+
+      <!-- Logo -->
+      <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+  </header>
+
+  <main class="grid-container">
+    <div class="pilastra-verde"></div>
+    <div class="conteudo">
+      <!-- Seção do destino principal -->
+      <section class="destino">
+        <h1>Gastro Pub</h1>
+        <img src="../IMAGENS/Banner_ Gastro Pub .png" alt="Bané da Flauta" />
+        <div class="estrelas">★★★★★</div>
+      </section>
+  
+      <!-- Seção sobre o destino -->
+      <section class="sobre">
+        
+        <h2>Informações Gerais</h2>
+                <!-- Localização com ícone -->
+<div class="info-localizacao">
+    <p>📍Rua Conde de Bobadela, 132 - Centro, Ouro Preto - MG</p>
+    <p>📞Telefone: +55 3198312-7606</p>
+    <p>🕒Horário de funcionamento: Segunda a Domingo das 17:30 ás  00:00 horas.     </p>
+</div>
+        <h2> Sobre</h2>
+        <p>
+      O Gastro Pub da Cidade de Ouro Preto oferece uma experiência única que combina a gastronomia contemporânea com o charme rústico da cidade histórica. Com um cardápio criativo e uma vasta seleção de bebidas, o local se destaca pelo ambiente descontraído e acolhedor, ideal para quem busca um jantar sofisticado e descontraído ao mesmo tempo. É um ótimo destino para quem deseja experimentar pratos inovadores em um ambiente agradável e animado.        
+        </p>
+      </section>
+  
+      <!-- Galeria de imagens secundárias -->
+      <section class="imagens-secundarias">
+        <img src="../IMAGENS/Prato1- Gastro Pub .png" alt="foto 1">
+        <img src="../IMAGENS/Prato2- Gastro Pub .png" alt="foto 2">
+      </section>
+  
+      <!-- Comentários de visitantes -->
+      <section class="comentarios">
+        <h2>Comentários <span>(3.185 avaliações)</span></h2>
+        <div class="comentario">
+            <h3>Pietro Cullin <span>★★★★★</span></h3>
+            <p>
+            O Gastro Pub de Ouro Preto oferece um ambiente acolhedor e uma boa seleção de pratos e bebidas. A comida é saborosa e criativa, com destaque para as opções de petiscos. O atendimento é atencioso, mas o tempo de espera poderia ser um pouco menor. Uma ótima experiência no geral!            
+        </p>
+        </div>
+      </section>
+  
+      <!-- Seção de feedback -->
+      <section class="feedback">
+        <p>Gostou? Deixe sua avaliação!</p>
+        <a href="../HTML/envio_feedback.html"><button>Enviar feedback</button></a>
+      </section>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="TermosCondicoes.html">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Carregamento do menu
+      fetch('../HTML/MenuNaoLogado.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          const menuIcon = document.querySelector('.menu-icon');
+          const menu = document.getElementById('menu-nao-logado');
+
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
+
+      // Verifica se há usuário logado
+      const userData = JSON.parse(localStorage.getItem('currentUser'));
+      if (userData) {
+        document.querySelector('.user-header').innerHTML = `
+          <span>👤</span> ${userData.firstName}
+        `;
+      }
+    });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnVoltar = document.querySelector('.btn-voltar');
+    const footer = document.querySelector('.footer');
+    const threshold = 100; // 100px antes do final para considerar "no final"
+    
+    function adjustButtonPosition() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        const footerRect = footer.getBoundingClientRect();
+        const footerTop = footerRect.top;
+        
+        // Verifica se chegou perto do final da página
+        const nearBottom = scrollPosition + windowHeight >= documentHeight - threshold;
+        
+        if (nearBottom) {
+            btnVoltar.classList.add('visible');
+            
+            // Calcula a posição segura acima do footer
+            const safePosition = windowHeight - footerTop - 1; // 20px de margem
+            
+            if (footerTop < windowHeight) {
+                // Footer está visível - ajusta posição
+                btnVoltar.style.bottom = `${Math.max(20, safePosition)}px`;
+            } else {
+                // Footer não está visível - posição padrão
+                btnVoltar.style.bottom = '30px';
+            }
+        } else {
+            btnVoltar.classList.remove('visible');
+        }
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', adjustButtonPosition);
+    window.addEventListener('resize', adjustButtonPosition);
+    
+    // Verificação inicial
+    adjustButtonPosition();
+});
+  </script>
+</body>
+</html>

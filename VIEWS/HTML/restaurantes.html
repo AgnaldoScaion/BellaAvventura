@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurantes - Bella Avventura</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
     <style>
         @font-face {
@@ -51,7 +53,6 @@
             z-index: 1;
         }
 
-        /* Header Styles */
         .top-header {
             display: flex;
             justify-content: space-between;
@@ -78,7 +79,6 @@
             gap: 6px;
         }
 
-        /* Menu Styles */
         .menu-box {
             position: absolute;
             top: 50px;
@@ -132,7 +132,6 @@
             color: #3a6545;
         }
 
-        /* Esconde o menu inicialmente */
         .hidden {
             visibility: hidden;
             opacity: 0;
@@ -145,7 +144,6 @@
             pointer-events: auto;
         }
 
-        /* Main Content */
         .main-content {
             padding: 2rem;
             max-width: 1200px;
@@ -171,7 +169,6 @@
             margin-right: auto;
         }
 
-        /* Filtros */
         .filtros-container {
             background-color: white;
             border-radius: 12px;
@@ -251,11 +248,18 @@
             background-color: #e0e0e0;
         }
 
-        /* Restaurantes Grid */
+        .pagination-info {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
         .restaurantes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
+            min-height: 600px;
         }
 
         .restaurante-card {
@@ -272,12 +276,10 @@
             transform: translateY(20px);
         }
 
-        .restaurante-card:nth-child(1) { animation-delay: 0.1s; }
-        .restaurante-card:nth-child(2) { animation-delay: 0.2s; }
-        .restaurante-card:nth-child(3) { animation-delay: 0.3s; }
-        .restaurante-card:nth-child(4) { animation-delay: 0.4s; }
-        .restaurante-card:nth-child(5) { animation-delay: 0.5s; }
-        .restaurante-card:nth-child(6) { animation-delay: 0.6s; }
+        .restaurante-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .restaurante-card:hover {
             transform: translateY(-10px);
@@ -417,12 +419,13 @@
             background-color: #e0e0e0;
         }
 
-        /* Paginação */
         .paginacao {
             display: flex;
             justify-content: center;
+            align-items: center;
             margin-top: 3rem;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .pagina-btn {
@@ -436,6 +439,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             background-color: white;
+            font-weight: bold;
         }
 
         .pagina-btn:hover,
@@ -444,11 +448,15 @@
             color: white;
         }
 
+        .pagina-btn.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
         .pagina-seta {
             font-size: 1.2rem;
         }
 
-        /* Footer Styles */
         .footer {
             background-color: #A7D096;
             padding: 20px;
@@ -512,7 +520,6 @@
             color: #5a8f3d;
         }
 
-        /* Notificação */
         .notificacao {
             background-color: #5a8f3d;
             color: white;
@@ -535,11 +542,11 @@
             animation: fadeOut 4s forwards;
         }
 
-        /* Animações */
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -549,9 +556,11 @@
             0% {
                 opacity: 1;
             }
+
             80% {
                 opacity: 1;
             }
+
             100% {
                 opacity: 0;
             }
@@ -562,6 +571,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -572,9 +582,11 @@
             0% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-5px);
             }
+
             100% {
                 transform: translateY(0px);
             }
@@ -584,7 +596,20 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Responsivo */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        #map {
+            height: 300px;
+            width: 80%;
+            margin: 1rem auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         @media (max-width: 768px) {
             .restaurantes-grid {
                 grid-template-columns: 1fr;
@@ -628,6 +653,10 @@
             .btn-reservar {
                 margin-right: 0;
             }
+
+            .paginacao {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -659,7 +688,8 @@
         <!-- Main Content -->
         <main class="main-content">
             <h1 class="page-title">Restaurantes</h1>
-            <p class="page-subtitle">Descubra os melhores sabores locais e internacionais. Filtre por tipo de cozinha, preço e avaliações para encontrar o restaurante perfeito para sua experiência gastronômica.</p>
+            <p class="page-subtitle">Descubra os melhores sabores locais e internacionais. Filtre por tipo de cozinha,
+                preço e avaliações para encontrar o restaurante perfeito para sua experiência gastronômica.</p>
 
             <!-- Filtros -->
             <div class="filtros-container">
@@ -702,11 +732,14 @@
                         <label for="localizacao">Cidade</label>
                         <select id="localizacao">
                             <option value="">Todas</option>
-                            <option value="roma">Roma</option>
-                            <option value="florenca">Florença</option>
-                            <option value="veneza">Veneza</option>
-                            <option value="milao">Milão</option>
+                            <option value="sao-paulo">São Paulo</option>
+                            <option value="rio-de-janeiro">Rio de Janeiro</option>
+                            <option value="rio-grande-do-sul">Rio Grande do Sul</option>
+                            <option value="maranhao">Maranhão</option>
+                            <option value="minas-gerais">Minas Gerais</option>
+                            <option value="parana">Paraná</option>
                             <option value="napoles">Nápoles</option>
+                            <option value="santa-catarina">Santa Catarina</option>
                         </select>
                     </div>
 
@@ -717,171 +750,24 @@
                 </form>
             </div>
 
+            <!-- Info da paginação -->
+            <div class="pagination-info" id="pagination-info">
+                Carregando restaurantes...
+            </div>
+
             <!-- Restaurantes Grid -->
-            <div class="restaurantes-grid">
-                <!-- Restaurante 1 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Trattoria Bella Napoli">
-                        <div class="restaurante-badge">Popular</div>
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Trattoria Bella Napoli</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Italiana • Pizza • Massa</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Via Roma, 123 - Roma</p>
-                            <p><span>⏰</span> 12:00 - 23:00 (Fecha as segundas)</p>
-                            <p><span>💰</span> <span class="preco">$$</span> Médio</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Restaurante 2 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Osteria del Gambero Rosso">
-                        <div class="restaurante-badge restaurante-promocao">Promoção</div>
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Osteria del Gambero Rosso</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.6
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Italiana • Frutos do Mar • Regional</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Via Firenze, 45 - Florença</p>
-                            <p><span>⏰</span> 18:30 - 23:30 (Todos os dias)</p>
-                            <p><span>💰</span> <span class="preco">$$$</span> Alto</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Restaurante 3 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sushi Venezia">
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Sushi Venezia</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.5
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Japonesa • Fusion • Sushi</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Calle Grande, 75 - Veneza</p>
-                            <p><span>⏰</span> 12:00 - 15:00, 19:00 - 23:00</p>
-                            <p><span>💰</span> <span class="preco">$$$</span> Alto</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Restaurante 4 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cantina della Nonna">
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Cantina della Nonna</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.9
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Italiana • Caseira • Regional</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Via Napoli, 89 - Nápoles</p>
-                            <p><span>⏰</span> 12:00 - 22:00 (Fecha aos domingos)</p>
-                            <p><span>💰</span> <span class="preco">$</span> Econômico</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Restaurante 5 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Le Bistrot Français">
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Le Bistrot Français</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.7
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Francesa • Gourmet • Vinhos</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Via Milano, 234 - Milão</p>
-                            <p><span>⏰</span> 19:00 - 00:00 (Terça a Sábado)</p>
-                            <p><span>💰</span> <span class="preco">$$$$</span> Luxo</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Restaurante 6 -->
-                <div class="restaurante-card">
-                    <div class="restaurante-img">
-                        <img src="https://images.unsplash.com/photo-1579027989536-b7b1f875659b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Taqueria El Mariachi">
-                        <div class="restaurante-badge restaurante-promocao">Happy Hour</div>
-                    </div>
-                    <div class="restaurante-content">
-                        <div class="restaurante-header">
-                            <h3 class="restaurante-title">Taqueria El Mariachi</h3>
-                            <div class="restaurante-rating">
-                                <span class="star">★</span>4.4
-                            </div>
-                        </div>
-                        <div class="restaurante-tipos">Mexicana • Tex-Mex • Drinks</div>
-                        <div class="restaurante-info">
-                            <p><span>📍</span> Via Veneto, 56 - Roma</p>
-                            <p><span>⏰</span> 18:00 - 02:00 (Todos os dias)</p>
-                            <p><span>💰</span> <span class="preco">$$</span> Médio</p>
-                        </div>
-                        <div class="restaurante-footer">
-                            <a href="#" class="btn-reservar">Reservar Mesa</a>
-                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="restaurantes-grid" id="restaurantes-grid">
+                <div class="loading">Carregando restaurantes...</div>
             </div>
 
             <!-- Paginação -->
-            <div class="paginacao">
-                <div class="pagina-btn active">1</div>
-                <div class="pagina-btn">2</div>
-                <div class="pagina-btn">3</div>
-                <div class="pagina-btn">4</div>
-                <div class="pagina-btn">5</div>
+            <div class="paginacao" id="paginacao">
+                <!-- Será gerada dinamicamente pelo JavaScript -->
             </div>
         </main>
+
+        <!-- Mapa -->
+        <div id="map"></div>
 
         <!-- Rodapé -->
         <footer class="footer">
@@ -902,29 +788,547 @@
         </footer>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Verifica autenticação
-            checkAuth();
-
-            // Configura o menu
-            setupMenu();
-
-            // Configura os botões de filtro
-            setupFilterButtons();
-
-            // Configura a paginação
-            setupPagination();
-
-            // Verifica mensagem de sucesso
-            const urlParams = new URLSearchParams(window.location.search);
-            const msg = urlParams.get('msg');
-
-            if (msg) {
-                showNotification(getNotificationMessage(msg), 'success');
+        // Base de dados de restaurantes
+        const restaurantes = [
+            {
+                id: 1,
+                nome: "Jamile",
+                tipos: ["brasileira", "contemporanea", "gourmet"],
+                avaliacao: 4.9,
+                endereco: "R. Treze de Maio, 647 - Bela Vista, São Paulo",
+                horario: "Segunda a Domingo: 12:00 - 23:00",
+                preco: "luxo",
+                precoTexto: "$$$$",
+                cidade: "sao-paulo",
+                imagem: "https://i.ibb.co/wNDYyrGF/image.png",
+                badge: "Premium",
+                promocao: false,
+                link: "Restaurante - Jamile.html",
+                lat: -23.5505,
+                lng: -46.6333
+            },
+            {
+                id: 2,
+                nome: "Casa Terracota",
+                tipos: ["gourmet", "inovador", "elegante"],
+                avaliacao: 4.7,
+                endereco: "Av. das Flores, 456 - Gramado, RS",
+                horario: "Terça a Sábado: 19:00 - 23:00",
+                preco: "alto",
+                precoTexto: "$$$",
+                cidade: "rio-grande-do-sul",
+                imagem: "https://i.ibb.co/sJyf79Pw/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteRS.html",
+                lat: -29.3739,
+                lng: -50.8811
+            },
+            {
+                id: 3,
+                nome: "El Fuego",
+                tipos: ["fondue", "carne", "queijo"],
+                avaliacao: 4.6,
+                endereco: "Rua dos Pinheiros, 789 - Gramado, RS",
+                horario: "Quarta a Domingo: 18:00 - 22:00",
+                preco: "alto",
+                precoTexto: "$$$",
+                cidade: "rio-grande-do-sul",
+                imagem: "https://i.ibb.co/p6CszR4h/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteRS.html",
+                lat: -29.3749,
+                lng: -50.8821
+            },
+            {
+                id: 4,
+                nome: "Oro",
+                tipos: ["brasileira", "gourmet", "contemporanea"],
+                avaliacao: 4.9,
+                endereco: "Av. Gen. San Martin, 889 - Leblon, Rio de Janeiro",
+                horario: "Terça a Sábado: 19:00 - 23:00",
+                preco: "luxo",
+                precoTexto: "$$$$",
+                cidade: "rio-de-janeiro",
+                imagem: "https://i.ibb.co/wNDYyrGF/image.png",
+                badge: "Premium",
+                promocao: false,
+                link: "Restaurante - Oro.html",
+                lat: -22.9792,
+                lng: -43.2236
+            },
+            {
+                id: 5,
+                nome: "Cipriani",
+                tipos: ["italiana", "contemporanea", "gourmet"],
+                avaliacao: 4.9,
+                endereco: "Av. Atlântica, 1702 - Copacabana, Rio de Janeiro",
+                horario: "Segunda a Domingo: 19:00 - 21:00",
+                preco: "luxo",
+                precoTexto: "$$$$",
+                cidade: "rio-de-janeiro",
+                imagem: "https://i.ibb.co/NnswBt5Q/image.png",
+                badge: "Premium",
+                promocao: false,
+                link: "Restaurante - Cipriani.html",
+                lat: -22.9711,
+                lng: -43.1828
+            },
+            {
+                id: 6,
+                nome: "Fasano",
+                tipos: ["italiana", "gourmet", "contemporanea"],
+                avaliacao: 4.9,
+                endereco: "Av. Vieira Souto, 80 - Ipanema, Rio de Janeiro",
+                horario: "Segunda a Domingo: 12:00 - 23:00",
+                preco: "luxo",
+                precoTexto: "$$$$",
+                cidade: "rio-de-janeiro",
+                imagem: "https://i.ibb.co/Rk9CXfxM/image.png",
+                badge: "Premium",
+                promocao: false,
+                link: "Restaurante - Fasano.html",
+                lat: -22.9785,
+                lng: -43.2089
+            },
+            {
+                id: 7,
+                nome: "Terraço Itália",
+                tipos: ["italiana", "gourmet"],
+                avaliacao: 4.8,
+                endereco: "Rua Floriano Peixoto, 158, São Paulo, SP",
+                horario: "Segunda a Sexta: 11:00 - 19:30",
+                preco: "alto",
+                precoTexto: "$$$",
+                cidade: "sao-paulo",
+                imagem: "https://i.ibb.co/n8syZSDs/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteSP.html",
+                lat: -23.5505,
+                lng: -46.6333
+            },
+            {
+                id: 8,
+                nome: "Porto Canoas",
+                tipos: ["frutos-do-mar", "peixes"],
+                avaliacao: 4.5,
+                endereco: "Av. das Cataratas, 202 - Foz do Iguaçu, PR",
+                horario: "Todos os dias: 11:00 - 23:00",
+                preco: "alto",
+                precoTexto: "$$$",
+                cidade: "parana",
+                imagem: "https://i.ibb.co/YBXdWS3Q/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestaurantePR.html",
+                lat: -25.5478,
+                lng: -54.5873
+            },
+            {
+                id: 9,
+                nome: "Rafain",
+                tipos: ["churrasco", "cultural"],
+                avaliacao: 4.3,
+                endereco: "Rua das Danças, 303 - Foz do Iguaçu, PR",
+                horario: "Quinta a Domingo: 19:00 - 00:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "parana",
+                imagem: "https://i.ibb.co/B50ZTNgP/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestaurantePR.html",
+                lat: -25.5488,
+                lng: -54.5883
+            },
+            {
+                id: 10,
+                nome: "La Mafia Trattoria",
+                tipos: ["italiana", "tradicional"],
+                avaliacao: 4.4,
+                endereco: "Rua das Tradições, 101 - Foz do Iguaçu, PR",
+                horario: "Segunda a Sábado: 18:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "parana",
+                imagem: "https://i.ibb.co/BVsmkHtL/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestaurantePR.html",
+                lat: -25.5498,
+                lng: -54.5893
+            },
+            {
+                id: 11,
+                nome: "Bené da Flauta",
+                tipos: ["tradicional", "brasileira"],
+                avaliacao: 4.5,
+                endereco: "Rua das Tradições, 101 - Ouro Preto, MG",
+                horario: "Segunda a Sábado: 18:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "minas-gerais",
+                imagem: "https://i.ibb.co/5W1XfZVG/image.png",
+                badge: null,
+                promocao: false,
+                link: "Restaurante - Bené da Flauta.html",
+                lat: -20.3822,
+                lng: -43.5039
+            },
+            {
+                id: 12,
+                nome: "Gastro Pub",
+                tipos: ["moderna", "pub"],
+                avaliacao: 4.4,
+                endereco: "Rua dos Ingleses, 118 - Ouro Preto, MG",
+                horario: "Segunda a Sábado: 12:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "minas-gerais",
+                imagem: "https://i.ibb.co/DP0nRQ81/image.png",
+                badge: null,
+                promocao: false,
+                link: "Restaurante - Gastro Pub.html",
+                lat: -20.3832,
+                lng: -43.5049
+            },
+            {
+                id: 13,
+                nome: "Contos dos Reis",
+                tipos: ["tradicional", "brasileira"],
+                avaliacao: 4.3,
+                endereco: "Rua das Danças, 303 - Ouro Preto, MG",
+                horario: "Quinta a Domingo: 19:00 - 00:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "minas-gerais",
+                imagem: "https://i.ibb.co/kVDCLyJK/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteMG.html",
+                lat: -20.3842,
+                lng: -43.5059
+            },
+            {
+                id: 14,
+                nome: "Mangue",
+                tipos: ["regional", "frutos-do-mar"],
+                avaliacao: 4.5,
+                endereco: "Rua das Tradições, 101 - Barreirinhas, MA",
+                horario: "Segunda a Sábado: 18:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "maranhao",
+                imagem: "https://i.ibb.co/wNDYyrGF/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteMA.html",
+                lat: -2.7478,
+                lng: -42.8297
+            },
+            {
+                id: 15,
+                nome: "A Canoa",
+                tipos: ["regional", "frutos-do-mar"],
+                avaliacao: 4.4,
+                endereco: "Rua dos Ingleses, 118 - Barreirinhas, MA",
+                horario: "Segunda a Sábado: 12:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "maranhao",
+                imagem: "https://i.ibb.co/NnswBt5Q/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteMA.html",
+                lat: -2.7488,
+                lng: -42.8307
+            },
+            {
+                id: 16,
+                nome: "Terral",
+                tipos: ["regional", "frutos-do-mar"],
+                avaliacao: 4.3,
+                endereco: "Rua das Danças, 303 - Barreirinhas, MA",
+                horario: "Quinta a Domingo: 19:00 - 00:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "maranhao",
+                imagem: "https://i.ibb.co/Rk9CXfxM/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteMA.html",
+                lat: -2.7498,
+                lng: -42.8317
+            },
+            {
+                id: 17,
+                nome: "Alameda - Jurerê",
+                tipos: ["contemporânea", "gourmet"],
+                avaliacao: 4.7,
+                endereco: "Rua das Praias, 101 - Florianópolis, SC",
+                horario: "Segunda a Domingo: 18:00 - 23:00",
+                preco: "alto",
+                precoTexto: "$$$",
+                cidade: "santa-catarina",
+                imagem: "https://i.ibb.co/cGRyypv/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteSC.html",
+                lat: -27.4500,
+                lng: -48.5490
+            },
+            {
+                id: 18,
+                nome: "Olivia Cucina",
+                tipos: ["italiana", "tradicional"],
+                avaliacao: 4.6,
+                endereco: "Rua dos Ingleses, 118 - Florianópolis, SC",
+                horario: "Segunda a Sábado: 12:00 - 23:00",
+                preco: "medio",
+                precoTexto: "$$",
+                cidade: "santa-catarina",
+                imagem: "https://i.ibb.co/Y4KQnVm6/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteSC.html",
+                lat: -27.4510,
+                lng: -48.5500
+            },
+            {
+                id: 19,
+                nome: "Dolce Vita",
+                tipos: ["italiana", "gourmet"],
+                avaliacao: 4.5,
+                endereco: "Rua das Danças, 303 - Florianópolis, SC",
+                horario: "Quinta a Domingo: 19:00 - 00:00",
+                preco: "alto",
+                precoTexto: "$$$",
+                cidade: "santa-catarina",
+                imagem: "https://i.ibb.co/nqHsNL4R/image.png",
+                badge: null,
+                promocao: false,
+                link: "RestauranteSC.html",
+                lat: -27.4520,
+                lng: -48.5510
+            },
+            {
+                id: 20,
+                nome: "Capim Santo",
+                tipos: ["brasileira", "contemporânea"],
+                avaliacao: 4.5,
+                endereco: "Av. Brig. Faria Lima, 2705 - Jardim Paulistano, São Paulo - SP, 01451-000",
+                horario: "Terça a Segunda: 10:00 - 18:00",
+                preco: "alto",
+                precoTexto: "$$$",
+                cidade: "sao-paulo",
+                imagem: "https://i.ibb.co/B2sZMYRW/image.png",
+                badge: null,
+                promocao: false,
+                link: "Restaurante - Capim Santo.html",
+                lat: -23.5688,
+                lng: -46.6824
             }
+        ];
+
+        // Número de restaurantes por página
+        const restaurantesPorPagina = 6;
+        let paginaAtual = 1;
+        let restaurantesFiltrados = [...restaurantes];
+        let map;
+
+        // Função para criar um card de restaurante
+        function criarRestauranteCard(restaurante) {
+            const restauranteCard = document.createElement('div');
+            restauranteCard.className = 'restaurante-card show';
+
+            const badgeClass = restaurante.promocao ? 'restaurante-badge restaurante-promocao' : 'restaurante-badge';
+            const badgeText = restaurante.badge || (restaurante.promocao ? 'Promoção' : '');
+
+            restauranteCard.innerHTML = `
+                <div class="restaurante-img">
+                    <img src="${restaurante.imagem}" alt="${restaurante.nome}">
+                    ${badgeText ? `<div class="${badgeClass}">${badgeText}</div>` : ''}
+                </div>
+                <div class="restaurante-content">
+                    <div class="restaurante-header">
+                        <h3 class="restaurante-title">${restaurante.nome}</h3>
+                        <div class="restaurante-rating">
+                            <span class="star">★</span>${restaurante.avaliacao}
+                        </div>
+                    </div>
+                    <div class="restaurante-tipos">${restaurante.tipos.join(' • ')}</div>
+                    <div class="restaurante-info">
+                        <p><span>📍</span> ${restaurante.endereco}</p>
+                        <p><span>⏰</span> ${restaurante.horario}</p>
+                        <p><span>💰</span> <span class="preco">${restaurante.precoTexto}</span> ${restaurante.preco}</p>
+                    </div>
+                    <div class="restaurante-footer">
+                        <a href="#" class="btn-reservar">Reservar Mesa</a>
+                        <a href="${restaurante.link}" class="btn-ver-mais">Ver Detalhes</a>
+                    </div>
+                </div>
+            `;
+
+            return restauranteCard;
+        }
+
+        // Função para exibir os restaurantes na página atual
+        function exibirRestaurantes() {
+            const restaurantesGrid = document.getElementById('restaurantes-grid');
+            restaurantesGrid.innerHTML = '';
+
+            const startIndex = (paginaAtual - 1) * restaurantesPorPagina;
+            const endIndex = startIndex + restaurantesPorPagina;
+            const restaurantesPagina = restaurantesFiltrados.slice(startIndex, endIndex);
+
+            restaurantesPagina.forEach(restaurante => {
+                const restauranteCard = criarRestauranteCard(restaurante);
+                restaurantesGrid.appendChild(restauranteCard);
+            });
+
+            // Atualiza a informação de paginação
+            const totalPaginas = Math.ceil(restaurantesFiltrados.length / restaurantesPorPagina);
+            document.getElementById('pagination-info').textContent = `Mostrando ${startIndex + 1} a ${Math.min(endIndex, restaurantesFiltrados.length)} de ${restaurantesFiltrados.length} restaurantes`;
+
+            // Atualiza os botões de paginação
+            atualizarPaginacao(totalPaginas);
+        }
+
+        // Função para criar os botões de paginação
+        function atualizarPaginacao(totalPaginas) {
+            const paginacao = document.getElementById('paginacao');
+            paginacao.innerHTML = '';
+
+            // Botão Anterior
+            const btnAnterior = document.createElement('div');
+            btnAnterior.className = `pagina-btn ${paginaAtual === 1 ? 'disabled' : ''}`;
+            btnAnterior.innerHTML = '&laquo;';
+            btnAnterior.addEventListener('click', () => {
+                if (paginaAtual > 1) {
+                    paginaAtual--;
+                    exibirRestaurantes();
+                }
+            });
+            paginacao.appendChild(btnAnterior);
+
+            // Botões de Número
+            for (let i = 1; i <= totalPaginas; i++) {
+                const paginaBtn = document.createElement('div');
+                paginaBtn.className = `pagina-btn ${i === paginaAtual ? 'active' : ''}`;
+                paginaBtn.textContent = i;
+                paginaBtn.addEventListener('click', () => {
+                    paginaAtual = i;
+                    exibirRestaurantes();
+                });
+                paginacao.appendChild(paginaBtn);
+            }
+
+            // Botão Próximo
+            const btnProximo = document.createElement('div');
+            btnProximo.className = `pagina-btn ${paginaAtual === totalPaginas ? 'disabled' : ''}`;
+            btnProximo.innerHTML = '&raquo;';
+            btnProximo.addEventListener('click', () => {
+                if (paginaAtual < totalPaginas) {
+                    paginaAtual++;
+                    exibirRestaurantes();
+                }
+            });
+            paginacao.appendChild(btnProximo);
+        }
+
+        // Função para aplicar os filtros
+        function aplicarFiltros() {
+            const tipoCozinha = document.getElementById('tipo-cozinha').value;
+            const preco = document.getElementById('preco').value;
+            const avaliacao = document.getElementById('avaliacao').value;
+            const localizacao = document.getElementById('localizacao').value;
+
+            restaurantesFiltrados = restaurantes.filter(restaurante => {
+                return (
+                    (tipoCozinha === '' || restaurante.tipos.includes(tipoCozinha)) &&
+                    (preco === '' || restaurante.preco === preco) &&
+                    (avaliacao === '' || restaurante.avaliacao >= parseFloat(avaliacao)) &&
+                    (localizacao === '' || restaurante.cidade === localizacao)
+                );
+            });
+
+            paginaAtual = 1;
+            exibirRestaurantes();
+
+            // Ajusta o mapa para a cidade selecionada
+            if (localizacao) {
+                const cidadeCoordenadas = {
+                    "sao-paulo": [-23.5505, -46.6333],
+                    "rio-de-janeiro": [-22.9068, -43.1729],
+                    "rio-grande-do-sul": [-30.0346, -51.2177],
+                    "maranhao": [-2.55, -44.3],
+                    "minas-gerais": [-19.9167, -43.9345],
+                    "parana": [-25.4296, -49.2713],
+                    "santa-catarina": [-27.5954, -48.5480]
+                };
+
+                if (cidadeCoordenadas[localizacao]) {
+                    map.setView(cidadeCoordenadas[localizacao], 12);
+                }
+            }
+
+            showNotification('Filtro aplicado com sucesso!', 'success');
+        }
+
+        // Função para limpar os filtros
+        function limparFiltros() {
+            document.getElementById('tipo-cozinha').value = '';
+            document.getElementById('preco').value = '';
+            document.getElementById('avaliacao').value = '';
+            document.getElementById('localizacao').value = '';
+
+            restaurantesFiltrados = [...restaurantes];
+            paginaAtual = 1;
+            exibirRestaurantes();
+            showNotification('Filtros limpos!', 'success');
+        }
+
+        // Função para mostrar notificações
+        function showNotification(message, type) {
+            const notificacao = document.getElementById('notificacao');
+            notificacao.textContent = message;
+            notificacao.className = `notificacao ${type} show`;
+
+            setTimeout(() => {
+                notificacao.classList.remove('show');
+            }, 4000);
+        }
+
+        // Configura os eventos quando a página é carregada
+        document.addEventListener('DOMContentLoaded', function () {
+            // Configura os botões de filtro
+            document.querySelector('.btn-filtrar').addEventListener('click', aplicarFiltros);
+            document.querySelector('.btn-limpar').addEventListener('click', limparFiltros);
+
+            // Exibe os restaurantes inicialmente
+            exibirRestaurantes();
+
+            // Inicializa o mapa
+            map = L.map('map').setView([-23.5505, -46.6333], 4);
+
+            // Adiciona uma camada de mapa
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Adiciona marcadores para os restaurantes
+            restaurantes.forEach(restaurante => {
+                L.marker([restaurante.lat, restaurante.lng]).addTo(map)
+                    .bindPopup(`<b>${restaurante.nome}</b><br>${restaurante.endereco}`)
+                    .openPopup();
+            });
         });
 
+        // Verifica autenticação
         function checkAuth() {
             const userData = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -942,21 +1346,17 @@
             }
         }
 
+        // Carrega o menu
         function loadMenu(menuFile) {
             fetch(menuFile)
                 .then(res => res.text())
                 .then(html => {
                     document.getElementById('menuContainer').innerHTML = html;
                     setupMenu();
-                })
-                .catch(err => {
-                    console.error('Erro ao carregar menu:', err);
-
-                    // Mostra uma mensagem em caso de erro
-                    showNotification('Erro ao carregar o menu. Por favor, recarregue a página.', 'error');
                 });
         }
 
+        // Configura o menu
         function setupMenu() {
             const menuIcon = document.querySelector('.menu-icon');
             const menu = document.querySelector('.menu-box');
@@ -979,63 +1379,21 @@
             }
         }
 
-        function setupFilterButtons() {
-            const btnFiltrar = document.querySelector('.btn-filtrar');
-            const btnLimpar = document.querySelector('.btn-limpar');
+        // Verifica autenticação e configura o menu
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAuth();
+            setupMenu();
 
-            btnFiltrar.addEventListener('click', function() {
-                // Lógica para filtrar restaurantes
-                showNotification('Filtro aplicado com sucesso!', 'success');
-            });
+            // Verifica mensagem de sucesso
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get('msg');
 
-            btnLimpar.addEventListener('click', function() {
-                // Limpa os campos do filtro
-                document.getElementById('tipo-cozinha').value = '';
-                document.getElementById('preco').value = '';
-                document.getElementById('avaliacao').value = '';
-                document.getElementById('localizacao').value = '';
-
-                showNotification('Filtros limpos!', 'success');
-            });
-        }
-
-        function setupPagination() {
-            const paginaBtns = document.querySelectorAll('.pagina-btn');
-
-            paginaBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove a classe 'active' de todos os botões
-                    paginaBtns.forEach(b => b.classList.remove('active'));
-
-                    // Adiciona a classe 'active' ao botão clicado
-                    this.classList.add('active');
-
-                    // Lógica para carregar a página correspondente
-                    showNotification(`Página ${this.textContent} carregada!`, 'success');
-                });
-            });
-        }
-
-        function getNotificationMessage(msgType) {
-            const messages = {
-                'login': 'Login realizado com sucesso!',
-                'cadastro': 'Cadastro realizado com sucesso!',
-                'reserva': 'Reserva realizada com sucesso!',
-                'avaliacao': 'Avaliação enviada com sucesso!'
-            };
-
-            return messages[msgType] || 'Operação realizada com sucesso!';
-        }
-
-        function showNotification(message, type) {
-            const notificacao = document.getElementById('notificacao');
-            notificacao.textContent = message;
-            notificacao.className = `notificacao ${type} show`;
-
-            setTimeout(() => {
-                notificacao.classList.remove('show');
-            }, 4000);
-        }
+            if (msg === 'login') {
+                showNotification('Login realizado com sucesso!', 'success');
+            } else if (msg === 'cadastro') {
+                showNotification('Cadastro realizado com sucesso!', 'success');
+            }
+        });
     </script>
 </body>
 

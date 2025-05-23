@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Oro</title>
-  <link rel="stylesheet" href="../CSS/Restaurante - Oro.css">
+  <link rel="stylesheet" href="../CSS/Geral.css">
   <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
 </head>
+
 <body>
 
   <!-- Cabeçalho com menu, login e logo -->
@@ -17,17 +19,17 @@
       <div class="top-header">
         <div class="menu-icon">☰</div>
         <div class="user-header">
-          <span>👤</span> Usuário
+          <span>👤</span> Visitante
         </div>
       </div>
-  
+
       <div id="menuContainer1"></div>
 
       <!-- Logo -->
       <div class="header">
         <div class="header-img">
           <a href="Entrada.html">
-          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+            <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
           </a>
         </div>
       </div>
@@ -42,46 +44,60 @@
         <img src="../IMAGENS/Banner-Oro.png" alt="Oro" />
         <div class="estrelas">★★★★★</div>
       </section>
-  
+
       <!-- Seção sobre o destino -->
       <section class="sobre">
-        
+
         <h2>Informações Gerais</h2>
-                <!-- Localização com ícone -->
-<div class="info-localizacao">
-    <p>📍Av. Gen. San Martin, 889 - Leblon, Rio de Janeiro - RJ</p>
-    <p>📞Telefone: +55 213190-4091</p>
-    <p>🕒Horário de funcionamento: Terça a Sábado das 19:00 ás  23:00 horas. </p>
-</div>
+        <!-- Localização com ícone -->
+        <div class="info-localizacao">
+          <p>📍Av. Gen. San Martin, 889 - Leblon, Rio de Janeiro - RJ</p>
+          <p>📞Telefone: +55 213190-4091</p>
+          <p>🕒Horário de funcionamento: Terça a Sábado das 19:00 ás 23:00 horas. </p>
+        </div>
         <h2> Sobre</h2>
         <p>
-      O Restaurante Oro, no Rio de Janeiro, é uma verdadeira referência em alta gastronomia, comandado pelo renomado chef Felipe Bronze. Famoso por sua cozinha contemporânea e criativa, o Oro oferece uma experiência única, destacando ingredientes brasileiros de forma inovadora e sofisticada. Com um ambiente elegante e acolhedor, é o lugar ideal para quem busca uma refeição refinada e cheia de sabor, em um dos destinos gastronômicos mais premiados da cidade.
+          O Restaurante Oro, no Rio de Janeiro, é uma verdadeira referência em alta gastronomia, comandado pelo renomado
+          chef Felipe Bronze. Famoso por sua cozinha contemporânea e criativa, o Oro oferece uma experiência única,
+          destacando ingredientes brasileiros de forma inovadora e sofisticada. Com um ambiente elegante e acolhedor, é
+          o lugar ideal para quem busca uma refeição refinada e cheia de sabor, em um dos destinos gastronômicos mais
+          premiados da cidade.
         </p>
       </section>
-  
+
       <!-- Galeria de imagens secundárias -->
       <section class="imagens-secundarias">
         <img src="../IMAGENS/Prato1-Oro.png" alt="foto 1" class="tamanho">
         <img src="../IMAGENS/Prato2-Oro.png" alt="foto 2" class="tamanho">
       </section>
-  
+
       <!-- Comentários de visitantes -->
       <section class="comentarios">
         <h2>Comentários <span>(3.751 avaliações)</span></h2>
         <div class="comentario">
-            <h3>Tom_Gz <span>★★★★★</span></h3>
-            <p>
-                A experiência no Restaurante Oro foi excepcional! Pratos criativos e cheios de sabor, com ingredientes brasileiros perfeitamente combinados. O atendimento é impecável e o ambiente, sofisticado, tornando o jantar uma experiência inesquecível. Altamente recomendado!            
-            </p>
+          <h3>Tom_Gz <span>★★★★★</span></h3>
+          <p>
+            A experiência no Restaurante Oro foi excepcional! Pratos criativos e cheios de sabor, com ingredientes
+            brasileiros perfeitamente combinados. O atendimento é impecável e o ambiente, sofisticado, tornando o jantar
+            uma experiência inesquecível. Altamente recomendado!
+          </p>
         </div>
       </section>
-  
+
       <!-- Seção de feedback -->
       <section class="feedback">
         <p>Gostou? Deixe sua avaliação!</p>
-        <button>Enviar feedback</button>
+        <a href="../HTML/envio_feedback.html"><button>Enviar feedback</button></a>
       </section>
     </div>
+
+
+    <a href="javascript:history.back()" class="btn-voltar">
+      <i class="fas fa-arrow-left"></i>
+      <span>Voltar</span>
+    </a>
+
+
   </main>
 
   <!-- Rodapé -->
@@ -102,7 +118,7 @@
     </div>
   </footer>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       // Carregamento do menu
       fetch('../HTML/MenuNaoLogado.html')
         .then(response => response.text())
@@ -110,12 +126,64 @@
           document.getElementById('menuContainer1').innerHTML = html;
           const menuIcon = document.querySelector('.menu-icon');
           const menu = document.getElementById('menu-nao-logado');
-          
+
           menuIcon.addEventListener('click', () => {
             menu.classList.toggle('visible');
           });
         });
+
+      // Verifica se há usuário logado
+      const userData = JSON.parse(localStorage.getItem('currentUser'));
+      if (userData) {
+        document.querySelector('.user-header').innerHTML = `
+          <span>👤</span> ${userData.firstName}
+        `;
+      }
     });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnVoltar = document.querySelector('.btn-voltar');
+    const footer = document.querySelector('.footer');
+    const threshold = 100; // 100px antes do final para considerar "no final"
+    
+    function adjustButtonPosition() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        const footerRect = footer.getBoundingClientRect();
+        const footerTop = footerRect.top;
+        
+        // Verifica se chegou perto do final da página
+        const nearBottom = scrollPosition + windowHeight >= documentHeight - threshold;
+        
+        if (nearBottom) {
+            btnVoltar.classList.add('visible');
+            
+            // Calcula a posição segura acima do footer
+            const safePosition = windowHeight - footerTop - 1; // 20px de margem
+            
+            if (footerTop < windowHeight) {
+                // Footer está visível - ajusta posição
+                btnVoltar.style.bottom = `${Math.max(20, safePosition)}px`;
+            } else {
+                // Footer não está visível - posição padrão
+                btnVoltar.style.bottom = '30px';
+            }
+        } else {
+            btnVoltar.classList.remove('visible');
+        }
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', adjustButtonPosition);
+    window.addEventListener('resize', adjustButtonPosition);
+    
+    // Verificação inicial
+    adjustButtonPosition();
+});
+
+
   </script>
 </body>
+
 </html>
