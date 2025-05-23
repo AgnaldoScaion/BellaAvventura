@@ -7,6 +7,7 @@
     <title>Restaurantes - Bella Avventura</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
     <style>
         @font-face {
@@ -52,7 +53,6 @@
             z-index: 1;
         }
 
-        /* Header Styles */
         .top-header {
             display: flex;
             justify-content: space-between;
@@ -79,7 +79,6 @@
             gap: 6px;
         }
 
-        /* Menu Styles */
         .menu-box {
             position: absolute;
             top: 50px;
@@ -133,7 +132,6 @@
             color: #3a6545;
         }
 
-        /* Esconde o menu inicialmente */
         .hidden {
             visibility: hidden;
             opacity: 0;
@@ -146,7 +144,6 @@
             pointer-events: auto;
         }
 
-        /* Main Content */
         .main-content {
             padding: 2rem;
             max-width: 1200px;
@@ -172,7 +169,6 @@
             margin-right: auto;
         }
 
-        /* Filtros */
         .filtros-container {
             background-color: white;
             border-radius: 12px;
@@ -252,7 +248,6 @@
             background-color: #e0e0e0;
         }
 
-        /* Info da paginação */
         .pagination-info {
             text-align: center;
             margin-bottom: 1rem;
@@ -260,7 +255,6 @@
             font-weight: 400;
         }
 
-        /* Restaurantes Grid */
         .restaurantes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -425,7 +419,6 @@
             background-color: #e0e0e0;
         }
 
-        /* Paginação */
         .paginacao {
             display: flex;
             justify-content: center;
@@ -464,7 +457,6 @@
             font-size: 1.2rem;
         }
 
-        /* Footer Styles */
         .footer {
             background-color: #A7D096;
             padding: 20px;
@@ -528,7 +520,6 @@
             color: #5a8f3d;
         }
 
-        /* Notificação */
         .notificacao {
             background-color: #5a8f3d;
             color: white;
@@ -551,7 +542,6 @@
             animation: fadeOut 4s forwards;
         }
 
-        /* Animações */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -606,14 +596,20 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Loading */
         .loading {
             text-align: center;
             padding: 2rem;
             color: #666;
         }
 
-        /* Responsivo */
+        #map {
+            height: 300px;
+            width: 80%;
+            margin: 1rem auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         @media (max-width: 768px) {
             .restaurantes-grid {
                 grid-template-columns: 1fr;
@@ -770,6 +766,9 @@
             </div>
         </main>
 
+        <!-- Mapa -->
+        <div id="map"></div>
+
         <!-- Rodapé -->
         <footer class="footer">
             <div class="footer-top">
@@ -789,6 +788,7 @@
         </footer>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         // Base de dados de restaurantes
         const restaurantes = [
@@ -805,7 +805,9 @@
                 imagem: "https://i.ibb.co/wNDYyrGF/image.png",
                 badge: "Premium",
                 promocao: false,
-                link: "Restaurante - Jamile.html"
+                link: "Restaurante - Jamile.html",
+                lat: -23.5505,
+                lng: -46.6333
             },
             {
                 id: 2,
@@ -820,7 +822,9 @@
                 imagem: "https://i.ibb.co/sJyf79Pw/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteRS.html"
+                link: "RestauranteRS.html",
+                lat: -29.3739,
+                lng: -50.8811
             },
             {
                 id: 3,
@@ -835,7 +839,9 @@
                 imagem: "https://i.ibb.co/p6CszR4h/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteRS.html"
+                link: "RestauranteRS.html",
+                lat: -29.3749,
+                lng: -50.8821
             },
             {
                 id: 4,
@@ -850,7 +856,9 @@
                 imagem: "https://i.ibb.co/wNDYyrGF/image.png",
                 badge: "Premium",
                 promocao: false,
-                link: "Restaurante - Oro.html"
+                link: "Restaurante - Oro.html",
+                lat: -22.9792,
+                lng: -43.2236
             },
             {
                 id: 5,
@@ -865,7 +873,9 @@
                 imagem: "https://i.ibb.co/NnswBt5Q/image.png",
                 badge: "Premium",
                 promocao: false,
-                link: "Restaurante - Cipriani.html"
+                link: "Restaurante - Cipriani.html",
+                lat: -22.9711,
+                lng: -43.1828
             },
             {
                 id: 6,
@@ -880,7 +890,9 @@
                 imagem: "https://i.ibb.co/Rk9CXfxM/image.png",
                 badge: "Premium",
                 promocao: false,
-                link: "Restaurante - Fasano.html"
+                link: "Restaurante - Fasano.html",
+                lat: -22.9785,
+                lng: -43.2089
             },
             {
                 id: 7,
@@ -895,7 +907,9 @@
                 imagem: "https://i.ibb.co/n8syZSDs/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteSP.html"
+                link: "RestauranteSP.html",
+                lat: -23.5505,
+                lng: -46.6333
             },
             {
                 id: 8,
@@ -910,7 +924,9 @@
                 imagem: "https://i.ibb.co/YBXdWS3Q/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestaurantePR.html"
+                link: "RestaurantePR.html",
+                lat: -25.5478,
+                lng: -54.5873
             },
             {
                 id: 9,
@@ -925,7 +941,9 @@
                 imagem: "https://i.ibb.co/B50ZTNgP/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestaurantePR.html"
+                link: "RestaurantePR.html",
+                lat: -25.5488,
+                lng: -54.5883
             },
             {
                 id: 10,
@@ -940,7 +958,9 @@
                 imagem: "https://i.ibb.co/BVsmkHtL/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestaurantePR.html"
+                link: "RestaurantePR.html",
+                lat: -25.5498,
+                lng: -54.5893
             },
             {
                 id: 11,
@@ -955,7 +975,9 @@
                 imagem: "https://i.ibb.co/5W1XfZVG/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteMG.html"
+                link: "RestauranteMG.html",
+                lat: -20.3822,
+                lng: -43.5039
             },
             {
                 id: 12,
@@ -970,7 +992,9 @@
                 imagem: "https://i.ibb.co/DP0nRQ81/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteMG.html"
+                link: "RestauranteMG.html",
+                lat: -20.3832,
+                lng: -43.5049
             },
             {
                 id: 13,
@@ -985,7 +1009,9 @@
                 imagem: "https://i.ibb.co/kVDCLyJK/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteMG.html"
+                link: "RestauranteMG.html",
+                lat: -20.3842,
+                lng: -43.5059
             },
             {
                 id: 14,
@@ -1000,7 +1026,9 @@
                 imagem: "https://i.ibb.co/wNDYyrGF/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteMA.html"
+                link: "RestauranteMA.html",
+                lat: -2.7478,
+                lng: -42.8297
             },
             {
                 id: 15,
@@ -1015,7 +1043,9 @@
                 imagem: "https://i.ibb.co/NnswBt5Q/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteMA.html"
+                link: "RestauranteMA.html",
+                lat: -2.7488,
+                lng: -42.8307
             },
             {
                 id: 16,
@@ -1030,7 +1060,9 @@
                 imagem: "https://i.ibb.co/Rk9CXfxM/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteMA.html"
+                link: "RestauranteMA.html",
+                lat: -2.7498,
+                lng: -42.8317
             },
             {
                 id: 17,
@@ -1045,7 +1077,9 @@
                 imagem: "https://i.ibb.co/cGRyypv/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteSC.html"
+                link: "RestauranteSC.html",
+                lat: -27.4500,
+                lng: -48.5490
             },
             {
                 id: 18,
@@ -1060,7 +1094,9 @@
                 imagem: "https://i.ibb.co/Y4KQnVm6/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteSC.html"
+                link: "RestauranteSC.html",
+                lat: -27.4510,
+                lng: -48.5500
             },
             {
                 id: 19,
@@ -1075,14 +1111,17 @@
                 imagem: "https://i.ibb.co/nqHsNL4R/image.png",
                 badge: null,
                 promocao: false,
-                link: "RestauranteSC.html"
+                link: "RestauranteSC.html",
+                lat: -27.4520,
+                lng: -48.5510
             }
         ];
 
         // Número de restaurantes por página
-        const restaurantesPorPagina = 6;
+        const restaurantesPorPagina = 3;
         let paginaAtual = 1;
         let restaurantesFiltrados = [...restaurantes];
+        let map;
 
         // Função para criar um card de restaurante
         function criarRestauranteCard(restaurante) {
@@ -1202,6 +1241,24 @@
 
             paginaAtual = 1;
             exibirRestaurantes();
+
+            // Ajusta o mapa para a cidade selecionada
+            if (localizacao) {
+                const cidadeCoordenadas = {
+                    "sao-paulo": [-23.5505, -46.6333],
+                    "rio-de-janeiro": [-22.9068, -43.1729],
+                    "rio-grande-do-sul": [-30.0346, -51.2177],
+                    "maranhao": [-2.55, -44.3],
+                    "minas-gerais": [-19.9167, -43.9345],
+                    "parana": [-25.4296, -49.2713],
+                    "santa-catarina": [-27.5954, -48.5480]
+                };
+
+                if (cidadeCoordenadas[localizacao]) {
+                    map.setView(cidadeCoordenadas[localizacao], 12);
+                }
+            }
+
             showNotification('Filtro aplicado com sucesso!', 'success');
         }
 
@@ -1237,6 +1294,21 @@
 
             // Exibe os restaurantes inicialmente
             exibirRestaurantes();
+
+            // Inicializa o mapa
+            map = L.map('map').setView([-23.5505, -46.6333], 4);
+
+            // Adiciona uma camada de mapa
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Adiciona marcadores para os restaurantes
+            restaurantes.forEach(restaurante => {
+                L.marker([restaurante.lat, restaurante.lng]).addTo(map)
+                    .bindPopup(`<b>${restaurante.nome}</b><br>${restaurante.endereco}`)
+                    .openPopup();
+            });
         });
 
         // Verifica autenticação
