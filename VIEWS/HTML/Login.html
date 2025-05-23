@@ -368,21 +368,6 @@
                 // Verifica usuários no localStorage
                 const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-                // Adiciona usuário padrão se não existir (apenas para demonstração)
-                if (usuarios.length === 0) {
-                    const usuarioPadrao = {
-                        id: "1",
-                        firstName: "Admin",
-                        nome: "Administrador Padrão",
-                        cpf: "12312312312",
-                        email: "admin@bellaavventura.com",
-                        senha: "123",
-                        dataCadastro: new Date().toISOString()
-                    };
-                    usuarios.push(usuarioPadrao);
-                    localStorage.setItem('usuarios', JSON.stringify(usuarios));
-                }
-
                 // Busca usuário (comparando CPF sem formatação)
                 const usuario = usuarios.find(u => u.cpf === cpf && u.senha === senha);
 
