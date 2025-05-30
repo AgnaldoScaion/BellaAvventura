@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Colline de France Gramado</title>
+  <link rel="stylesheet" href="../CSS/Geral.css">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+</head>
+<body>
+
+  <!-- Cabeçalho com menu, login e logo -->
+  <header>
+    <div class="wrapper">
+
+      <!-- Top Header -->
+      <div class="top-header">
+        <div class="menu-icon">☰</div>
+        <div class="user-header">
+          <span>👤</span> Visitante
+        </div>
+      </div>
+  
+      <div id="menuContainer1"></div>
+
+      <!-- Logo -->
+      <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+  </header>
+
+  <main class="grid-container">
+    <div class="pilastra-verde"></div>
+    <div class="conteudo">
+      <!-- Seção do destino principal -->
+      <!-- Seção do destino principal -->
+      <section class="destino">
+        <h1>Hotel Colline de france Gramado</h1>
+        <img src="..//IMAGENS/hotel_colline_france_gramado.jpg" alt="Hotel Colline de france Gramado" />
+        <div class="estrelas">★★★★★</div>
+      </section>
+  
+      <!-- Seção sobre o destino -->
+      <section class="sobre">
+        
+        <h2>Informações Gerais</h2>
+                <!-- Localização com ícone -->
+<div class="info-localizacao">
+    <p>📍R. Vigilante, 400 - Bairro, Gramado - RS</p>
+    <p>📞Telefone: (54) 3286-1924</p>
+    <p>🕒Horário de funcionamento: O Hotel Colline de France está aberto todos os dias, com o check-in a partir das 14h e o check-out até às 12h. As piscinas climatizadas também estão abertas diariamente das 9h às 23h. O café da manhã é servido das 7h às 11       </p>
+</div>
+        <h2> Sobre</h2>
+        <p>
+O Hotel Colline de France, em Gramado, é considerado um dos melhores hotéis do mundo e um dos mais luxuosos do Brasil. Ele é conhecido por seu estilo francês, ambientes elegantes e exclusividade, com 34 suítes inspiradas em grandes marcas mundiais. O hotel oferece uma variedade de comodidades, incluindo piscina coberta e aquecida, spa, sauna e restaurante com gastronomia de alta qualidade.   
+      <!-- Galeria de imagens secundárias -->
+      <section class="imagens-secundarias">
+        <img src="..//IMAGENS/colline2jpg.jpg" alt="foto 1">
+        <img src="..//IMAGENS/Hotel-Colline-de-France-lobby1.jpeg" alt="foto 2">
+      </section>
+  
+      <!-- Comentários de visitantes -->
+      <section class="comentarios">
+        <h2>Comentários <span>(1.526 avaliações)</span></h2>
+        <div class="comentario">
+            <h3>Maria Cocato <span>★★★★★</span></h3>
+            <p>
+Sem dúvida, foi o melhor hotel em que já nos hospedamos. Desde a chegada, tudo é impecável — o atendimento, o cardápio e o cuidado com os hóspedes impressionam. A delicadeza e a atenção de toda a equipe são simplesmente indescritíveis, algo difícil de expressar em palavras. Os quartos oferecem um conforto excepcional, com camas e travesseiros que garantem um descanso perfeito. Enfim, uma experiência memorável. Recomendamos com entusiasmo!
+        </p>
+        </div>
+      </section>
+
+  
+      <!-- Seção de feedback -->
+      <section class="feedback">
+        <p>Gostou? Deixe sua avaliação!</p>
+        <button>Enviar feedback</button>
+      </section>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="TermosCondicoes.html">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Verifica autenticação
+      checkAuth();
+
+      // Configura menu
+      setupMenu();
+
+      // Verifica mensagem de sucesso
+      const urlParams = new URLSearchParams(window.location.search);
+      const msg = urlParams.get('msg');
+
+      if (msg === 'login') {
+        showNotification('Login realizado com sucesso!', 'success');
+      } else if (msg === 'cadastro') {
+        showNotification('Cadastro realizado com sucesso!', 'success');
+      }
+    });
+
+    function checkAuth() {
+      const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+      if (userData) {
+        // Atualiza header
+        document.querySelector('.user-header').innerHTML = `
+                <span>👤</span> ${userData.firstName}
+            `;
+
+        // Carrega menu logado
+        loadMenu('MenuLogado.html');
+      } else {
+        // Carrega menu não logado
+        loadMenu('MenuNaoLogado.html');
+      }
+    }
+
+    function loadMenu(menuFile) {
+      fetch(menuFile)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menuContainer').innerHTML = html;
+          setupMenu();
+        });
+    }
+
+    function setupMenu() {
+      const menuIcon = document.querySelector('.menu-icon');
+      const menu = document.querySelector('.menu-box');
+
+      if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          menu.classList.toggle('visible');
+        });
+      }
+
+      // Configura logout se existir
+      const logoutBtn = document.getElementById('logout-link');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          localStorage.removeItem('currentUser');
+          window.location.href = 'Entrada.html';
+        });
+      }
+    }
+
+    function showNotification(message, type) {
+      const notif = document.createElement('div');
+      notif.className = `notification ${type}`;
+      notif.textContent = message;
+      document.body.appendChild(notif);
+
+      setTimeout(() => {
+        notif.classList.add('show');
+      }, 10);
+
+      setTimeout(() => {
+        notif.classList.remove('show');
+        setTimeout(() => notif.remove(), 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
