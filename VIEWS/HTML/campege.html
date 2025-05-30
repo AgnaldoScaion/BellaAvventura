@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bella Avventura</title>
+  <link rel="stylesheet" href="../CSS/Geral.css">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+</head>
+<body>
+
+  <!-- Cabeçalho com menu, login e logo -->
+  <header>
+    <div class="wrapper">
+
+      <!-- Top Header -->
+      <div class="top-header">
+        <div class="menu-icon">☰</div>
+        <div class="user-header">
+          <span>👤</span> Usuário
+        </div>
+      </div>
+  
+      <div id="menuContainer1"></div>
+
+      <!-- Logo -->
+      <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+  </header>
+
+  <main class="grid-container">
+    <div class="pilastra-verde"></div>
+    <div class="conteudo">
+      <!-- Seção do destino principal -->
+      <section class="destino">
+        <h1>Ilha do Campege</h1>
+        <img src="../IMAGENS/campache_principal.png" alt="Ilha do Campege" />
+        <p class="localiza">Florianópolis, Santa Catarina • Brasil</p>
+        <div class="estrelas">★★★★☆</div>
+      </section>
+  
+      <!-- Seção sobre o destino -->
+      <section class="sobre">
+        
+        <h2>Sobre o destino</h2>
+                <!-- Localização com ícone -->
+<div class="info-localizacao">
+  <span>📍 Ilha do Campeche, Florianópolis - SC</span>
+</div>
+        <p>
+          A Ilha do Campeche, em Florianópolis, é um paraíso natural de águas cristalinas e praias paradisíacas. Conhecida por sua beleza 
+          intocada, a ilha é um destino popular para quem busca tranquilidade, contato com a natureza e atividades como trilhas e mergulho.
+           Além das suas paisagens deslumbrantes, a Ilha do Campeche abriga pinturas rupestres que datam de milhares de anos, tornando a visita 
+           uma experiência cultural e histórica. Um verdadeiro refúgio para quem visita Florianópolis.
+        </p>
+      </section>
+  
+      <!-- Galeria de imagens secundárias -->
+      <section class="imagens-secundarias">
+        <img src="../IMAGENS/campeche1.png" alt="foto 1">
+        <img src="../IMAGENS/campeche2 (2).png" alt="foto 2">
+      </section>
+  
+      <!-- Comentários de visitantes -->
+      <section class="comentarios">
+        <h2>Comentários <span>(2.340 avaliações)</span></h2>
+  
+        <div class="comentario">“Visitar a Ilha do Campeche foi uma experiência incrível! As águas são cristalinas, a natureza ao redor é
+           deslumbrante e as trilhas oferecem vistas maravilhosas.”</div>
+        <div class="comentario">“A Ilha do Campeche é um verdadeiro paraíso: águas cristalinas, natureza preservada e uma energia única. 
+          Um destino inesquecível para quem ama beleza natural e tranquilidade.”</div>
+      </section>
+  
+      <!-- Seção de feedback -->
+      <section class="feedback">
+        <p>Gostou? Deixe sua avaliação!</p>
+        <button>Enviar feedback</button>
+      </section>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="TermosCondicoes.html">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carregamento do menu
+      fetch('../HTML/MenuNaoLogado.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          const menuIcon = document.querySelector('.menu-icon');
+          const menu = document.getElementById('menu-nao-logado');
+          
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
+    });
+  </script>
+</body>
+</html>
