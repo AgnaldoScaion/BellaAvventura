@@ -66,29 +66,46 @@ html, body {
   gap: 6px;
 }
 
-.logo-container {
-    background-color: #B1C6B1;
-    text-align: center;
-}
-.logo{
-    width: 100px;
-    height: auto;
-}
 
 .enunciado {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: #333;
     text-align: center;
     margin-top: 20px;
-    padding: 1rem;
+    padding: 1.5rem;
 }
-.foto-principal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+
+.foto-principal img {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 8px;
 }
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 1rem;
+}
+
+.dica {
+  background-color: #d9d9d9;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  box-shadow:  rgba(0,0,0,0.1);
+}
+
+
+
 
 
 

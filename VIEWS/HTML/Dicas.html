@@ -1,152 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicas de viagens BellaAvventure</title>
-      <link rel="stylesheet" href="../CSS/Dicas.css">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Dicas de viagens BellaAvventure</title>
+        <link rel="stylesheet" href="../CSS/Dicas.css">
 
-</head>
-<body>
-      <!-- Cabeçalho com menu, login e logo -->
-  <header>
-    <div class="wrapper">
+  </head>
+  <body>
+        <!-- Cabeçalho com menu, login e logo -->
+    <header>
+      <div class="wrapper">
 
-      <!-- Top Header -->
-      <div class="top-header">
-        <div class="menu-icon">☰</div>
-        <div class="user-header">
-          <span>👤</span> Visitante
+        <!-- Top Header -->
+        <div class="top-header">
+          <div class="menu-icon">☰</div>
+          <div class="user-header">
+            <span>👤</span> Visitante
+          </div>
+        </div>
+    
+        <div id="menuContainer1"></div>
+
+        <!-- Logo -->
+        <div class="header">
+          <div class="header-img">
+            <a href="Entrada.html">
+            <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+            </a>
+          </div>
+        </div>
+    </header>
+
+    <div class="enunciado">
+      <h1>Aqui estão 10 dicas essenciais para viajar e aproveitar ao máximo sua experiência:</h1>
+      <div class="foto-principal"> 
+          <img src="../IMAGENS/Avião_bannerDicas.png" alt="Avião" />
+      </div>
+    </div>
+
+    <section class="conteudo"> 
+      <div class="dica">Planeje antecipadamente para economizar e garantir boas opções. </div>
+      <div class="dica">Leve o essencial: roupas versáteis e um kit de primeiros socorros. </div>
+      <div class="dica">Experimente a gastronomia local: prove pratos típicos e explore restaurantes regionais. </div>
+      <div class="dica">Verifique o clima: isso ajuda a escolher o que levar e se preparar para mudanças inesperadas. </div>
+      <div class="dica">Ajuste-se ao fuso horário: adapte seu sono antes da viagem para evitar o jet lag.</div>
+      <div class="dica">Compre lembranças locais: busque itens artesanais ou exclusivos como recordações autênticas. </div>
+    </section>
+
+    
+
+
+
+
+        <!-- Rodapé -->
+    <footer class="footer">
+      <div class="footer-top">
+        <a href="https://www.bellaavventura.com.br/">
+          <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-left">
+          <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+        </div>
+        <div class="footer-center">© 2025 Bella Avventura</div>
+        <div class="footer-right">
+          <a href="TermosCondicoes.html">Termos e condições</a>
         </div>
       </div>
-  
-      <div id="menuContainer1"></div>
+    </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Verifica autenticação
+        checkAuth();
 
-      <!-- Logo -->
-      <div class="header">
-        <div class="header-img">
-          <a href="Entrada.html">
-          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
-          </a>
-        </div>
-      </div>
-  </header>
-  <div class="logo-container">
-        <img src="../IMAGENS/logo_B1C6B1.jpg" alt="Logo" />
-  </div>
+        // Configura menu
+        setupMenu();
 
-  <div class="enunciado">
-    <h1>Aqui estão 10 dicas essenciais para viajar e aproveitar ao máximo sua experiência:</h1>
-    <div class="foto-principal"> 
-        <img src="../IMAGENS/Avião_bannerDicas.png" alt="Avião" />
-    </div>
-  </div>
-  
+        // Verifica mensagem de sucesso
+        const urlParams = new URLSearchParams(window.location.search);
+        const msg = urlParams.get('msg');
 
+        if (msg === 'login') {
+          showNotification('Login realizado com sucesso!', 'success');
+        } else if (msg === 'cadastro') {
+          showNotification('Cadastro realizado com sucesso!', 'success');
+        }
+      });
 
+      function checkAuth() {
+        const userData = JSON.parse(localStorage.getItem('currentUser'));
 
+        if (userData) {
+          // Atualiza header
+          document.querySelector('.user-header').innerHTML = `
+                  <span>👤</span> ${userData.firstName}
+              `;
 
-      <!-- Rodapé -->
-  <footer class="footer">
-    <div class="footer-top">
-      <a href="https://www.bellaavventura.com.br/">
-        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
-      </a>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-left">
-        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
-      </div>
-      <div class="footer-center">© 2025 Bella Avventura</div>
-      <div class="footer-right">
-        <a href="TermosCondicoes.html">Termos e condições</a>
-      </div>
-    </div>
-  </footer>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Verifica autenticação
-      checkAuth();
-
-      // Configura menu
-      setupMenu();
-
-      // Verifica mensagem de sucesso
-      const urlParams = new URLSearchParams(window.location.search);
-      const msg = urlParams.get('msg');
-
-      if (msg === 'login') {
-        showNotification('Login realizado com sucesso!', 'success');
-      } else if (msg === 'cadastro') {
-        showNotification('Cadastro realizado com sucesso!', 'success');
-      }
-    });
-
-    function checkAuth() {
-      const userData = JSON.parse(localStorage.getItem('currentUser'));
-
-      if (userData) {
-        // Atualiza header
-        document.querySelector('.user-header').innerHTML = `
-                <span>👤</span> ${userData.firstName}
-            `;
-
-        // Carrega menu logado
-        loadMenu('MenuLogado.html');
-      } else {
-        // Carrega menu não logado
-        loadMenu('MenuNaoLogado.html');
-      }
-    }
-
-    function loadMenu(menuFile) {
-      fetch(menuFile)
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('menuContainer').innerHTML = html;
-          setupMenu();
-        });
-    }
-
-    function setupMenu() {
-      const menuIcon = document.querySelector('.menu-icon');
-      const menu = document.querySelector('.menu-box');
-
-      if (menu && menuIcon) {
-        menuIcon.addEventListener('click', () => {
-          menu.classList.toggle('hidden');
-          menu.classList.toggle('visible');
-        });
+          // Carrega menu logado
+          loadMenu('MenuLogado.html');
+        } else {
+          // Carrega menu não logado
+          loadMenu('MenuNaoLogado.html');
+        }
       }
 
-      // Configura logout se existir
-      const logoutBtn = document.getElementById('logout-link');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          localStorage.removeItem('currentUser');
-          window.location.href = 'Entrada.html';
-        });
+      function loadMenu(menuFile) {
+        fetch(menuFile)
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById('menuContainer').innerHTML = html;
+            setupMenu();
+          });
       }
-    }
 
-    function showNotification(message, type) {
-      const notif = document.createElement('div');
-      notif.className = `notification ${type}`;
-      notif.textContent = message;
-      document.body.appendChild(notif);
+      function setupMenu() {
+        const menuIcon = document.querySelector('.menu-icon');
+        const menu = document.querySelector('.menu-box');
 
-      setTimeout(() => {
-        notif.classList.add('show');
-      }, 10);
+        if (menu && menuIcon) {
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
+          });
+        }
 
-      setTimeout(() => {
-        notif.classList.remove('show');
-        setTimeout(() => notif.remove(), 300);
-      }, 3000);
-    }
-  </script>
-</body>
-</html>
-</body>
-</html>
+        // Configura logout se existir
+        const logoutBtn = document.getElementById('logout-link');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = 'Entrada.html';
+          });
+        }
+      }
+
+      function showNotification(message, type) {
+        const notif = document.createElement('div');
+        notif.className = `notification ${type}`;
+        notif.textContent = message;
+        document.body.appendChild(notif);
+
+        setTimeout(() => {
+          notif.classList.add('show');
+        }, 10);
+
+        setTimeout(() => {
+          notif.classList.remove('show');
+          setTimeout(() => notif.remove(), 300);
+        }, 3000);
+      }
+    </script>
+  </body>
+  </html>
+  </body>
+  </html>
