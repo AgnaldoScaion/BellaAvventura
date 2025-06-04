@@ -53,6 +53,69 @@
     <p>📞Telefone: (11) 3129-4420</p>
     <p>🕒Horário de funcionamento: O Cápsula Hotel São Paulo - Paulista tem horário de check-in das 15:00 às 23:59 e o check-out é até as 11:00.      </p>
 </div>
+<h1>🗺️ Localização</h1>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.3.0/ol.css">
+  <style>
+    #map {
+      width: 100%;
+      height: 450px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Capsula Hotel, Consolação - SP</h2>
+  <div id="map"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>
+  <script>
+    const latitude =  -23.5568;
+    const longitude = -46.6605;
+
+    const map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([longitude, latitude]),
+        zoom: 16
+      })
+    });
+
+    const marker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([longitude, latitude])
+      )
+    });
+
+    // Estilo com bolinha vermelha
+    const markerStyle = new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 8,
+        fill: new ol.style.Fill({ color: 'red' }),
+        stroke: new ol.style.Stroke({ color: 'white', width: 2 })
+      })
+    });
+
+    marker.setStyle(markerStyle);
+
+    const vectorSource = new ol.source.Vector({
+      features: [marker]
+    });
+
+    const markerVectorLayer = new ol.layer.Vector({
+      source: vectorSource
+    });
+
+    map.addLayer(markerVectorLayer);
+  </script>
+</body>
+</html>
+
+  </iframe>
         <h2> Sobre</h2>
         <p>
 Um hotel cápsula é um tipo de hospedagem caracterizado por acomodações extremamente compactas, geralmente com dimensões semelhantes a uma cama, que se assemelham a cápsulas. São projetados para oferecer uma opção econômica e eficiente para pernoites, especialmente para viajantes que não necessitam dos serviços de um hotel tradicional.         </p>

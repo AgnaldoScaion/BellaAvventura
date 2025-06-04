@@ -54,6 +54,69 @@
     <p>📞Telefone: (98) 2106-0505</p>
     <p>🕒Horário de funcionamento: O Blue Tree Towers São Luís (Maranhão) oferece atendimento 24 horas, incluindo a recepção. O hotel também possui outros serviços com horários específicos, como o restaurante que serve café da manhã de segunda a sábado das 6h às 10h, e aos domingos, das 6h às 10h, e o bar da piscina com horários específicos.       </p>
 </div>
+<h1>🗺️ Localização</h1>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.3.0/ol.css">
+  <style>
+    #map {
+      width: 100%;
+      height: 450px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Hotel Blue Tree Towers, São Luís - MA</h2>
+  <div id="map"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>
+  <script>
+    const latitude =  -2.4861;
+    const longitude = -44.2644;
+
+    const map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([longitude, latitude]),
+        zoom: 16
+      })
+    });
+
+    const marker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([longitude, latitude])
+      )
+    });
+
+    // Estilo com bolinha vermelha
+    const markerStyle = new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 8,
+        fill: new ol.style.Fill({ color: 'red' }),
+        stroke: new ol.style.Stroke({ color: 'white', width: 2 })
+      })
+    });
+
+    marker.setStyle(markerStyle);
+
+    const vectorSource = new ol.source.Vector({
+      features: [marker]
+    });
+
+    const markerVectorLayer = new ol.layer.Vector({
+      source: vectorSource
+    });
+
+    map.addLayer(markerVectorLayer);
+  </script>
+</body>
+</html>
+
+  </iframe>
         <h2> Sobre</h2>
         <p>
 O Blue Tree Towers São Luís é um hotel 4 estrelas localizado à beira-mar, na Praia do Calhau, uma das regiões mais valorizadas da capital maranhense. Com uma combinação de conforto, lazer e infraestrutura moderna, é uma excelente opção tanto para viagens de lazer quanto para eventos corporativos.      </section>
