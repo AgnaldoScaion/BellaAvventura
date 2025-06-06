@@ -53,23 +53,75 @@
     <p>📞Telefone: (41) 99879-0529</p>
     <p>🕒Horário de funcionamento: O Hotel Pousada Água Marinha em Guaratuba tem café da manhã de cortesia das 7h30 às 10h. O check-in é a partir das 15h e o check-out é até as 11h. A recepção funciona 24 horas.       </p>
 </div>
-<h1>Localização</h1>
+<h1>🗺️ Localização</h1>
 
-  <!-- Aqui é onde o mapa será exibido -->
-  <iframe
-    width="600"
-    height="450"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    src="https://www.google.com/maps/embed/v1/place?key=SUA_API_KEY
-      &q=Space+Needle,Seattle+WA">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.3.0/ol.css">
+  <style>
+    #map {
+      width: 100%;
+      height: 450px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Hotel Pousada Água Marinha, Guaratuba - PR</h2>
+  <div id="map"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>
+  <script>
+    const latitude =  -25.8789;
+    const longitude = -48.5703;
+
+    const map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([longitude, latitude]),
+        zoom: 16
+      })
+    });
+
+    const marker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([longitude, latitude])
+      )
+    });
+
+    // Estilo com bolinha vermelha
+    const markerStyle = new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 8,
+        fill: new ol.style.Fill({ color: 'red' }),
+        stroke: new ol.style.Stroke({ color: 'white', width: 2 })
+      })
+    });
+
+    marker.setStyle(markerStyle);
+
+    const vectorSource = new ol.source.Vector({
+      features: [marker]
+    });
+
+    const markerVectorLayer = new ol.layer.Vector({
+      source: vectorSource
+    });
+
+    map.addLayer(markerVectorLayer);
+  </script>
+</body>
+</html>
+
   </iframe>
         <h2> Sobre</h2>
         <p>
 O Hotel Pousada Água Marinha é uma charmosa hospedagem 3 estrelas localizada em frente à Praia do Brejatuba, em Guaratuba, Paraná. Com uma atmosfera acolhedora e estrutura voltada para o conforto dos hóspedes, é uma excelente opção tanto para famílias quanto para casais que buscam tranquilidade à beira-mar.      <section class="imagens-secundarias">
-        <img src="..//IMAGENS/marinha1.jpg" alt="foto 1">
+        
+
+  <img src="..//IMAGENS/marinha1.jpg" alt="foto 1">
         <img src="..//IMAGENS/marinha2.jpg" alt="foto 2">
       </section>
   

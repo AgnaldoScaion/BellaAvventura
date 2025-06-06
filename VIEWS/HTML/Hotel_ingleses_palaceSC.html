@@ -53,23 +53,74 @@
     <p>📞Telefone: (48) 3209-7360</p>
     <p>🕒Horário de funcionamento: O horário de funcionamento do Ingleses Palace Hotel é o seguinte: check-in a partir das 14h00 e check-out até as 11h00. O café da manhã é servido das 7h30 às 10h00.       </p>
 </div>
-<h1>Localização</h1>
+<h1>🗺️ Localização</h1>
 
-  <!-- Aqui é onde o mapa será exibido -->
-  <iframe
-    width="600"
-    height="450"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    src="https://www.google.com/maps/embed/v1/place?key=SUA_API_KEY
-      &q=Space+Needle,Seattle+WA">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.3.0/ol.css">
+  <style>
+    #map {
+      width: 100%;
+      height: 450px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ingleses Palace Hotel, Florianópolis - SC</h2>
+  <div id="map"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>
+  <script>
+    const latitude =  -27.4345;
+    const longitude = -48.4035;
+
+    const map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([longitude, latitude]),
+        zoom: 16
+      })
+    });
+
+    const marker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([longitude, latitude])
+      )
+    });
+
+    // Estilo com bolinha vermelha
+    const markerStyle = new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 8,
+        fill: new ol.style.Fill({ color: 'red' }),
+        stroke: new ol.style.Stroke({ color: 'white', width: 2 })
+      })
+    });
+
+    marker.setStyle(markerStyle);
+
+    const vectorSource = new ol.source.Vector({
+      features: [marker]
+    });
+
+    const markerVectorLayer = new ol.layer.Vector({
+      source: vectorSource
+    });
+
+    map.addLayer(markerVectorLayer);
+  </script>
+</body>
+</html>
+
   </iframe>
         <h2> Sobre</h2>
         <p>
 O Ingleses Palace Hotel em Florianópolis é um hotel 4 estrelas localizado na Praia dos Ingleses, com acesso direto à praia e diversas comodidades, incluindo piscina, sauna, jacuzzi e sala de bilhar. Além disso, oferece estacionamento privativo e gratuito, recepção 24 horas e um buffet de café da manhã.       </section>
   
+
       <!-- Galeria de imagens secundárias -->
       <section class="imagens-secundarias">
         <img src="..//IMAGENS/ingleses1.jpg" alt="foto 1">
