@@ -13,14 +13,13 @@
     box-sizing: border-box;
 }
 
-/* Estilo geral do body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    padding: 30px;
 }
 
-/* Título da página */
+/* Título */
 h1 {
     text-align: center;
     margin-bottom: 30px;
@@ -29,18 +28,18 @@ h1 {
 
 /* Estilo do formulário */
 form {
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 label {
     display: block;
-    font-weight: bold;
-    margin-top: 15px;
+    margin-bottom: 8px;
+    font-weight: 600;
     color: #444;
 }
 
@@ -50,9 +49,25 @@ input[type="email"],
 input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
+    margin-bottom: 18px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Mensagem abaixo do campo senha */
+small {
+    color: #666;
+    display: block;
+    margin-bottom: 18px;
 }
 
 /* Botão de envio */
@@ -63,10 +78,9 @@ input[type="submit"] {
     border: none;
     color: white;
     font-size: 16px;
-    border-radius: 4px;
-    margin-top: 25px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s;
 }
 
 input[type="submit"]:hover {
@@ -77,19 +91,14 @@ input[type="submit"]:hover {
 a {
     display: block;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
     color: #007BFF;
     text-decoration: none;
+    font-weight: bold;
 }
 
 a:hover {
     text-decoration: underline;
-}
-
-/* Mensagem pequena */
-small {
-    color: #666;
-    font-size: 0.9em;
 }
   </style>
 </head>
