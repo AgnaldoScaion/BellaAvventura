@@ -5,6 +5,93 @@
     <meta charset="UTF-8">
     <title><?php echo isset($admInfo) ? 'Editar Administrador' : 'Cadastro de Administrador'; ?></title>
     <link rel="stylesheet" href="/bella_back/public/css/style.css">
+    <style>
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral do body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+/* Título da página */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Estilo do formulário */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #444;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Botão de envio */
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Link inferior */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Mensagem pequena */
+small {
+    color: #666;
+    font-size: 0.9em;
+}
+  </style>
 </head>
 <body>
     <h1><?php echo isset($admInfo) ? 'Editar Administrador' : 'Cadastro de Administrador'; ?></h1>
