@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feedbacks - Bella Avventura</title>
+  <link rel="stylesheet" href="../CSS/feedback_restaurante.css" />
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <div class="wrapper">
+      <div class="top-header">
+        <div class="menu-icon">☰</div>
+        <div class="user-header">
+          <span>👤</span> Usuário
+        </div>
+      </div>
+      <div id="menuContainer1"></div>
+      <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+            <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo -->
+  <main class="container">
+    <h1 class="title">FEEDBACKS</h1>
+    <form class="feedback-box" id="feedbackForm">
+      <textarea maxlength="250" placeholder="Escreva o feedback do restaurante que frequentou..."></textarea>
+      <div class="bottom-section">
+        <div class="stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+        </div>
+        <div class="counter">0/250</div>
+      </div>
+      <input type="hidden" name="nota" value="0">
+      <button type="submit" class="enviar-btn">Enviar</button>
+    </form>
+  </main>
+
+  <!-- Pop-up de confirmação -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <p>✅ Feedback enviado com sucesso!</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="TermosCondicoes.html">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const stars = document.querySelectorAll('.stars span');
+      let selected = 0;
+      const notaInput = document.querySelector('input[name="nota"]');
+      const counter = document.querySelector('.counter');
+      const textarea = document.querySelector('textarea');
+      const form = document.getElementById('feedbackForm');
+      const popup = document.getElementById('popup');
+
+      stars.forEach((star, idx) => {
+        star.addEventListener('mouseover', () => {
+          stars.forEach((s, i) => {
+            s.textContent = i <= idx ? '★' : '☆';
+          });
+        });
+
+        star.addEventListener('mouseout', () => {
+          stars.forEach((s, i) => {
+            s.textContent = i < selected ? '★' : '☆';
+          });
+        });
+
+        star.addEventListener('click', () => {
+          selected = idx + 1;
+          notaInput.value = selected;
+          stars.forEach((s, i) => {
+            s.textContent = i < selected ? '★' : '☆';
+          });
+        });
+      });
+
+      textarea.addEventListener('input', () => {
+        counter.textContent = `${textarea.value.length}/250`;
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        popup.style.display = 'flex';
+        form.reset();
+        notaInput.value = 0;
+        selected = 0;
+        stars.forEach(star => star.textContent = '☆');
+        counter.textContent = '0/250';
+      });
+    });
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
