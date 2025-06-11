@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo isset($admInfo) ? 'Editar Administrador' : 'Cadastro de Administrador'; ?></title>
-    <link rel="stylesheet" href="/bella_back/public/css/style.css">
-
-
+    <link rel="stylesheet" href="/bella_back/public/style.css">
 </head>
 <body>
     <h1><?php echo isset($admInfo) ? 'Editar Administrador' : 'Cadastro de Administrador'; ?></h1>
