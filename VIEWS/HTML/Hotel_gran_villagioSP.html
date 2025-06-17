@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gran Villagio Hotel</title>
+  <link rel="stylesheet" href="../CSS/Geral.css">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+</head>
+<body>
+
+  <!-- Cabeçalho com menu, login e logo -->
+  <header>
+    <div class="wrapper">
+
+      <!-- Top Header -->
+      <div class="top-header">
+        <div class="menu-icon">☰</div>
+        <div class="user-header">
+          <span>👤</span> Visitante
+        </div>
+      </div>
+  
+      <div id="menuContainer1"></div>
+
+      <!-- Logo -->
+      <div class="header">
+        <div class="header-img">
+          <a href="Entrada.html">
+          <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+  </header>
+
+  <main class="grid-container">
+    <div class="pilastra-verde"></div>
+    <div class="conteudo">
+      <!-- Seção do destino principal -->
+      <!-- Seção do destino principal -->
+      <section class="destino">
+        <h1>Gran Villagio Hotel</h1>
+        <img src="..//IMAGENS/gran-villagio-hotel.webp" alt="Gran Villagio Hotel" />
+        <div class="estrelas">★★★★</div>
+      </section>
+  
+      <!-- Seção sobre o destino -->
+      <section class="sobre">
+        
+        <h2>Informações Gerais</h2>
+                <!-- Localização com ícone -->
+<div class="info-localizacao">
+    <p>📍R. Martins Fontes, 330 - Consolação, São Paulo - SP</p>
+    <p>📞Telefone: 0800 799 9925</p>
+    <p>🕒Horário de funcionamento: O horário de funcionamento do Gran Villagio Hotel SP by Castelo Itaipava em São Paulo é: 
+Check-in: A partir das 14:00.
+Check-out: Até as 12:00.
+Recepção: Atendimento 24 horas.
+Pequeno-almoço: Servido diariamente das 06:00 às 10:00.       </p>
+</div>
+<h1>🗺️ Localização</h1>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.3.0/ol.css">
+  <style>
+    #map {
+      width: 100%;
+      height: 450px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Gran Villagio Hotel, Consolação - SP</h2>
+  <div id="map"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>
+  <script>
+    const latitude =  -23.5494;
+    const longitude = -46.6489;
+
+    const map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([longitude, latitude]),
+        zoom: 16
+      })
+    });
+
+    const marker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([longitude, latitude])
+      )
+    });
+
+    // Estilo com bolinha vermelha
+    const markerStyle = new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 8,
+        fill: new ol.style.Fill({ color: 'red' }),
+        stroke: new ol.style.Stroke({ color: 'white', width: 2 })
+      })
+    });
+
+    marker.setStyle(markerStyle);
+
+    const vectorSource = new ol.source.Vector({
+      features: [marker]
+    });
+
+    const markerVectorLayer = new ol.layer.Vector({
+      source: vectorSource
+    });
+
+    map.addLayer(markerVectorLayer);
+  </script>
+</body>
+</html>
+
+  </iframe>
+        <h2> Sobre</h2>
+        <p>
+O Gran Villagio Hotel SP é um hotel 4 estrelas localizado na Rua Martins Fontes, 330, no centro de São Paulo, próximo à Praça Franklin Roosevelt e à estação de metrô Anhangabaú. Ideal para viagens de negócios ou lazer, oferece quartos com ar-condicionado, TV de tela plana, Wi-Fi gratuito e banheiro privativo com amenities. O café da manhã é servido das 6h às 10h, e a recepção funciona 24 horas. O hotel também dispõe de estacionamento (pago), bar e centro de eventos com capacidade para até 1.700 pessoas. Está a poucos minutos de pontos turísticos como o Edifício Copan, Rua Augusta e Theatro Municipal.      <!-- Galeria de imagens secundárias -->
+
+<section class="imagens-secundarias">
+        <img src="..//IMAGENS/gran1.jpg" alt="foto 1">
+        <img src="..//IMAGENS/gran2.jpg" alt="foto 2">
+      </section>
+  
+      <!-- Comentários de visitantes -->
+      <section class="comentarios">
+        <h2>Comentários <span>(1.425 avaliações)</span></h2>
+        <div class="comentario">
+            <h3>Marlon Fanger <span>★★★★</span></h3>
+            <p>
+Apesar de ser um hotel mais antigo, gostei bastante da hospedagem. O banheiro possui uma daquelas banheiras tradicionais, o que me permitiu relaxar e aproveitar o momento. O café da manhã foi, sem dúvida, a melhor parte da estadia, simplesmente maravilhoso. O serviço de quarto também foi excelente, e as camareiras foram muito atenciosas, deixando tudo impecavelmente limpo.        </p>
+        </div>
+      </section>
+
+  
+      <!-- Seção de feedback -->
+      <section class="feedback">
+        <p>Gostou? Deixe sua avaliação!</p>
+        <button>Enviar feedback</button>
+      </section>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="https://www.bellaavventura.com.br/">
+        <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+      </div>
+      <div class="footer-center">© 2025 Bella Avventura</div>
+      <div class="footer-right">
+        <a href="TermosCondicoes.html">Termos e condições</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Verifica autenticação
+      checkAuth();
+
+      // Configura menu
+      setupMenu();
+
+      // Verifica mensagem de sucesso
+      const urlParams = new URLSearchParams(window.location.search);
+      const msg = urlParams.get('msg');
+
+      if (msg === 'login') {
+        showNotification('Login realizado com sucesso!', 'success');
+      } else if (msg === 'cadastro') {
+        showNotification('Cadastro realizado com sucesso!', 'success');
+      }
+    });
+
+    function checkAuth() {
+      const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+      if (userData) {
+        // Atualiza header
+        document.querySelector('.user-header').innerHTML = `
+                <span>👤</span> ${userData.firstName}
+            `;
+
+        // Carrega menu logado
+        loadMenu('MenuLogado.html');
+      } else {
+        // Carrega menu não logado
+        loadMenu('MenuNaoLogado.html');
+      }
+    }
+
+    function loadMenu(menuFile) {
+      fetch(menuFile)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menuContainer').innerHTML = html;
+          setupMenu();
+        });
+    }
+
+    function setupMenu() {
+      const menuIcon = document.querySelector('.menu-icon');
+      const menu = document.querySelector('.menu-box');
+
+      if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          menu.classList.toggle('visible');
+        });
+      }
+
+      // Configura logout se existir
+      const logoutBtn = document.getElementById('logout-link');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          localStorage.removeItem('currentUser');
+          window.location.href = 'Entrada.html';
+        });
+      }
+    }
+
+    function showNotification(message, type) {
+      const notif = document.createElement('div');
+      notif.className = `notification ${type}`;
+      notif.textContent = message;
+      document.body.appendChild(notif);
+
+      setTimeout(() => {
+        notif.classList.add('show');
+      }, 10);
+
+      setTimeout(() => {
+        notif.classList.remove('show');
+        setTimeout(() => notif.remove(), 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

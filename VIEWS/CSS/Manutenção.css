@@ -1,0 +1,267 @@
+/* Reset e fonte base */
+@font-face {
+  font-family: 'GaramondBold';
+  src: local('Garamond'), serif;
+  font-weight: bold;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  background-color: #f3f7f3;
+}
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  background-color: #A7D096;
+  position: relative;
+  height: 86px;
+}
+
+.header-img img {
+  height: 126px;
+  transition: transform 0.5s ease;
+}
+
+.header-img {
+  position:absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Header Styles */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: #A7D096;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.menu-icon:hover {
+  transform: scale(1.1);
+}
+
+.user-header {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Fundo geral */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('../IMAGENS/Banner_Manutenção.png') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+/* Conteúdo central da página */
+.manutencao-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 35rem;
+}
+
+.manutencao-conteudo {
+  background: #f4f8f4;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  max-width: 500px;
+  text-align: center;
+}
+
+.manutencao-conteudo h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  color: #1E1E1E;
+}
+
+.manutencao-conteudo p {
+  font-size: 1.2em;
+  color: #444;
+}
+
+.botao-voltar {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #3A5A40;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.botao-voltar:hover {
+  background-color: #2f4d35;
+}
+
+  /* Footer Styles */
+  .footer {
+      background-color: #A7D096;
+      padding: 20px;
+      color: #000;
+      font-size: 14px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+  }
+ 
+  .footer-top {
+      margin-bottom: 15px;
+      font-size: 33%;
+  }
+ 
+  .footer-top img {
+      width: 15%;
+      height: auto;
+      transition: transform 0.5s ease;
+  }
+ 
+  .footer-top:hover img {
+      transform: rotate(5deg) scale(1.05);
+  }
+ 
+  .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+  }
+ 
+  .footer-left,
+  .footer-center,
+  .footer-right {
+      flex: 1;
+      text-align: center;
+      transition: all 0.3s ease;
+  }
+ 
+  .footer-left:hover,
+  .footer-right:hover {
+      transform: translateY(-3px);
+  }
+ 
+  .footer-left { text-align: left; }
+  .footer-right { text-align: right; }
+ 
+  .footer-bottom a {
+      text-decoration: underline;
+      color: black;
+      transition: color 0.3s ease;
+  }
+ 
+  .footer-bottom a:hover {
+      color: #5a8f3d;
+  }
+ 
+  /* Animações */
+  @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+  }
+ 
+  @keyframes slideIn {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+  }
+ 
+  @keyframes slideUp {
+      from {
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+ 
+  @keyframes fadeInUp {
+      from {
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+ 
+  @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+  }
+ 
+  .floating {
+      animation: float 3s ease-in-out infinite;
+  }
+ 
+  @media (max-width: 600px) {
+      .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+      }
+ 
+      .footer-left,
+      .footer-center,
+      .footer-right {
+          text-align: center;
+      }
+     
+      .hero h1 {
+          font-size: 2rem;
+      }
+     
+      .hero p {
+          font-size: 1rem;
+      }
+     
+      .header-img img {
+          height: 100px;
+          top: -30px;
+      }
+     
+      .features-container {
+          flex-direction: column;
+          align-items: center;
+      }
+     
+      .feature-card {
+          width: 100%;
+          max-width: 300px;
+      }
+     
+      .menu-container {
+          width: 250px;
+      }
+     
+      .menu-items a {
+          font-size: 16px;
+      }
+  }
