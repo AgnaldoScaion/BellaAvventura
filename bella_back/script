@@ -1,4 +1,5 @@
 --- banco de dados bella avventura
+drop database bella_avventura;
 
 create database bella_avventura;
 
@@ -24,14 +25,6 @@ CREATE TABLE HOTEL (
     numero INT
 );
 
-CREATE TABLE API (
-    FK_usuario_id_usuario INT,
-    nome_hotel VARCHAR(100),
-    FK_HOTEL_id_hotel INT,
-    FOREIGN KEY (FK_usuario_id_usuario) REFERENCES usuario(id_usuario) ON DELETE RESTRICT,
-    FOREIGN KEY (FK_HOTEL_id_hotel) REFERENCES HOTEL(id_hotel) ON DELETE CASCADE
-);
-
 CREATE TABLE restaurante (
     id_restaurante INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
@@ -45,8 +38,8 @@ CREATE TABLE restaurante (
     sobre VARCHAR(255)
 );
 
-CREATE TABLE ponto_turistico (
-    id_ponto_turistico INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE pontos_turisticos (
+    id_pontoturistico INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
     sobre VARCHAR(255),
     numero INT,
@@ -68,6 +61,8 @@ CREATE TABLE feedbacks (
 
 CREATE TABLE viagem (
     id_viagem INT PRIMARY KEY AUTO_INCREMENT,
+    data_inicio DATE,
+    data_fim DATE,
     destino VARCHAR(100),
     descricao VARCHAR(255),
       fk_usuario_id_usuario INT
@@ -85,10 +80,13 @@ CREATE TABLE adm (
     FOREIGN KEY (fk_usuario_id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
-CREATE TABLE pontos (
-    id_pontos INT PRIMARY KEY AUTO_INCREMENT,
+
+CREATE TABLE ponto (
+    id_ponto INT PRIMARY KEY AUTO_INCREMENT,
     quantidade VARCHAR(10),
-      fk_usuario_id_usuario INT
+    fk_usuario_id_usuario INT
 );
 
 -- Foreign keys da tabela usuario (feitas depois pois depende de outras tabelas)
+
+

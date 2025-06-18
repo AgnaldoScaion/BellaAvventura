@@ -1,0 +1,262 @@
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Header */
+.header {
+  background-color: #A7D096;
+  position: relative;
+  height: 86px;
+}
+
+.header-img img {
+  height: 126px;
+  transition: transform 0.5s ease;
+}
+
+.header-img {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: #A7D096;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.user-header {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Container principal */
+.container {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Caixa de feedback */
+.feedback-box {
+  background-color: #c4d0c3;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.feedback-box textarea {
+  width: 100%;
+  height: 160px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  resize: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.stars span {
+  font-size: 28px;
+  color: #93bb81;
+  cursor: pointer;
+  transition: transform 0.2s;
+  user-select: none;
+}
+
+.stars span:hover,
+.stars span.selected {
+  transform: scale(1.2);
+  color: #81a074;
+}
+
+.counter {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Botão enviar */
+.enviar-btn {
+  margin-top: 18px;
+  background: #A7D096;
+  color: #222;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+}
+
+.enviar-btn:hover {
+  background: #8bb87c;
+  color: #fff;
+}
+
+/* Rodapé */
+.footer {
+  background-color: #A7D096;
+  padding: 20px;
+  color: #000;
+  font-size: 14px;
+  text-align: center;
+}
+
+.footer-top {
+  margin-bottom: 15px;
+  font-size: 33%;
+}
+
+.footer-top img {
+  width: 15%;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+
+.footer-top:hover img {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-left { text-align: left; }
+.footer-right { text-align: right; }
+
+.footer a {
+  text-decoration: underline;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #5a8f3d;
+}
+
+/* Pop-up de envio */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.4s ease;
+}
+
+.popup-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  background-color: #A7D096;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.popup-content button:hover {
+  background-color: #8bb87c;
+  color: white;
+}
+
+/* Animações */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    text-align: center;
+  }
+
+  .header-img img {
+    height: 100px;
+    top: -30px;
+  }
+}
+

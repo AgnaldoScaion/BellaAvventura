@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pontos Turísticos Cadastrados</title>
+    <link rel="stylesheet" href="/bella_back/public/style_list.css">
 </head>
 <body>
 
@@ -34,15 +35,15 @@
         <td>
             <a href="/bella_back/update-pontoturistico/<?php echo $ponto_turistico['id_pontoturistico']; ?>">Atualizar</a>
             <form action="/bella_back/delete-pontoturistico" method="POST" style="display:inline;">
-                <input type="hidden" name="id_pontoturistico" value="<?php echo $ponto_turistico['id_pontoturistico']; ?>">
-                <button type="submit">Excluir</button>
+                <input type="hidden" name="id_pontoturistico" value="<?php echo htmlspecialchars($ponto_turistico['id_pontoturistico'] ?? ''); ?>">
+                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este ponto turístico?')">Excluir</button>
             </form>
         </td>
     </tr>
     <?php endforeach; ?>
 </table>
 
-<a href="/bella_back/pontoturistico_form.php">Cadastrar novo ponto turístico</a>
+<a href="/bella_back/save-pontoturistico" class="cadastrar-link" >Cadastrar novo ponto turístico</a>
 
 </body>
 </html>

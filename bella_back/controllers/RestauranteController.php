@@ -8,26 +8,29 @@ class RestauranteController {
     }
 
     // Salva um novo restaurante
-    public function saveRestaurante() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $restaurante = new Restaurante();
-            $restaurante->nome = $_POST['nome'];
-            $restaurante->telefone = $_POST['telefone'];
-            $restaurante->estado = $_POST['estado'];
-            $restaurante->cidade = $_POST['cidade'];
-            $restaurante->rua = $_POST['rua'];
-            $restaurante->bairro = $_POST['bairro'];
-            $restaurante->numero = $_POST['numero'];
-            $restaurante->horario_funcionamento = $_POST['horario_funcionamento'];
-            $restaurante->sobre = $_POST['sobre'];
+   public function saveRestaurante() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $restaurante = new Restaurante();
+        $restaurante->nome = $_POST['nome'];
+        $restaurante->telefone = $_POST['telefone'];
+        $restaurante->estado = $_POST['estado'];
+        $restaurante->cidade = $_POST['cidade'];
+        $restaurante->rua = $_POST['rua'];
+        $restaurante->bairro = $_POST['bairro'];
+        $restaurante->numero = $_POST['numero'];
+        $restaurante->horario_funcionamento = $_POST['horario_funcionamento'];
+        $restaurante->sobre = $_POST['sobre'];
 
-            if ($restaurante->save()) {
-                header('Location: /bella_back/list-restaurante');
-                exit;
-            } else {
-                echo "Erro ao salvar restaurante!";
-            }
+        if ($restaurante->save()) {
+            header('Location: /bella_back/list-restaurante');
+            exit;
+        } else {
+            echo "Erro ao salvar restaurante!";
         }
+    } else {
+        // Exibe o formulário ao acessar via GET
+        include __DIR__ . '/../views/restaurante_form.php';
+    }
     }
 
     // Lista todos os restaurantes
@@ -41,7 +44,7 @@ class RestauranteController {
     public function showUpdateForm($id) {
         $restaurante = new Restaurante();
         $restauranteInfo = $restaurante->getById($id);
-        include __DIR__ . '/../views/update_restaurante_form.php';
+        include __DIR__ . '/../views/restaurante_form.php';
     }
 
     // Atualiza um restaurante

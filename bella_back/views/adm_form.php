@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo isset($admInfo) ? 'Editar Administrador' : 'Cadastro de Administrador'; ?></title>
-    <link rel="stylesheet" href="/bella_back/public/css/style.css">
+    <link rel="stylesheet" href="/bella_back/public/style_form.css">
 </head>
 <body>
     <h1><?php echo isset($admInfo) ? 'Editar Administrador' : 'Cadastro de Administrador'; ?></h1>
@@ -26,7 +26,7 @@
         <input type="email" name="e_mail" required value="<?php echo isset($admInfo) ? htmlspecialchars($admInfo['e_mail']) : ''; ?>"><br><br>
 
         <label>Senha:</label>
-        <input type="password" name="senha_adm"><br><br>
+        <input type="password" name="senha"><br><br>
         <?php if (isset($admInfo)): ?>
             <small>Preencha apenas se desejar alterar a senha.</small><br><br>
         <?php endif; ?>
@@ -37,6 +37,6 @@
         <input type="submit" value="<?php echo isset($admInfo) ? 'Atualizar' : 'Cadastrar'; ?>">
     </form>
 
-    <a href="/bella_back/list-adm">Ver todos os administradores</a>
+    <a href="/bella_back/list-adm">Ver todos os administradores</a> <br> <br>
 </body>
 </html>

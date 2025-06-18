@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo isset($hotelInfo) ? 'Editar Hotel' : 'Cadastro de Hotel'; ?></title>
+    <link rel="stylesheet" href="/bella_back/public/style_form.css">
 </head>
 <body>
     <h1><?php echo isset($hotelInfo) ? 'Editar Hotel' : 'Cadastro de Hotel'; ?></h1>
@@ -30,9 +31,12 @@
         <label>Número:</label>
         <input type="number" name="numero" required value="<?php echo isset($hotelInfo) ? htmlspecialchars($hotelInfo['numero']) : ''; ?>"><br><br>
 
+
         <input type="submit" value="<?php echo isset($hotelInfo) ? 'Atualizar' : 'Cadastrar'; ?>">
     </form>
 
-    <a href="/bella_back/list-hotel">Ver todos os hotéis</a>
+    <a href="/bella_back/list-hotel">Ver todos os hotéis</a> <br> <br>
+
+</form>
 </body>
 </html>

@@ -39,7 +39,7 @@ class HotelController {
     public function showUpdateForm($id) {
         $hotel = new Hotel();
         $hotelInfo = $hotel->getById($id);
-        include __DIR__ . '/../views/update_hotel_form.php';
+        include __DIR__ . '/../views/hotel_form.php';
     }
 
     // Atualiza um hotel

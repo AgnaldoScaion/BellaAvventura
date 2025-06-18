@@ -14,13 +14,14 @@ class FeedbackController {
             $feedback->feedback = $_POST['feedback'];
             $feedback->estrelas = $_POST['estrelas'];
             $feedback->quantidade_feedbacks = $_POST['quantidade_feedbacks'];
-
             if ($feedback->save()) {
                 header('Location: /bella_back/list-feedback');
                 exit;
             } else {
                 echo "Erro ao salvar feedback!";
             }
+        } else {
+            include __DIR__ . '/../views/feedback_form.php';
         }
     }
 
@@ -35,7 +36,7 @@ class FeedbackController {
     public function showUpdateForm($id) {
         $feedback = new Feedback();
         $feedbackInfo = $feedback->getById($id);
-        include __DIR__ . '/../views/update_feedback_form.php';
+        include __DIR__ . '/../views/feedback_form.php';
     }
 
     // Atualiza um feedback
@@ -55,7 +56,6 @@ class FeedbackController {
             }
         }
     }
-
     // Exclui um feedback
     public function deleteFeedback() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

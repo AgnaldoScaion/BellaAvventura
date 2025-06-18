@@ -11,7 +11,6 @@ require_once '../controllers/ViagemController.php';
 require_once '../controllers/RestauranteController.php';
 require_once '../controllers/PontoTuristicoController.php';
 require_once '../controllers/PontosController.php';
-require_once '../controllers/ApiController.php';
 require_once '../controllers/FeedbackController.php';
 
 $request = $_SERVER['REQUEST_URI'];
@@ -19,7 +18,7 @@ echo $request;
 
 switch ($request) {
     // USUÁRIO
-     case '/bella_back/save-usuario':
+    case '/bella_back/save-usuario':
         $controller = new UsuarioController();
         $controller->saveUsuario();
         break;
@@ -46,7 +45,7 @@ switch ($request) {
         $controller = new AdmController();
         $controller->saveAdm();
         break;
-    case '/bella_back/list-adm':
+    case '/bella_back/list-adm': // Corrigido aqui!
         $controller = new AdmController();
         $controller->listAdm();
         break;
@@ -86,6 +85,11 @@ switch ($request) {
         $controller = new HotelController();
         $controller->updateHotel();
         break;
+    case '/bella_back/save-hotel-form':
+        $controller = new HotelController();
+        $controller->showForm();
+        break; 
+        // esse
 
     // VIAGEM
     case '/bella_back/save-viagem':
@@ -177,29 +181,6 @@ switch ($request) {
     case '/bella_back/update-ponto':
         $controller = new PontosController();
         $controller->updatePonto();
-        break;
-
-    // API
-    case '/bella_back/save-api':
-        $controller = new ApiController();
-        $controller->saveApi();
-        break;
-    case '/bella_back/list-api':
-        $controller = new ApiController();
-        $controller->listApi();
-        break;
-    case '/bella_back/delete-api':
-        $controller = new ApiController();
-        $controller->deleteApi();
-        break;
-    case (preg_match('/\/bella_back\/update-api\/(\d+)/', $request, $matches) ? true : false):
-        $id = $matches[1];
-        $controller = new ApiController();
-        $controller->showUpdateForm($id);
-        break;
-    case '/bella_back/update-api':
-        $controller = new ApiController();
-        $controller->updateApi();
         break;
 
     // FEEDBACK

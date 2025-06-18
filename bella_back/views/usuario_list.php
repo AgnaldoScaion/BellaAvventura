@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Usuários</title>
+    <link rel="stylesheet" href="/bella_back/public/style_list.css">
 </head>
 <body>
     <h1>Usuários</h1>
@@ -27,15 +28,15 @@
             <td><?php echo htmlspecialchars($usuario['e_mail']); ?></td>
             <td><?php echo htmlspecialchars($usuario['nome_perfil']); ?></td>
             <td>
-                <a href="/bella_back/update-usuario/<?php echo $usuario['id_usuario']; ?>">Editar</a>
+                <a href="/bella_back/update-usuario/<?php echo $usuario['id_usuario']; ?>">Atualizar</a>
                 <form action="/bella_back/delete-usuario" method="POST" style="display:inline;">
                     <input type="hidden" name="id_usuario" value="<?php echo $usuario['id_usuario']; ?>">
-                    <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                    <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
                 </form>
             </td>
         </tr>
         <?php endforeach; ?>
     </table>
-        <a href="/bella_back/save-usuario">Cadastrar novo usuário</a>
+        <a href="/bella_back/save-usuario" class="cadastrar-link" >Cadastrar novo usuário</a>
 </body>
 </html>

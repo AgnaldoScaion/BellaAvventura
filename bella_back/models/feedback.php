@@ -16,6 +16,14 @@ class Feedback {
         $this->conn = $database->getConnection();
     }
 
+    public function getById($id) {
+        $sql = "SELECT * FROM " . $this->table_name . " WHERE id_feedback = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function save() {
         $query = "INSERT INTO " . $this->table_name . " (feedback, estrelas, quantidade_feedbacks) 
                   VALUES (:feedback, :estrelas, :quantidade_feedbacks)";
@@ -30,6 +38,27 @@ class Feedback {
         }
 
         return false;
+    }
+
+    public function update() {
+        $query = "UPDATE " . $this->table_name . " 
+                SET feedback = :feedback, estrelas = :estrelas, quantidade_feedbacks = :quantidade_feedbacks 
+                WHERE id_feedback = :id_feedback";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':feedback', $this->feedback);
+        $stmt->bindParam(':estrelas', $this->estrelas);
+        $stmt->bindParam(':quantidade_feedbacks', $this->quantidade_feedbacks);
+        $stmt->bindParam(':id_feedback', $this->id_feedback, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    public function delete() {
+        $query = "DELETE FROM " . $this->table_name . " WHERE id_feedback = :id_feedback";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id_feedback', $this->id_feedback, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 
     public function getAll() {

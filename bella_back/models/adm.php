@@ -36,12 +36,12 @@ class Adm {
     }
 
     public function save() {
-        $senhaHash = password_hash($this->senha_adm, PASSWORD_DEFAULT);
-
         $query = "INSERT INTO " . $this->table_name . " 
             (nome_completo, data_nascimento, CPF, e_mail, senha_adm, nome_perfil, fk_usuario_id_usuario) 
             VALUES (:nome_completo, :data_nascimento, :CPF, :e_mail, :senha_adm, :nome_perfil, :fk_usuario_id_usuario)";
         $stmt = $this->conn->prepare($query);
+
+        $senhaHash = password_hash($this->senha_adm, PASSWORD_DEFAULT);
 
         $stmt->bindParam(':nome_completo', $this->nome_completo);
         $stmt->bindParam(':data_nascimento', $this->data_nascimento);

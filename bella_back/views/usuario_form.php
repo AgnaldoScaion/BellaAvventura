@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo isset($usuarioInfo) ? 'Editar Usuário' : 'Cadastro de Usuário'; ?></title>
+    <link rel="stylesheet" href="/bella_back/public/style_form.css">
 </head>
 <body>
     <h1><?php echo isset($usuarioInfo) ? 'Editar Usuário' : 'Cadastro de Usuário'; ?></h1>
@@ -36,6 +37,6 @@
         <input type="submit" value="<?php echo isset($usuarioInfo) ? 'Atualizar' : 'Cadastrar'; ?>">
     </form>
 
-    <a href="/bella_back/list-usuario">Ver todos os usuários</a>
+    <a href="/bella_back/list-usuario">Ver todos os usuários</a> <br> <br>
 </body>
 </html>

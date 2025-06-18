@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../models/adm.php';
 
 class AdmController {
@@ -24,6 +25,9 @@ class AdmController {
             } else {
                 echo "Erro ao salvar administrador!";
             }
+        } else {
+            // Se não for POST, exibe o formulário
+            $this->showForm();
         }
     }
 
@@ -38,7 +42,7 @@ class AdmController {
     public function showUpdateForm($id) {
         $adm = new Adm();
         $admInfo = $adm->getById($id);
-        include __DIR__ . '/../views/update_adm_form.php';
+        include __DIR__ . '/../views/adm_form.php';
     }
 
     // Atualiza um administrador
@@ -50,7 +54,10 @@ class AdmController {
             $adm->data_nascimento = $_POST['data_nascimento'];
             $adm->CPF = $_POST['CPF'];
             $adm->e_mail = $_POST['e_mail'];
-            $adm->senha = password_hash($_POST['senha'], PASSWORD_BCRYPT);
+            // Só atualiza a senha se for informada
+            if (!empty($_POST['senha'])) {
+                $adm->senha = password_hash($_POST['senha'], PASSWORD_BCRYPT);
+            }
             $adm->nome_perfil = $_POST['nome_perfil'];
 
             if ($adm->update()) {
