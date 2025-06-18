@@ -37,6 +37,6 @@
         <input type="submit" value="<?php echo isset($admInfo) ? 'Atualizar' : 'Cadastrar'; ?>">
     </form>
 
-    <a href="/bella_back/list-adm">Ver todos os administradores</a> <br> <br> 
+    <a href="/bella_back/list-adm">Ver todos os administradores</a> <br> <br>
 </body>
 </html>

@@ -13,17 +13,17 @@
       font-weight: bold;
     }
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      display: flex;
-      flex-direction: column;
-      background-color: #f3f7f3;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  background: url('../IMAGENS/viagem-de-aviao.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
 
     .wrapper {
       flex: 1;
@@ -78,73 +78,66 @@
       gap: 6px;
     }
 
-    .cadastro-container {
-      max-width: 500px;
-      margin: 5rem auto;
-      padding: 2rem;
-      text-align: center;
-    }
+.quadrado {
+background-color: transparent;  max-width: 420px;
+  margin: 4rem auto;
+  padding: 3rem 2.5rem 3.5rem 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  font-family: 'GaramondBold', serif;
+  color: #3e6b1a;
+  border: 2px solid #a7d096;
+  backdrop-filter: saturate(180%) blur(10px); /* efeito glass */
+}
 
-    .cadastro-title {
-      font-family: 'GaramondBold', serif;
-      color: #5a8f3d;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
+.quadrado h1 {
+  font-size: 4rem;
+  margin-bottom: 2.5rem;
+  font-weight: 700;
+}
 
-    .cadastro-box {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      border: 3px solid #D8E6D9;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
+.botoes-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
 
-    .form-group {
-      margin-bottom: 1.5rem;
-      text-align: left;
-    }
+.botao, .botao2 {
+  flex: 1 1 45%;
+  background-color: #5a8f3d;
+  color: white;
+  text-decoration: none;
+  padding: 1rem 1.2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(59, 90, 23, 0.45);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
 
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #5a8f3d;
-      font-weight: bold;
-    }
+.botao:hover, .botao2:hover {
+  background-color: #4a7d2d;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 15px rgba(40, 70, 15, 0.6);
+}
 
-    .form-group input {
-      width: 94%;
-      padding: 0.78rem;
-      border: 2px solid #D8E6D9;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
+.botao3 {
+  display: inline-block;
+  color: #5a8f3d;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
 
-    .cadastro-button {
-      background-color: #5a8f3d;
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 1rem;
-      transition: background-color 0.3s;
-    }
-
-    .cadastro-button:hover {
-      background-color: #4a7d2d;
-    }
-
-    .back-button {
-      display: inline-block;
-      color: #5a8f3d;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 1rem;
-    }
+.botao3:hover {
+  color: #4a7d2d;
+}
 
     .footer {
       background-color: #A7D096;
@@ -280,7 +273,6 @@
         <div class="botoes-container">
         <a href="Cadastro.html" div class="botao">Cadastrar como usuário</a>
         <a href="Cadastro_adm.html" div class="botao2">Cadastrar como admin</a> </div>
-        <a href="" div class="botao3">Voltar</a>
 </div>
 </div>
 </div>
