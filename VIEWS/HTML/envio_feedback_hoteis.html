@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Bella Avventura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
+    <style>
+        @font-face {
+            font-family: 'GaramondBold';
+            src: local('Garamond'), serif;
+            font-weight: bold;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            background-color: #f3f7f3;
+        }
+
+        .wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #A7D096;
+            position: relative;
+            height: 86px;
+        }
+
+        .header-img img {
+            height: 126px;
+            transition: transform 0.5s ease;
+        }
+
+        .header-img {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background-color: #A7D096;
+            position: relative;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .user-header {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .menu-box {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            background-color: #d6e3d6;
+            border-radius: 8px;
+            padding: 20px;
+            width: 260px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-family: 'Garamond', serif;
+            z-index: 10;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .menu-lateral {
+            background-color: #88b68b;
+            width: 24px;
+            border-radius: 8px;
+        }
+
+        .menu-conteudo {
+            flex: 1;
+        }
+
+        .menu-conteudo h2 {
+            font-size: 20px;
+            margin: 0;
+            border-bottom: 1px solid #999;
+            padding-bottom: 10px;
+        }
+
+        .menu-conteudo ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .menu-conteudo li {
+            margin: 15px 0;
+        }
+
+        .menu-conteudo a {
+            text-decoration: none;
+            color: black;
+            transition: color 0.2s;
+        }
+
+        .menu-conteudo a:hover {
+            color: #3a6545;
+        }
+
+        .hidden {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .visible {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .page-title {
+            font-family: 'GaramondBold', serif;
+            text-align: center;
+            color: #5a8f3d;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            color: #333;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feedback-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 3px solid #D8E6D9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .feedback-container h3 {
+            color: #5a8f3d;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feedback-grupo {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .feedback-grupo label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .feedback-grupo select,
+        .feedback-grupo input,
+        .feedback-grupo textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #D8E6D9;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .feedback-botoes {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-enviar,
+        .btn-ver-feedback {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-enviar {
+            background-color: #5a8f3d;
+            color: white;
+        }
+
+        .btn-enviar:hover {
+            background-color: #4a7d2d;
+        }
+
+        .btn-ver-feedback {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-ver-feedback:hover {
+            background-color: #e0e0e0;
+        }
+
+        .footer {
+            background-color: #A7D096;
+            padding: 20px;
+            color: #000;
+            font-size: 14px;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .footer-top {
+            margin-bottom: 15px;
+            font-size: 33%;
+        }
+
+        .footer-top img {
+            width: 15%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .footer-top:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-left,
+        .footer-center,
+        .footer-right {
+            flex: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer-left:hover,
+        .footer-right:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .footer-bottom a {
+            text-decoration: underline;
+            color: black;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            color: #5a8f3d;
+        }
+
+        .notificacao {
+            background-color: #5a8f3d;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 300px;
+        }
+
+        .notificacao.show {
+            display: block;
+            animation: fadeOut 4s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .feedback-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-left,
+            .footer-center,
+            .footer-right {
+                text-align: center;
+            }
+
+            .header-img img {
+                height: 100px;
+                top: -30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="notificacao" class="notificacao"></div>
+
+    <div class="wrapper">
+        <!-- Top Header -->
+        <div class="top-header">
+            <div class="menu-icon">☰</div>
+            <div class="user-header">
+                <span>👤</span> Visitante
+            </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="header">
+            <div class="header-img">
+                <a href="Entrada.html">
+                    <img src="https://i.ibb.co/Q7T008b1/image.png" alt="Logo" class="floating" />
+                </a>
+            </div>
+        </div>
+
+        <!-- Menu -->
+        <div id="menuContainer"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1 class="page-title">Feedback</h1>
+            <p class="page-subtitle">Deixe seu feedback sobre os hotéis e ajude outros usuários a fazerem melhores escolhas.</p>
+
+            <!-- Formulário de Feedback -->
+            <div class="feedback-container">
+                <h3>Deixe seu Feedback</h3>
+                <form class="feedback-form">
+                    <div class="feedback-grupo">
+                        <label for="restaurante">Hotel</label>
+                        <select id="restaurante">
+                            <option value="">Selecione um restaurante</option>
+                            <option value="Atlântico Bussines">Atlântico Bussines</option>
+                            <option value="Atlântico Copacabana">Atlântico Copacabana</option>
+                            <option value="Atlântico Praia">Atlântico Praia</option>
+                            <option value="Blue Tree Towers">Blue Tree Towers</option>
+                            <option value="Capsula">Capsula</option>
+                            <option value="Colline">Colline</option>
+                            <option value="Continental">Continental</option>
+                            <option value="GoldMen Express Cianorte">GoldMen Express Cianorte</option>
+                            <option value="Gran Villagio">Gran Villagio</option>
+                            <option value="Ingleses Palace">Ingleses Palace</option>
+                            <option value="Life Infinity">Life Infinity</option>
+                            <option value="Minas Garden">Minas Garden</option>
+                            <option value="Oceânia Park">Oceânia Park</option>
+                            <option value="Por do Sol">Por do Sol</option>
+                            <option value="Água Marinha">Água Marinha</option>
+                            <option value="Canto da Vigia">Canto da Vigia</option>
+                            <option value="Universal">Universal</option>
+                            <option value="Rios">Rios</option>
+                            <option value="San Michel">San Michel</option>
+                            <option value="Viale Cataratas">Viale Cataratas</option>
+                            <option value="Villa Lobos Spa Romantik">Villa Lobos Spa Romantik</option>
+                        </select>
+                    </div>
+                    <div class="feedback-grupo">
+                        <label for="avaliacao">Avaliação</label>
+                        <select id="avaliacao">
+                            <option value="">Selecione uma avaliação</option>
+                            <option value="1">★</option>
+                            <option value="2">★★</option>
+                            <option value="3">★★★</option>
+                            <option value="4">★★★★</option>
+                            <option value="5">★★★★★</option>
+                        </select>
+                    </div>
+                    <div class="feedback-grupo">
+                        <label for="comentario">Comentário</label>
+                        <textarea id="comentario" rows="4"></textarea>
+                    </div>
+                    <div class="feedback-botoes">
+                        <button type="button" class="btn-enviar">Enviar Feedback</button>
+                        <button type="button" class="btn-ver-feedback" onclick="window.location.href='feedbacks.html'">Ver Feedbacks</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <div class="footer-top">
+                <a href="https://www.bellaavventura.com.br/">
+                    <img src="https://i.ibb.co/j9vGknyy/image.png" alt="image" border="0">
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <a href="mailto:bella.avventura@gmail.com">📧 bella.avventura@gmail.com</a>
+                </div>
+                <div class="footer-center">© 2025 Bella Avventura</div>
+                <div class="footer-right">
+                    <a href="TermosCondicoes.html">Termos e condições</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Verifica autenticação
+        function checkAuth() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (userData) {
+                // Atualiza header
+                document.querySelector('.user-header').innerHTML = `
+                    <span>👤</span> ${userData.firstName}
+                `;
+
+                // Carrega menu logado
+                loadMenu('MenuLogado.html');
+            } else {
+                // Carrega menu não logado
+                loadMenu('MenuNaoLogado.html');
+            }
+        }
+
+        // Carrega o menu
+        function loadMenu(menuFile) {
+            fetch(menuFile)
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('menuContainer').innerHTML = html;
+                    setupMenu();
+                });
+        }
+
+        // Configura o menu
+        function setupMenu() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const menu = document.querySelector('.menu-box');
+
+            if (menu && menuIcon) {
+                menuIcon.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('visible');
+                });
+            }
+
+            // Configura logout se existir
+            const logoutBtn = document.getElementById('logout-link');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'Entrada.html';
+                });
+            }
+        }
+
+        // Verifica autenticação e configura o menu
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAuth();
+            setupMenu();
+
+            // Configura o botão de enviar feedback
+            document.querySelector('.btn-enviar').addEventListener('click', function() {
+                const restaurante = document.getElementById('restaurante').value;
+                const avaliacao = document.getElementById('avaliacao').value;
+                const comentario = document.getElementById('comentario').value;
+
+                if (restaurante && avaliacao && comentario) {
+                    alert('Feedback enviado com sucesso!');
+                    // Aqui você pode adicionar a lógica para salvar o feedback
+                } else {
+                    alert('Por favor, preencha todos os campos.');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
