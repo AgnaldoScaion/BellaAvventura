@@ -385,7 +385,6 @@
             padding-top: 1rem;
         }
 
-        .btn-reservar,
         .btn-ver-mais {
             padding: 0.6rem 1rem;
             border: none;
@@ -397,16 +396,7 @@
             text-align: center;
         }
 
-        .btn-reservar {
-            background-color: #5a8f3d;
-            color: white;
-            flex: 1;
-            margin-right: 0.5rem;
-        }
 
-        .btn-reservar:hover {
-            background-color: #4a7d2d;
-        }
 
         .btn-ver-mais {
             background-color: #f0f0f0;
@@ -626,9 +616,7 @@
                 width: 100%;
             }
 
-            .btn-reservar {
-                margin-right: 0;
-            }
+
         }
     </style>
 </head>
@@ -670,14 +658,7 @@
                         <label for="destino">Destino</label>
                         <input type="text" id="destino" placeholder="Para onde você vai?">
                     </div>
-                    <div class="filtro-grupo">
-                        <label for="data-checkin">Check-in</label>
-                        <input type="date" id="data-checkin">
-                    </div>
-                    <div class="filtro-grupo">
-                        <label for="data-checkout">Check-out</label>
-                        <input type="date" id="data-checkout">
-                    </div>
+
                     <div class="filtro-grupo">
                         <label for="hospedes">Hóspedes</label>
                         <select id="hospedes">
@@ -735,8 +716,12 @@
                             <p><span>⭐</span> 520 avaliações</p>
                         </div>
                         <div class="hotel-footer">
+<<<<<<< HEAD
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+=======
                             <a href="#" class="btn-reservar">Reservar</a>
                             <a href="Hotel_capsula_hotelSP.html" class="btn-ver-mais">Ver Detalhes</a>
+>>>>>>> f4646afa859e35343e60fec084ba112a4d561c33
                         </div>
                     </div>
                 </div>
@@ -760,8 +745,12 @@
                             <p><span>⭐</span> 743 avaliações</p>
                         </div>
                         <div class="hotel-footer">
+<<<<<<< HEAD
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+=======
                             <a href="#" class="btn-reservar">Reservar</a>
                             <a href="Hotel_Atlantico_BussinesRJ.html" class="btn-ver-mais">Ver Detalhes</a>
+>>>>>>> f4646afa859e35343e60fec084ba112a4d561c33
                         </div>
                     </div>
                 </div>
@@ -784,8 +773,12 @@
                             <p><span>⭐</span> 398 avaliações</p>
                         </div>
                         <div class="hotel-footer">
+<<<<<<< HEAD
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+=======
                             <a href="#" class="btn-reservar">Reservar</a>
                             <a href="Hotel_minas_gardenMG.html" class="btn-ver-mais">Ver Detalhes</a>
+>>>>>>> f4646afa859e35343e60fec084ba112a4d561c33
                         </div>
                     </div>
                 </div>
@@ -808,8 +801,12 @@
                             <p><span>⭐</span> 621 avaliações</p>
                         </div>
                         <div class="hotel-footer">
+<<<<<<< HEAD
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+=======
                             <a href="#" class="btn-reservar">Reservar</a>
                             <a href="Hotel_blue_tree_towersMA.html" class="btn-ver-mais">Ver Detalhes</a>
+>>>>>>> f4646afa859e35343e60fec084ba112a4d561c33
                         </div>
                     </div>
                 </div>
@@ -832,8 +829,12 @@
                             <p><span>⭐</span> 875 avaliações</p>
                         </div>
                         <div class="hotel-footer">
+<<<<<<< HEAD
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+=======
                             <a href="#" class="btn-reservar">Reservar</a>
                             <a href="Hotel_ingleses_palaceSC.html" class="btn-ver-mais">Ver Detalhes</a>
+>>>>>>> f4646afa859e35343e60fec084ba112a4d561c33
                         </div>
                     </div>
                 </div>
@@ -856,8 +857,12 @@
                             <p><span>⭐</span> 456 avaliações</p>
                         </div>
                         <div class="hotel-footer">
+<<<<<<< HEAD
+                            <a href="#" class="btn-ver-mais">Ver Detalhes</a>
+=======
                             <a href="#" class="btn-reservar">Reservar</a>
                             <a href="Hotel_collineRS.html" class="btn-ver-mais">Ver Detalhes</a>
+>>>>>>> f4646afa859e35343e60fec084ba112a4d561c33
                         </div>
                     </div>
                 </div>
@@ -980,9 +985,6 @@
             btnLimpar.addEventListener('click', function() {
                 // Limpa os campos do filtro
                 document.getElementById('destino').value = '';
-                document.getElementById('data-checkin').value = '';
-                document.getElementById('data-checkout').value = '';
-                document.getElementById('hospedes').value = '1';
                 document.getElementById('preco').value = 'todos';
                 document.getElementById('classificacao').value = 'todos';
 
@@ -1011,7 +1013,6 @@
             const messages = {
                 'login': 'Login realizado com sucesso!',
                 'cadastro': 'Cadastro realizado com sucesso!',
-                'reserva': 'Reserva realizada com sucesso!',
                 'avaliacao': 'Avaliação enviada com sucesso!'
             };
 
