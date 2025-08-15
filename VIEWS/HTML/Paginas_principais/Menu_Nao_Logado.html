@@ -82,16 +82,16 @@
     <div class="menu-conteudo">
       <h2>MENU</h2>
       <ul>
-        <li><a href="cadastro.html"> Fazer cadastro</a></li>
-        <li><a href="login.html"> Logar na conta</a></li>
-        <li><a href="SobreNos.html"> Sobre nós</a></li>
+        <li><a href="../Paginas_principais/Cadastro.html"> Fazer cadastro</a></li>
+        <li><a href="../Paginas_principais/Login.html"> Logar na conta</a></li>
+        <li><a href="../Paginas_principais/SobreNos.html"> Sobre nós</a></li>
       </ul>
     </div>
   </div>
-<!-- Script para carregar o menu nas outras guias
+<!-- Script para carregar o menu nas outras guias -->
   <script>
     // Carrega o menu externo
-    fetch('../HTML/MenuNaoLogado.html')
+    fetch('../Paginas_principais/Menu_Nao_Logado.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('menuContainer1').innerHTML = html;
@@ -107,6 +107,6 @@
         }
       })
       .catch(err => console.error('Erro ao carregar menu:', err));
-  </script> -->
+  </script>
 </body>
 </html>
