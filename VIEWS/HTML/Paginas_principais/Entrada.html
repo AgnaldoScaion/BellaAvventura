@@ -703,10 +703,11 @@
                 document.querySelector('.user-header').innerHTML = `
                 <span>👤</span> ${userData.firstName}
             `;
-                loadMenu('MenuLogado.html');
-            } else {
-                loadMenu('MenuNaoLogado.html');
-            }
+                loadMenu('Menu_Logado.html');
+      } else {
+        // Carrega menu não logado
+        loadMenu('Menu_Nao_Logado.html');
+      }
         }
 
         function loadMenu(menuFile) {
