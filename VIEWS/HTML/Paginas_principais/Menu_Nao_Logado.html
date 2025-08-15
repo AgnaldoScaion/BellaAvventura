@@ -1,112 +1,101 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menu - Não Logados</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
-  <style>
-    .menu-box {
-        position: absolute;
-        top: 50px;
-        left: 20px;
-        background-color: #d6e3d6;
-        border-radius: 8px;
-        padding: 20px;
-        width: 260px;
-        display: flex;
-        gap: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        font-family: 'Garamond', serif;
-        z-index: 10;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
-    
-      .menu-lateral {
-        background-color: #88b68b;
-        width: 24px;
-        border-radius: 8px;
-      }
-    
-      .menu-conteudo {
-        flex: 1;
-      }
-    
-      .menu-conteudo h2 {
-        font-size: 20px;
-        margin: 0;
-        border-bottom: 1px solid #999;
-        padding-bottom: 10px;
-      }
-    
-      .menu-conteudo ul {
-        list-style: none;
-        padding: 0;
-        margin-top: 15px;
-      }
-    
-      .menu-conteudo li {
-        margin: 15px 0;
-      }
-    
-      .menu-conteudo a {
-        text-decoration: none;
-        color: black;
-        transition: color 0.2s;
-      }
-    
-      .menu-conteudo a:hover {
-        color: #3a6545;
-      }
-    
-      /* Esconde o menu inicialmente */
-      .hidden {
-        visibility: hidden;
-        opacity: 0;
-        pointer-events: none;
-      }
-    
-      .visible {
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-      }
-  </style>
-</head>
-<body>
+<!-- Menu_Nao_Logado.html -->
+<style>
+  .menu-box {
+      position: absolute;
+      top: 50px;
+      left: 20px;
+      background-color: #d6e3d6;
+      border-radius: 8px;
+      padding: 20px;
+      width: 260px;
+      display: flex;
+      gap: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-family: 'Garamond', serif;
+      z-index: 10;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
 
-<!-- menu-nao-logado.html -->
+  .menu-lateral {
+      background-color: #88b68b;
+      width: 24px;
+      border-radius: 8px;
+  }
+
+  .menu-conteudo {
+      flex: 1;
+  }
+
+  .menu-conteudo h2 {
+      font-size: 20px;
+      margin: 0;
+      border-bottom: 1px solid #999;
+      padding-bottom: 10px;
+  }
+
+  .menu-conteudo ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+  }
+
+  .menu-conteudo li {
+      margin: 15px 0;
+  }
+
+  .menu-conteudo a {
+      text-decoration: none;
+      color: black;
+      transition: color 0.2s;
+  }
+
+  .menu-conteudo a:hover {
+      color: #3a6545;
+  }
+
+  .hidden {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+  }
+
+  .visible {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+  }
+
+  .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+  }
+</style>
+
+<!-- Ícone para abrir/fechar menu -->
+<i class="fas fa-bars menu-icon"></i>
+
+<!-- Estrutura do menu -->
 <div id="menu-nao-logado" class="menu-box hidden">
-    <div class="menu-lateral"></div>
-    <div class="menu-conteudo">
-      <h2>MENU</h2>
-      <ul>
-        <li><a href="../Paginas_principais/Cadastro.html"> Fazer cadastro</a></li>
-        <li><a href="../Paginas_principais/Login.html"> Logar na conta</a></li>
-        <li><a href="../Paginas_principais/SobreNos.html"> Sobre nós</a></li>
-      </ul>
-    </div>
+  <div class="menu-lateral"></div>
+  <div class="menu-conteudo">
+    <h2>MENU</h2>
+    <ul>
+      <li><a href="../Paginas_principais/Cadastro.html">Fazer cadastro</a></li>
+      <li><a href="../Paginas_principais/Login.html">Logar na conta</a></li>
+      <li><a href="../Paginas_principais/SobreNos.html">Sobre nós</a></li>
+    </ul>
   </div>
-<!-- Script para carregar o menu nas outras guias -->
-  <script>
-    // Carrega o menu externo
-    fetch('../Paginas_principais/Menu_Nao_Logado.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('menuContainer1').innerHTML = html;
-  
-        const menu = document.getElementById('menu-nao-logado');
-        const menuIcon = document.querySelector('.menu-icon');
-  
-        if (menu && menuIcon) {
-          menuIcon.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('visible');
-          });
-        }
-      })
-      .catch(err => console.error('Erro ao carregar menu:', err));
-  </script>
-</body>
-</html>
+</div>
+
+<script>
+  const menuIcon = document.querySelector('.menu-icon');
+  const menu = document.getElementById('menu-nao-logado');
+
+  menuIcon.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    menu.classList.toggle('visible');
+  });
+</script>
