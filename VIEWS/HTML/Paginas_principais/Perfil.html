@@ -469,9 +469,9 @@
                 window.location.href = 'login.html';
                 return;
             }
-
+            
             // Carrega o menu apropriado
-            fetch('MenuLogado.html')
+            fetch('Menu_Logado.html')
                 .then(res => res.text())
                 .then(html => {
                     document.getElementById('menuContainer').innerHTML = html;
