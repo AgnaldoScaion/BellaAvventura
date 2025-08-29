@@ -297,12 +297,12 @@
       <div class="menu-conteudo">
         <h2>Menu</h2>
         <ul>
-          <li><a href="Entrada.html">Página Inicial</a></li>
-          <li><a href="Login.html">Login</a></li>
-          <li><a href="Cadastro.html">Cadastre-se</a></li>
-          <li><a href="Sobre.html">Sobre Nós</a></li>
-          <li><a href="Feedback.html">Enviar Feedback</a></li>
-          <li><a href="Termos.html">Termos e Condições</a></li>
+          <li><a href="../Paginas_principais/Entrada.html">Página Inicial</a></li>
+          <li><a href="../Paginas_principais/Login.html">Login</a></li>
+          <li><a href="../Paginas_principais/Cadastro.html">Cadastre-se</a></li>
+          <li><a href="../Paginas_principais/SobreNos.html">Sobre Nós</a></li>
+          <li><a href="../Feedback/Envio_Feedback.html">Enviar Feedback</a></li>
+          <li><a href="../Paginas_principais/Termos_Condicoes.html">Termos e Condições</a></li>
         </ul>
       </div>
     </div>
@@ -321,7 +321,7 @@
       <div class="card">
         <h1>Feedback enviado com sucesso!</h1>
         <p>Obrigado por sua colaboração. Sua opinião é muito importante para nós.</p>
-        <a href="Entrada.html" class="btn">Voltar à página inicial</a>
+        <a href="../Paginas_principais/Entrada.html" class="btn">Voltar à página inicial</a>
       </div>
     </div>
 
@@ -407,7 +407,7 @@
                 logoutBtn.addEventListener('click', function (e) {
                     e.preventDefault();
                     localStorage.removeItem('currentUser');
-                    window.location.href = 'Entrada.html';
+                    window.location.href = '../Paginas_principais/Entrada.html';
                 });
             }
         }
