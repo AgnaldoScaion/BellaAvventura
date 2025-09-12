@@ -124,10 +124,10 @@
             `;
 
         // Carrega menu logado
-        loadMenu('Menu_Logado.html');
+        loadMenu('../Paginas_principais/Menu_Logado.html');
       } else {
         // Carrega menu não logado
-        loadMenu('Menu_Nao_Logado.html');
+        loadMenu('../Paginas_principais/Menu_Nao_Logado.html');
       }
     }
 
@@ -135,7 +135,7 @@
       fetch(menuFile)
         .then(res => res.text())
         .then(html => {
-          document.getElementById('menuContainer').innerHTML = html;
+          document.getElementById('menuContainer1').innerHTML = html;
           setupMenu();
         });
     }
