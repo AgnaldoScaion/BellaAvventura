@@ -296,5 +296,22 @@ background-color: transparent;  max-width: 420px;
     </footer>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carregamento do menu
+      fetch('../Paginas_principais/Menu_Logado.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          const menuIcon = document.querySelector('.menu-icon');
+          const menu = document.getElementById('menu-logado');
+          
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
+    });
+  </script>
+
 </body>
 </html>

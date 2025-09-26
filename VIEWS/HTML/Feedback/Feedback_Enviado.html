@@ -345,88 +345,88 @@
   </div>
 
   <!-- Script para exibir nome do usuário e menu -->
-  <script>
-       document.addEventListener('DOMContentLoaded', function () {
-            // Verifica autenticação
-            checkAuth();
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Verifica autenticação
+        checkAuth();
 
-            // Configura menu
-            setupMenu();
+        // Configura menu
+        setupMenu();
 
-            // Verifica mensagem de sucesso
-            const urlParams = new URLSearchParams(window.location.search);
-            const msg = urlParams.get('msg');
+        // Verifica mensagem de sucesso
+        const urlParams = new URLSearchParams(window.location.search);
+        const msg = urlParams.get('msg');
 
-            if (msg === 'login') {
-                showNotification('Login realizado com sucesso!', 'success');
-            } else if (msg === 'cadastro') {
-                showNotification('Cadastro realizado com sucesso!', 'success');
-            }
-        });
+        if (msg === 'login') {
+            showNotification('Login realizado com sucesso!', 'success');
+        } else if (msg === 'cadastro') {
+            showNotification('Cadastro realizado com sucesso!', 'success');
+        }
+    });
 
-        function checkAuth() {
-            const userData = JSON.parse(localStorage.getItem('currentUser'));
+    function checkAuth() {
+        const userData = JSON.parse(localStorage.getItem('currentUser'));
 
-            if (userData) {
-                // Atualiza header
-                document.querySelector('.user-header').innerHTML = `
-                <span>👤</span> ${userData.firstName}
-            `;
+        if (userData) {
+            // Atualiza header
+            document.querySelector('.user-header').innerHTML = `
+            <span>👤</span> ${userData.firstName}
+        `;
 
-                // Carrega menu logado
-                loadMenu('MenuLogado.html');
-            } else {
-                // Carrega menu não logado
-                loadMenu('MenuNaoLogado.html');
-            }
+            // Carrega menu logado
+            loadMenu('Menu_Logado.html'); // Corrigido aqui!
+        } else {
+            // Carrega menu não logado
+            loadMenu('Menu_Nao_Logado.html'); // Corrigido aqui!
+        }
+    }
+
+    function loadMenu(menuFile) {
+        fetch(menuFile)
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('menuContainer').innerHTML = html;
+                setupMenu();
+            });
+    }
+
+    function setupMenu() {
+        const menuIcon = document.querySelector('.menu-icon');
+        const menu = document.querySelector('.menu-box');
+
+        if (menu && menuIcon) {
+            menuIcon.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('visible');
+            });
         }
 
-        function loadMenu(menuFile) {
-            fetch(menuFile)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('menuContainer').innerHTML = html;
-                    setupMenu();
-                });
+        // Configura logout se existir
+        const logoutBtn = document.getElementById('logout-link');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                window.location.href = '../Paginas_principais/Entrada.html';
+            });
         }
+    }
 
-        function setupMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const menu = document.querySelector('.menu-box');
+    function showNotification(message, type) {
+        const notif = document.createElement('div');
+        notif.className = `notification ${type}`;
+        notif.textContent = message;
+        document.body.appendChild(notif);
 
-            if (menu && menuIcon) {
-                menuIcon.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                    menu.classList.toggle('visible');
-                });
-            }
+        setTimeout(() => {
+            notif.classList.add('show');
+        }, 10);
 
-            // Configura logout se existir
-            const logoutBtn = document.getElementById('logout-link');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    localStorage.removeItem('currentUser');
-                    window.location.href = '../Paginas_principais/Entrada.html';
-                });
-            }
-        }
-
-        function showNotification(message, type) {
-            const notif = document.createElement('div');
-            notif.className = `notification ${type}`;
-            notif.textContent = message;
-            document.body.appendChild(notif);
-
-            setTimeout(() => {
-                notif.classList.add('show');
-            }, 10);
-
-            setTimeout(() => {
-                notif.classList.remove('show');
-                setTimeout(() => notif.remove(), 300);
-            }, 3000);
-        }
-  </script>
+        setTimeout(() => {
+            notif.classList.remove('show');
+            setTimeout(() => notif.remove(), 300);
+        }, 3000);
+    }
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Feedbacks - Bella Avventura</title>
-  <link rel="stylesheet" href="../CSS/feedback_restaurante.css" />
+  <link rel="stylesheet" href="../../CSS/feedback_restaurante.css" />
 </head>
 <body>
   <!-- Cabeçalho -->
@@ -69,55 +69,20 @@
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const stars = document.querySelectorAll('.stars span');
-      let selected = 0;
-      const notaInput = document.querySelector('input[name="nota"]');
-      const counter = document.querySelector('.counter');
-      const textarea = document.querySelector('textarea');
-      const form = document.getElementById('feedbackForm');
-      const popup = document.getElementById('popup');
-
-      stars.forEach((star, idx) => {
-        star.addEventListener('mouseover', () => {
-          stars.forEach((s, i) => {
-            s.textContent = i <= idx ? '★' : '☆';
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carregamento do menu
+      fetch('../Paginas_principais/Menu_Logado.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('menuContainer1').innerHTML = html;
+          const menuIcon = document.querySelector('.menu-icon');
+          const menu = document.getElementById('menu-logado');
+          
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
           });
         });
-
-        star.addEventListener('mouseout', () => {
-          stars.forEach((s, i) => {
-            s.textContent = i < selected ? '★' : '☆';
-          });
-        });
-
-        star.addEventListener('click', () => {
-          selected = idx + 1;
-          notaInput.value = selected;
-          stars.forEach((s, i) => {
-            s.textContent = i < selected ? '★' : '☆';
-          });
-        });
-      });
-
-      textarea.addEventListener('input', () => {
-        counter.textContent = `${textarea.value.length}/250`;
-      });
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        popup.style.display = 'flex';
-        form.reset();
-        notaInput.value = 0;
-        selected = 0;
-        stars.forEach(star => star.textContent = '☆');
-        counter.textContent = '0/250';
-      });
     });
-
-    function closePopup() {
-      document.getElementById('popup').style.display = 'none';
-    }
   </script>
 </body>
 </html>

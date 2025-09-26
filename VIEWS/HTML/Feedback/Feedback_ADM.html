@@ -465,70 +465,20 @@
       </div>
     </div>
   </footer>
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const menuIcon = document.querySelector('.menu-icon');
-      const closeMenu = document.getElementById('closeMenu');
-      const menuOverlay = document.getElementById('menuOverlay');
-      const menuContainer = document.querySelector('.menu-container');
-
-      
-        // Carrega o menu externo
-        fetch('../HTML/MenuAdm.html')
-        .then(res => res.text())
+      // Carregamento do menu
+      fetch('../Paginas_principais/Menu_Logado.html')
+        .then(response => response.text())
         .then(html => {
           document.getElementById('menuContainer1').innerHTML = html;
-    
-          const menu = document.getElementById('menu-adm');
           const menuIcon = document.querySelector('.menu-icon');
-    
-          if (menu && menuIcon) {
-            menuIcon.addEventListener('click', () => {
-              menu.classList.toggle('hidden');
-              menu.classList.toggle('visible');
-            });
-          }
-        })
-        .catch(err => console.error('Erro ao carregar menu adm:', err));
-      
-      
-      // Abrir menu
-      menuIcon.addEventListener('click', function() {
-        menuOverlay.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Impede scroll quando menu está aberto
-      });
-      
-      // Fechar menu
-      function closeMenuFunction() {
-        menuContainer.style.animation = 'slideIn 0.4s ease reverse forwards';
-        setTimeout(() => {
-          menuOverlay.style.display = 'none';
-          document.body.style.overflow = 'auto';
-        }, 300);
-      }
-      
-      closeMenu.addEventListener('click', closeMenuFunction);
-      
-      // Fechar ao clicar fora
-      menuOverlay.addEventListener('click', function(e) {
-        if (e.target === menuOverlay) {
-          closeMenuFunction();
-        }
-      });
-      
-      // Adiciona efeito flutuante aleatório aos cards
-      const cards = document.querySelectorAll('.feedback-card');
-      cards.forEach((card, index) => {
-        // Tempo de animação diferente para cada card
-        card.style.animationDuration = `${0.5 + (index * 0.1)}s`;
-      });
-      
-      // Efeito flutuante no logo
-      const logo = document.querySelector('.header-img img');
-      setInterval(() => {
-        logo.style.transform = `translateX(-50%) translateY(${Math.sin(Date.now() / 800) * 5}px)`;
-      }, 50);
+          const menu = document.getElementById('menu-logado');
+          
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
     });
   </script>
 </body>
