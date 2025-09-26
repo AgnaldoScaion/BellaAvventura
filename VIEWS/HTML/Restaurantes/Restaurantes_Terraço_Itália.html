@@ -100,88 +100,21 @@
       </div>
     </div>
   </footer>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Verifica autenticação
-      checkAuth();
-
-      // Configura menu
-      setupMenu();
-
-      // Verifica mensagem de sucesso
-      const urlParams = new URLSearchParams(window.location.search);
-      const msg = urlParams.get('msg');
-
-      if (msg === 'login') {
-        showNotification('Login realizado com sucesso!', 'success');
-      } else if (msg === 'cadastro') {
-        showNotification('Cadastro realizado com sucesso!', 'success');
-      }
-    });
-
-    function checkAuth() {
-      const userData = JSON.parse(localStorage.getItem('currentUser'));
-
-      if (userData) {
-        // Atualiza header
-        document.querySelector('.user-header').innerHTML = `
-                <span>👤</span> ${userData.firstName}
-            `;
-
-        // Carrega menu logado
-        loadMenu('Menu_Logado.html');
-      } else {
-        // Carrega menu não logado
-        loadMenu('Menu_Nao_Logado.html');
-      }
-    }
-
-    function loadMenu(menuFile) {
-      fetch(menuFile)
-        .then(res => res.text())
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carregamento do menu
+      fetch('../Paginas_principais/Menu_Logado.html')
+        .then(response => response.text())
         .then(html => {
-          document.getElementById('menuContainer').innerHTML = html;
-          setupMenu();
+          document.getElementById('menuContainer1').innerHTML = html;
+          const menuIcon = document.querySelector('.menu-icon');
+          const menu = document.getElementById('menu-logado');
+          
+          menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
         });
-    }
-
-    function setupMenu() {
-      const menuIcon = document.querySelector('.menu-icon');
-      const menu = document.querySelector('.menu-box');
-
-      if (menu && menuIcon) {
-        menuIcon.addEventListener('click', () => {
-          menu.classList.toggle('hidden');
-          menu.classList.toggle('visible');
-        });
-      }
-
-      // Configura logout se existir
-      const logoutBtn = document.getElementById('logout-link');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          localStorage.removeItem('currentUser');
-          window.location.href = '../Paginas_principais/Entrada.html';
-        });
-      }
-    }
-
-    function showNotification(message, type) {
-      const notif = document.createElement('div');
-      notif.className = `notification ${type}`;
-      notif.textContent = message;
-      document.body.appendChild(notif);
-
-      setTimeout(() => {
-        notif.classList.add('show');
-      }, 10);
-
-      setTimeout(() => {
-        notif.classList.remove('show');
-        setTimeout(() => notif.remove(), 300);
-      }, 3000);
-    }
+    });
   </script>
 </body>
 </html>
