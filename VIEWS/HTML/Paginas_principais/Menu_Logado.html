@@ -76,9 +76,9 @@
 </head>
 <body>
   <div id="menu-logado" class="menu-box hidden">
-  <div class="menu-lateral"></div> <!-- Linha verde separada -->
+  <div class="menu-lateral"></div>
   <div class="menu-conteudo">
-    <h2>MENU <span class="user-name" id="menu-user-name">Usuário</span></h2>
+    <h2>Menu</h2>
     <ul>
       <li><a href="../Paginas_principais/Perfil.html">Meu Perfil</a></li>
       <li><a href="../Paginas_principais/Restaurantes.html">Restaurantes</a></li>
@@ -90,16 +90,16 @@
     </ul>
   </div>
 </div>
-</div>
 
-  <script>
-    // Atualiza nome do usuário
-    document.addEventListener('DOMContentLoaded', function() {
-      const userData = JSON.parse(localStorage.getItem('currentUser'));
-      if (userData) {
-        document.getElementById('menu-user-name').textContent = userData.firstName;
-      }
-    });
-  </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const userData = JSON.parse(localStorage.getItem('currentUser'));
+  if (userData && document.querySelector('.user-header')) {
+    document.querySelector('.user-header').innerHTML = `
+      <span>👤</span> ${userData.firstName}
+    `;
+  }
+});
+</script>
 </body>
 </html>
