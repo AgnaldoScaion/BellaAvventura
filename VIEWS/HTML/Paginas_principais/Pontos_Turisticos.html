@@ -256,7 +256,7 @@
         /* Pontos Turísticos Grid */
         .pontos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas fixas */
             gap: 2rem;
         }
 
@@ -678,599 +678,254 @@
             <p class="page-subtitle">Descubra os melhores pontos turísticos para sua visita. Filtre por tipo,
                 localização e avaliações para uma experiência personalizada.</p>
 
-            <!-- Filtros -->
-            <div class="filtros-container">
-                <h3>Filtros</h3>
-                <form class="filtros-form">
-                    <div class="filtro-grupo">
-                        <label for="tipo">Tipo de Atração</label>
-                        <select id="tipo">
-                            <option value="">Todos</option>
-                            <option value="historico">Histórico</option>
-                            <option value="natural">Natural</option>
-                            <option value="cultural">Cultural</option>
-                            <option value="aventura">Aventura</option>
-                            <option value="religioso">Religioso</option>
-                        </select>
-                    </div>
-                    <div class="filtro-grupo">
-                        <label for="localizacao">Localização</label>
-                        <select id="localizacao">
-                            <option value="">Todas</option>
-                            <option value="sp">São Paulo</option>
-                            <option value="mg">Minas Gerais</option>
-                            <option value="rs">Rio Grande do Sul</option>
-                            <option value="sc">Santa Catarina</option>
-                            <option value="pr">Paraná</option>
-                            <option value="rj">Rio de Janeiro</option>
-                            <option value="ma">Maranhão</option>
+<!-- Filtros -->
+<div class="filtros-container">
+    <h3>Filtros</h3>
+    <form class="filtros-form">
+        <div class="filtro-grupo">
+            <label for="localizacao">Localização</label>
+            <select id="localizacao">
+                <option value="">Todas</option>
+                <option value="sp">São Paulo</option>
+                <option value="mg">Minas Gerais</option>
+                <option value="rs">Rio Grande do Sul</option>
+                <option value="sc">Santa Catarina</option>
+                <option value="pr">Paraná</option>
+                <option value="rj">Rio de Janeiro</option>
+                <option value="ma">Maranhão</option>
+            </select>
+        </div>
+        <div class="filtro-grupo">
+            <label for="avaliacao">Avaliação Mínima</label>
+            <select id="avaliacao">
+                <option value="">Qualquer</option>
+                <option value="3">3 Estrelas</option>
+                <option value="4">4 Estrelas</option>
+                <option value="4.5">4.5+ Estrelas</option>
+            </select>
+        </div>
+        <div class="filtro-botoes">
+            <button type="button" class="btn-filtrar">Aplicar Filtros</button>
+            <button type="button" class="btn-limpar">Limpar</button>
+        </div>
+    </form>
+</div>
 
+<!-- Pontos Turísticos Grid -->
+<div class="pontos-grid">
+    <!-- 1 -->
+    <div class="ponto-card" data-localizacao="sp" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Beco_do_Batman.png" alt="Beco do Batman"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Beco do Batman</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 São Paulo, SP • Brasil</div>
+            <div class="ponto-info"><p>💰 Gratuito</p><p>⭐ 12.500 avaliações</p></div>
+            <a href="../Pontos_turisticos/Beco_do_Batman.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 2 -->
+    <div class="ponto-card" data-localizacao="mg" data-avaliacao="3.8">
+        <div class="ponto-img"><img src="../../IMAGENS/Museu_da_Inconfidencia.png" alt="Museu da Inconfidência"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Museu da Inconfidência</h3><div class="ponto-rating">★3.8</div></div>
+            <div class="ponto-location">📍 Ouro Preto, MG</div>
+            <div class="ponto-info"><p>💰 Médio</p><p>⭐ 9.800 avaliações</p></div>
+            <a href="../Pontos_turisticos/Museu_da_Inconfidência.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 3 -->
+    <div class="ponto-card" data-localizacao="rj" data-avaliacao="4.7">
+        <div class="ponto-img"><img src="../../IMAGENS/pao_de_acucar_principal.jpg" alt="Pão de Açúcar"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Pão de Açúcar</h3><div class="ponto-rating">★4.7</div></div>
+            <div class="ponto-location">📍 Rio de Janeiro, RJ</div>
+            <div class="ponto-info"><p>💰 Gratuito</p><p>⭐ 8.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Pao_de_Acucar.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 4 -->
+    <div class="ponto-card" data-localizacao="pr" data-avaliacao="4.6">
+        <div class="ponto-img"><img src="../../IMAGENS/Parque_das_Aves.png" alt="Parque das Aves"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Parque das Aves</h3><div class="ponto-rating">★4.6</div></div>
+            <div class="ponto-location">📍 Foz do Iguaçu, PR</div>
+            <div class="ponto-info"><p>💰 Gratuito</p><p>⭐ 7.500 avaliações</p></div>
+            <a href="../Pontos_turisticos/Parque_das_Aves.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 5 -->
+    <div class="ponto-card" data-localizacao="ma" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Palacio_dos_Leoes.png" alt="Palácio dos Leões"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Palácio dos Leões</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 São Luíz, MA</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Palácio_dos_Leões.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 6 -->
+    <div class="ponto-card" data-localizacao="mg" data-avaliacao="3.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Mina_da_Passagem.png" alt="Mina da Passagem"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Mina da Passagem</h3><div class="ponto-rating">★3.9</div></div>
+            <div class="ponto-location">📍 Mariana, MG</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Mina_da_Passagem.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 7 -->
+    <div class="ponto-card" data-localizacao="sp" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Catedral_da_Sé.png" alt="Catedral da Sé"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Catedral da Sé</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 São Paulo, SP</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Catedral_da_Sé.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 8 -->
+    <div class="ponto-card" data-localizacao="ma" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Centro_Histórico_de_São_Luís.png" alt="Centro Histórico de São Luís"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Centro Histórico de São Luís</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 São Luíz, MA</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Centro_Histórico_de_São_Luís.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 9 -->
+    <div class="ponto-card" data-localizacao="sc" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Praia_da_Joaquina.png" alt="Praia da Joaquina"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Praia da Joaquina</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Florianópolis, SC</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Praia_da_Joaquina.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 10 -->
+    <div class="ponto-card" data-localizacao="sc" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Mirante_do_Morro_da_Cruz.png" alt="Mirante do Morro da Cruz"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Mirante do Morro da Cruz</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Florianópolis, SC</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Mirante_do_Morro_da_Cruz.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 11 -->
+    <div class="ponto-card" data-localizacao="pr" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/cataratas_do_iguacu_principal.jpg" alt="Cataratas do Iguaçu"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Cataratas do Iguaçu</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Foz do Iguaçu, PR</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Cataratas_do_Iguacu.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 12 -->
+    <div class="ponto-card" data-localizacao="rj" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/cristo_redentor_principal.jpg" alt="Cristo Redentor"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Cristo Redentor</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Rio de Janeiro, RJ</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Cristo_Redentor.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 13 -->
+    <div class="ponto-card" data-localizacao="sc" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Ilha_do_Campeche.png" alt="Ilha do Campeche"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Ilha do Campeche</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Florianópolis, SC</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Ilha_Campege.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 14 -->
+    <div class="ponto-card" data-localizacao="ma" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Lençois_Maranhenses.png" alt="Lençóis Maranhenses"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Lençóis Maranhenses</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Parque Nacional dos Lençóis Maranhenses, MA</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Lençóis_Maranhenses.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 15 -->
+    <div class="ponto-card" data-localizacao="rs" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/mini_mundo_principal.png" alt="Mini Mundo"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Mini Mundo</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Gramado, RS</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Mini_Mundo.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 16 -->
+    <div class="ponto-card" data-localizacao="rj" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/praia_copacabanaprincipal.jpeg" alt="Praia de Copacabana"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Praia de Copacabana</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Copacabana, RJ</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Praia_Copacabana.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 17 -->
+    <div class="ponto-card" data-localizacao="rs" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Foto_Rua_Coberta.png" alt="Rua Coberta"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Rua Coberta</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Gramado, RS</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Rua_coberta.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 18 -->
+    <div class="ponto-card" data-localizacao="pr" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/usina_hidreletrica_itaipu_principal.png" alt="Usina Hidrelétrica de Itaipu"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Usina Hidrelétrica de Itaipu</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Foz do Iguaçu, PR</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Usina_Hidreletrica_de_Itaipu.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 19 -->
+    <div class="ponto-card" data-localizacao="mg" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Igreja_de_São_Francisco_de_Assis.png" alt="Igreja de São Francisco de Assis"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Igreja de São Francisco de Assis</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 Ouro Preto, MG</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Igreja_de_São_Francisco_de_Assis.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+    <!-- 20 -->
+    <div class="ponto-card" data-localizacao="sp" data-avaliacao="4.9">
+        <div class="ponto-img"><img src="../../IMAGENS/Ibirapuera_Park.png" alt="Parque Ibirapuera"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Parque Ibirapuera</h3><div class="ponto-rating">★4.9</div></div>
+            <div class="ponto-location">📍 São Paulo, SP</div>
+            <div class="ponto-info"><p>💰 Alto</p><p>⭐ 10.200 avaliações</p></div>
+            <a href="../Pontos_turisticos/Ibirapuera_Park.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
 
-                        </select>
-                    </div>
-                    <div class="filtro-grupo">
-                        <label for="avaliacao">Avaliação Mínima</label>
-                        <select id="avaliacao">
-                            <option value="">Qualquer</option>
-                            <option value="3">3 Estrelas</option>
-                            <option value="4">4 Estrelas</option>
-                            <option value="4.5">4.5+ Estrelas</option>
-                        </select>
-                    </div>
-                    <div class="filtro-grupo">
-                        <label for="preco">Faixa de Preço</label>
-                        <select id="preco">
-                            <option value="">Todos</option>
-                            <option value="gratis">Gratuito</option>
-                            <option value="economico">Econômico</option>
-                            <option value="medio">Médio</option>
-                            <option value="alto">Alto</option>
-                        </select>
-                    </div>
-
-                    <div class="filtro-botoes">
-                        <button type="button" class="btn-filtrar">Aplicar Filtros</button>
-                        <button type="button" class="btn-limpar">Limpar</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Pontos Turísticos Grid -->
-            <div class="pontos-grid">
-                <!-- Ponto Turístico 1 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Beco_do_Batman.png"
-                            alt="Beco do Batman">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Beco do Batman</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 São Paulo, SP • Brasil</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Gratuito</span></p>
-                            <p><span>⭐</span> 12.500 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-
-                            <a href="../Pontos_turisticos/Beco_do_Batman.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 2 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Museu_da_Inconfidencia.png"
-                            alt="Museu da incondidência">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Museu da inconfidência</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★</span>3.8
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Praça Tiradentes, 139, Centro, Ouro Preto - MG</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Médio</span></p>
-                            <p><span>⭐</span> 9.800 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                            
-                            <a href="../Pontos_turisticos/Museu_da_Inconfidência.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 3 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/pao_de_acucar_principal.jpg"
-                            alt="Pão de açucar">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Pão de açucar</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★</span>4.7
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Urca, Rio de Janeiro</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Gratuito</span></p>
-                            <p><span>⭐</span> 8.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                            
-                            <a href="../Pontos_turisticos/Pao_de_Acucar.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 4 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Parque_das_Aves.png"
-                            alt="Parque das aves">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Parque das aves</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★</span>4.6
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Foz do Iguaçu, Paraná</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Gratuito</span></p>
-                            <p><span>⭐</span> 7.500 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-
-                            <a href="../Pontos_turisticos/Parque_das_Aves.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 5 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Palacio_dos_Leoes.png"
-                            alt="Palácio dos Leões">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Palácio dos Leões</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 São Luíz, MA</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-
-                        
-                            <a href="../Pontos_turisticos/Palácio_dos_Leões.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 6 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Mina_da_Passagem.png"
-                            alt="Mina da Passagem">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Mina da Passagem</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>3.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Mariana, MG</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Mina_da_Passagem.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 7 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Catedral_da_Sé.png"
-                            alt="Catedral da Sé">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Catedral da Sé</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 São Paulo, SP</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Catedral_da_Sé.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 8 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Centro_Histórico_de_São_Luís.png"
-                            alt="Centro Histórico de São Luís">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Centro Histórico de São Luís</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Sãu Luíz, MA</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Centro_Histórico_de_São_Luís.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 9 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Praia_da_Joaquina.png"
-                            alt="Praia_da_Joaquina">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Praia da Joaquina</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Florianópolis, SC</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Praia_da_Joaquina.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 10 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Mirante_do_Morro_da_Cruz.png"
-                            alt="Mirante do Morro da Cruz">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Mirante do Morro da Cruz</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Florianópolis, SC</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Mirante_do_Morro_da_Cruz.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 11 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/cataratas_do_iguacu_principal.jpg"
-                            alt="Cataratas do Iguaçu">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Cataratas do Iguaçu</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Foz do Iguaçu, PR</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Cataratas_do_Iguacu.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 12 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/cristo_redentor_principal.jpg"
-                            alt="Cristo Redentor">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Cristo Redentor</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Rio de Janeiro, RJ</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Cristo_Redentor.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 13 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Ilha_do_Campeche.png"
-                            alt="Ilha do Campeche">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Ilha do Campeche</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Florianópolis, SC</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Ilha_Campege.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 14 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Lençois_Maranhenses.png"
-                            alt="Lençois Maranhenses">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Lençóis Maranhenses</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Parque Nacional dos Lençóis Maranhenses, MA</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Lençóis_Maranhenses.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 15 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/mini_mundo_principal.png"
-                            alt="Mini Mundo">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Mini Mundo</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Gramado, RS</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Mini_Mundo.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 16 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/praia_copacabanaprincipal.jpeg"
-                            alt="Praia de Copacabana">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Praia de Copacabana</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Copacabana, RJ</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Praia_Copacabana.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 17 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Foto_Rua_Coberta .png"
-                            alt="Rua Coberta">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Rua Coberta</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Gramado, RS</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Rua_coberta.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 18 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/usina_hidreletrica_itaipu_principal.png"
-                            alt="Usina Hidrelétrica de Itaipu">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Usina Hidrelétrica de Itaipu </h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Foz do Iguaçu, PR</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Usina_Hidreletrica_de_Itaipu.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 19 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Igreja_de_São_Francisco_de_Assis.png"
-                            alt="Igreja de São Francisco de Assis">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Igraja de São Francisco de Assis</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Ouro de Preto, MG</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Igreja_de_São_Francisco_de_Assis.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 20 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Ibirapuera_Park.png"
-                            alt="Parque Ibirapuera">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Parque Ibirapuera</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★★★</span>4.9
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 São Paulo, SP</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Alto</span></p>
-                            <p><span>⭐</span> 10.200 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-                        
-                        <a href="../Pontos_turisticos/Ibirapuera_Park.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ponto Turístico 21 -->
-                <div class="ponto-card">
-                    <div class="ponto-img">
-                        <img src="../../IMAGENS/Lago_Negro.png"
-                            alt="Lago Negro">
-                    </div>
-                    <div class="ponto-content">
-                        <div class="ponto-header">
-                            <h3 class="ponto-title">Lago Negro</h3>
-                            <div class="ponto-rating">
-                                <span class="star">★</span>4.5
-                            </div>
-                        </div>
-                        <div class="ponto-location">📍 Gramado, Rio Grande do Sul</div>
-                        <div class="ponto-info">
-                            <p><span>💰</span> <span class="ponto-price">Médio</span></p>
-                            <p><span>⭐</span> 6.800 avaliações</p>
-                        </div>
-                        <div class="ponto-footer">
-
-                            
-                            <a href="../Pontos_turisticos/Lago_Negro.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-
+    <!-- 21 -->
+    <div class="ponto-card" data-localizacao="rs" data-avaliacao="4.5">
+        <div class="ponto-img"><img src="../../IMAGENS/Lago_Negro.png" alt="Lago Negro"></div>
+        <div class="ponto-content">
+            <div class="ponto-header"><h3 class="ponto-title">Lago Negro</h3><div class="ponto-rating">★4.5</div></div>
+            <div class="ponto-location">📍 Gramado, RS</div>
+            <div class="ponto-info"><p>💰 Médio</p><p>⭐ 6.800 avaliações</p></div>
+            <a href="../Pontos_turisticos/Lago_Negro.html" class="btn-ver-mais">Ver Detalhes</a>
+        </div>
+    </div>
+</div>
+                   
         <!-- Rodapé -->
         <footer class="footer">
             <div class="footer-top">
@@ -1290,141 +945,142 @@
         </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Verifica autenticação
-            checkAuth();
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Verifica autenticação
+    checkAuth();
 
-            // Configura o menu
+    // Configura o menu
+    setupMenu();
+
+    // Configura os botões de filtro
+    setupFilterButtons();
+
+    // Configura a paginação
+    setupPagination();
+
+    // Verifica mensagem de sucesso
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
+
+    if (msg) {
+        showNotification(getNotificationMessage(msg), 'success');
+    }
+});
+
+function checkAuth() {
+    const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (userData) {
+        document.querySelector('.user-header').innerHTML = `<span>👤</span> ${userData.firstName}`;
+        loadMenu('Menu_Logado.html');
+    } else {
+        loadMenu('Menu_Nao_Logado.html');
+    }
+}
+
+function loadMenu(menuFile) {
+    fetch(menuFile)
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('menuContainer').innerHTML = html;
             setupMenu();
+        })
+        .catch(err => {
+            console.error('Erro ao carregar menu:', err);
+            showNotification('Erro ao carregar o menu. Por favor, recarregue a página.', 'error');
+        });
+}
 
-            // Configura os botões de filtro
-            setupFilterButtons();
+function setupMenu() {
+    const menuIcon = document.querySelector('.menu-icon');
+    const menu = document.querySelector('.menu-box');
 
-            // Configura a paginação
-            setupPagination();
+    if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
+        });
+    }
 
-            // Verifica mensagem de sucesso
-            const urlParams = new URLSearchParams(window.location.search);
-            const msg = urlParams.get('msg');
+    const logoutBtn = document.getElementById('logout-link');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = '../Paginas_principais/Entrada.html';
+        });
+    }
+}
 
-            if (msg) {
-                showNotification(getNotificationMessage(msg), 'success');
-            }
+function setupFilterButtons() {
+    const btnFiltrar = document.querySelector('.btn-filtrar');
+    const btnLimpar = document.querySelector('.btn-limpar');
+
+    btnFiltrar.addEventListener('click', function () {
+        const localizacao = document.getElementById('localizacao').value;
+        const avaliacao = document.getElementById('avaliacao').value;
+
+        const pontos = document.querySelectorAll('.ponto-card');
+
+        pontos.forEach(ponto => {
+            const pontoLocal = ponto.getAttribute('data-localizacao');
+            const pontoAva = parseFloat(ponto.getAttribute('data-avaliacao'));
+
+            // Checa se ponto atende aos filtros
+            const matchLocal = !localizacao || pontoLocal === localizacao;
+            const matchAva = !avaliacao || pontoAva >= parseFloat(avaliacao);
+
+            ponto.style.display = (matchLocal && matchAva) ? 'block' : 'none';
         });
 
-        function checkAuth() {
-            const userData = JSON.parse(localStorage.getItem('currentUser'));
+        showNotification('Filtro aplicado com sucesso!', 'success');
+    });
 
-            if (userData) {
-                // Atualiza header
-                document.querySelector('.user-header').innerHTML = `
-                    <span>👤</span> ${userData.firstName}
-                `;
+    btnLimpar.addEventListener('click', function () {
+        document.getElementById('localizacao').value = '';
+        document.getElementById('avaliacao').value = '';
 
-                // Carrega menu logado
-                loadMenu('Menu_Logado.html');
-      } else {
-        // Carrega menu não logado
-        loadMenu('Menu_Nao_Logado.html');
-      }
-        }
+        // Mostra todos os pontos novamente
+        document.querySelectorAll('.ponto-card').forEach(ponto => {
+            ponto.style.display = 'block';
+        });
 
-        function loadMenu(menuFile) {
-            fetch(menuFile)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('menuContainer').innerHTML = html;
-                    setupMenu();
-                })
-                .catch(err => {
-                    console.error('Erro ao carregar menu:', err);
+        showNotification('Filtros limpos!', 'success');
+    });
+}
 
-                    // Mostra uma mensagem em caso de erro
-                    showNotification('Erro ao carregar o menu. Por favor, recarregue a página.', 'error');
-                });
-        }
+function setupPagination() {
+    const paginaBtns = document.querySelectorAll('.pagina-btn');
 
-        function setupMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const menu = document.querySelector('.menu-box');
+    paginaBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            paginaBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            showNotification(`Página ${this.textContent} carregada!`, 'success');
+        });
+    });
+}
 
-            if (menu && menuIcon) {
-                menuIcon.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                    menu.classList.toggle('visible');
-                });
-            }
+function getNotificationMessage(msgType) {
+    const messages = {
+        'login': 'Login realizado com sucesso!',
+        'cadastro': 'Cadastro realizado com sucesso!',
+        'reserva': 'Reserva realizada com sucesso!',
+        'avaliacao': 'Avaliação enviada com sucesso!'
+    };
+    return messages[msgType] || 'Operação realizada com sucesso!';
+}
 
-            // Configura logout se existir
-            const logoutBtn = document.getElementById('logout-link');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    localStorage.removeItem('currentUser');
-                    window.location.href = '../Paginas_principais/Entrada.html';
-                });
-            }
-        }
-
-        function setupFilterButtons() {
-            const btnFiltrar = document.querySelector('.btn-filtrar');
-            const btnLimpar = document.querySelector('.btn-limpar');
-
-            btnFiltrar.addEventListener('click', function () {
-                // Lógica para filtrar pontos turísticos
-                showNotification('Filtro aplicado com sucesso!', 'success');
-            });
-
-            btnLimpar.addEventListener('click', function () {
-                // Limpa os campos do filtro
-                document.getElementById('tipo').value = '';
-                document.getElementById('localizacao').value = '';
-                document.getElementById('avaliacao').value = '';
-                document.getElementById('preco').value = '';
-
-                showNotification('Filtros limpos!', 'success');
-            });
-        }
-
-        function setupPagination() {
-            const paginaBtns = document.querySelectorAll('.pagina-btn');
-
-            paginaBtns.forEach(btn => {
-                btn.addEventListener('click', function () {
-                    // Remove a classe 'active' de todos os botões
-                    paginaBtns.forEach(b => b.classList.remove('active'));
-
-                    // Adiciona a classe 'active' ao botão clicado
-                    this.classList.add('active');
-
-                    // Lógica para carregar a página correspondente
-                    showNotification(`Página ${this.textContent} carregada!`, 'success');
-                });
-            });
-        }
-
-        function getNotificationMessage(msgType) {
-            const messages = {
-                'login': 'Login realizado com sucesso!',
-                'cadastro': 'Cadastro realizado com sucesso!',
-                'reserva': 'Reserva realizada com sucesso!',
-                'avaliacao': 'Avaliação enviada com sucesso!'
-            };
-
-            return messages[msgType] || 'Operação realizada com sucesso!';
-        }
-
-        function showNotification(message, type) {
-            const notificacao = document.getElementById('notificacao');
-            notificacao.textContent = message;
-            notificacao.className = `notificacao ${type} show`;
-
-            setTimeout(() => {
-                notificacao.classList.remove('show');
-            }, 4000);
-        }
-    </script>
+function showNotification(message, type) {
+    const notificacao = document.getElementById('notificacao');
+    notificacao.textContent = message;
+    notificacao.className = `notificacao ${type} show`;
+    setTimeout(() => {
+        notificacao.classList.remove('show');
+    }, 4000);
+}
+</script>
 </body>
 
 </html>

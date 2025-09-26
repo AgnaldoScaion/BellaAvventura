@@ -14,6 +14,11 @@
             src: local('Garamond'), serif;
             font-weight: bold;
         }
+        .filtros-form select {
+            width: 350px;      /* Tamanho grande, mas não 100% */
+            max-width: 100%;   /* Não ultrapassa o container */
+            font-size: 1.1rem; /* Fonte maior para destaque */
+        }
 
         html,
         body {
@@ -255,7 +260,7 @@
         /* Hotéis Grid */
         .hoteis-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas fixas */
             gap: 2rem;
         }
 
@@ -650,579 +655,525 @@
             <h1 class="page-title">Hotéis</h1>
             <p class="page-subtitle">Encontre os melhores hotéis para sua estadia. Filtre por preço, localização e comodidades para uma experiência personalizada.</p>
 
-            <!-- Filtros -->
-            <div class="filtros-container">
-                <h3>Filtros</h3>
-                <form class="filtros-form">
-                    <div class="filtro-grupo">
-                        <label for="destino">Destino</label>
-                        <input type="text" id="destino" placeholder="Para onde você vai?">
-                    </div>
+<!-- Filtros -->
+<div class="filtros-container">
+    <h3>Filtros</h3>
+    <form class="filtros-form">
+        <div class="filtro-grupo">
+            <label for="localizacao">Localização</label>
+            <select id="localizacao">
+                <option value="">Todas</option>
+                <option value="sp">São Paulo</option>
+                <option value="mg">Minas Gerais</option>
+                <option value="rs">Rio Grande do Sul</option>
+                <option value="sc">Santa Catarina</option>
+                <option value="pr">Paraná</option>
+                <option value="rj">Rio de Janeiro</option>
+                <option value="ma">Maranhão</option>
+            </select>
+        </div>
+        <div class="filtro-grupo">
+            <label for="avaliacao">Avaliação Mínima</label>
+            <select id="avaliacao">
+                <option value="">Qualquer</option>
+                <option value="3">3 Estrelas</option>
+                <option value="4">4 Estrelas</option>
+                <option value="4.5">4.5+ Estrelas</option>
+            </select>
+        </div>
+        <div class="filtro-botoes">
+            <button type="button" class="btn-filtrar">Aplicar Filtros</button>
+            <button type="button" class="btn-limpar">Limpar</button>
+        </div>
+    </form>
+</div>
+<!-- Hotéis Grid -->
+<div class="hoteis-grid">
 
-                    <div class="filtro-grupo">
-                        <label for="hospedes">Hóspedes</label>
-                        <select id="hospedes">
-                            <option value="1">1 Adulto</option>
-                            <option value="2">2 Adultos</option>
-                            <option value="3">3 Adultos</option>
-                            <option value="4">4 Adultos</option>
-                            <option value="familiar">Família com crianças</option>
-                        </select>
-                    </div>
-                    <div class="filtro-grupo">
-                        <label for="preco">Faixa de Preço</label>
-                        <select id="preco">
-                            <option value="todos">Qualquer preço</option>
-                            <option value="economico">Econômico (até R$200)</option>
-                            <option value="medio">Médio (R$200 - R$500)</option>
-                            <option value="premium">Premium (R$500+)</option>
-                        </select>
-                    </div>
-                    <div class="filtro-grupo">
-                        <label for="classificacao">Classificação</label>
-                        <select id="classificacao">
-                            <option value="todos">Qualquer classificação</option>
-                            <option value="5">5 estrelas</option>
-                            <option value="4">4 estrelas</option>
-                            <option value="3">3 estrelas</option>
-                            <option value="2">2 estrelas</option>
-                        </select>
-                    </div>
-                    <div class="filtro-botoes">
-                        <button type="button" class="btn-filtrar">Aplicar Filtros</button>
-                        <button type="button" class="btn-limpar">Limpar</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Hotéis Grid -->
-            <div class="hoteis-grid">
-                <!-- Hotel 1 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/capsula_hotel.jpg" alt="Capsula Hotel">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Capsula Hotel</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Consolação, São Paulo</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 650</span> /noite</p>
-                            <p><span>⭐</span> 2.378  avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_Capsula_HotelSP.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 2 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/hotel_atlantico_business.jpg" alt="Hotel Atlantico Bussines">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Atlântico Bussines</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.9
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Dantas, Rio de Janeiro</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 850</span> /noite</p>
-                            <p><span>⭐</span> 1.975 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_Atlantico_BussinesRJ.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 3 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/Minas_Garden_Hotel.jpg" alt="Minas Garden Hotel">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Minas Garden Hotel</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.7
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍Poços de Caldas, Minas Gerais</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 550</span> /noite</p>
-                            <p><span>⭐</span> 1.526 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_minas_gardenMG.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 4 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/Blue_Tree_Towers.jpg" alt="Blue Tree Towers">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Blue Tree Towers</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 São Luís, Maranhão</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 580</span> /noite</p>
-                            <p><span>⭐</span> 3.494 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_blue_tree_towersMA.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 5 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/ingleses_palace_hotel.jpg" alt="Ingleses Palace Hotel">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Ingleses Palace Hotel</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.9
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Florianópolis, Santa Catarina</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 980</span> /noite</p>
-                            <p><span>⭐</span> 1.550 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-                 
-                            <a href="../Hoteis/Hotel_ingleses_palaceSC.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 6 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/hotel_colline_france_gramado.jpg" alt="Hotel Colline de France-Gramado">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Colline de France-Gramado</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.6
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Gramado, Rio Grande do Sul</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 480</span> /noite</p>
-                            <p><span>⭐</span> 1.526 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_collineRS.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-            <!-- Hotel 7 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/Hotel_atalntico.webp" alt="Hotel Atlântico Copacabana">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Atlântico Copacabana</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.6
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Copacabana, Rio de Janeiro</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 880</span> /noite</p>
-                            <p><span>⭐</span> 6.362 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_Atlantico_copacabanaRJ.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-            <!-- Hotel 8 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/praia_hotel.jpg" alt="Hotel Atlântico Praia">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Atlântico Praia</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Copacabana, Rio de Janeiro</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 780</span> /noite</p>
-                            <p><span>⭐</span> 3.695 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_Atlantico_praiaRJ.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-             <!-- Hotel 9 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/hotel_continental.jpg" alt="Hotel Continental">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Continental</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Floresta, Porto Alegre</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 680</span> /noite</p>
-                            <p><span>⭐</span> 3.281 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_continentalRS.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Hotel 10 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/hotel_gold.jpg" alt="Hotel GoldMen Express Cianorte">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel GoldMen Express Cianorte</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.3
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Zona 3, Cianorte - PR</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 680</span> /noite</p>
-                            <p><span>⭐</span> 58 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_GoldMen_Express _CianortePR.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Hotel 11 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/Gran_Villagio_Hotel.webp" alt="Gran Villagio Hotel">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Gran Villagio Hotel</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.6
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Consolação, São Paulo</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 980</span> /noite</p>
-                            <p><span>⭐</span> 1.425 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_gran_villagioSP.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-                <!-- Hotel 12 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/infinity_hotel.jpg" alt="Life Infinity - Hotel">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Life Infinity - Hotel</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.2
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍 Carniel, Gramado</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 870</span> /noite</p>
-                            <p><span>⭐</span> 205 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_life_infinityRS.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-            <!-- Hotel 13 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/Hotel_oceania.jpg" alt="Oceania Park Hotel Spa & Convention Center">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Oceania Park Hotel Spa & Convention Center</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.5
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍Ingleses Centro, Florianópolis</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 630</span> /noite</p>
-                            <p><span>⭐</span> 4.103 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_oceania_parkSC.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Hotel 14 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/hotel_sol.avif" alt="Hotel Pousada Por do Sol">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Pousada Por do Sol</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.7
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍Camanducaia - MG</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 680</span> /noite</p>
-                            <p><span>⭐</span> 247 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_por_do_solMG.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 15 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/Hotel_Pousada_Agua_Marinha.jpg" alt="Hotel Pousada Agua Marinha">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Pousada Agua Marinha</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍Brejatuba, Guaratuba</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 650</span> /noite</p>
-                            <p><span>⭐</span> 1.182 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-                            <a href="../Hoteis/Hotel_Pousada_Agua_MarinhaPR.html" class="btn-ver-mais">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 16 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/hotel_canto.jpg" alt="Hotel Pousada Canto da Vigia">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Pousada Canto da Vigia</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.9
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍Armação, Penha</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 580</span> /noite</p>
-                            <p><span>⭐</span> 651 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_Pousada_Canto_da_VigiaSC.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 17 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/hotel_universal.webp" alt="Hotel Pousada Universal">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Pousada Universal</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.3
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍Setor rodoviário, Riachão</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 580</span> /noite</p>
-                            <p><span>⭐</span> 276 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_Pousada_UniversalMA.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 18 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/hotel_rios.jpg" alt="Hotel Rios">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Rios</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.4
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍Potosi, Balsas</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 550</span> /noite</p>
-                            <p><span>⭐</span> 80 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_RiosMA.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Hotel 19 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/michel_hotel.jpg" alt="San Michel Hotel">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">San Michel Hotel</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.8
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍República, São Paulo</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 650</span> /noite</p>
-                            <p><span>⭐</span> 2.526 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_San_MichelSP.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 20 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/Viale_Cataratas_Hotel.jpg" alt="Hotel Viale Cataratas">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Viale Cataratas</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.5
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍Vila Yolanda, Foz do Iguaçu</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 650</span> /noite</p>
-                            <p><span>⭐</span> 1.864 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_Viale_CataratasPR.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotel 21 -->
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <img src="../../IMAGENS/Hotel_spa.jpg" alt="Hotel Villa Lobos Spa Romantik">
-                    </div>
-                    <div class="hotel-content">
-                        <div class="hotel-header">
-                            <h3 class="hotel-title">Hotel Villa Lobos Spa Romantik</h3>
-                            <div class="hotel-rating">
-                                <span class="star">★</span>4.9
-                            </div>
-                        </div>
-                        <div class="hotel-location">📍Pte. Nova, Extrema</div>
-                        <div class="hotel-info">
-                            <p><span>💰</span> <span class="hotel-price">R$ 550</span> /noite</p>
-                            <p><span>⭐</span> 13.335 avaliações</p>
-                        </div>
-                        <div class="hotel-footer">
-
-                            <a href="../Hoteis/Hotel_Villa_Lobos_Spa_RomantikMG.html" class="btn-ver-mais">Ver Detalhes</a>
-
-                        </div>
-                    </div>
+    <!-- Hotel 1 -->
+    <div class="hotel-card" data-localizacao="sp">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/capsula_hotel.jpg" alt="Capsula Hotel">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Capsula Hotel</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.8
                 </div>
             </div>
+            <div class="hotel-location">📍 Consolação, São Paulo</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 650</span> /noite</p>
+                <p><span>⭐</span> 2.378 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_Capsula_HotelSP.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 2 -->
+    <div class="hotel-card" data-localizacao="rj">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/hotel_atlantico_business.jpg" alt="Hotel Atlantico Bussines">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Atlântico Bussines</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.9
+                </div>
+            </div>
+            <div class="hotel-location">📍 Dantas, Rio de Janeiro</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 850</span> /noite</p>
+                <p><span>⭐</span> 1.975 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_Atlantico_BussinesRJ.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 3 -->
+    <div class="hotel-card" data-localizacao="mg">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/Minas_Garden_Hotel.jpg" alt="Minas Garden Hotel">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Minas Garden Hotel</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.7
+                </div>
+            </div>
+            <div class="hotel-location">📍 Poços de Caldas, Minas Gerais</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 550</span> /noite</p>
+                <p><span>⭐</span> 1.526 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_minas_gardenMG.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 4 -->
+    <div class="hotel-card" data-localizacao="ma">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/Blue_Tree_Towers.jpg" alt="Blue Tree Towers">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Blue Tree Towers</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.8
+                </div>
+            </div>
+            <div class="hotel-location">📍 São Luís, Maranhão</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 580</span> /noite</p>
+                <p><span>⭐</span> 3.494 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_blue_tree_towersMA.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 5 -->
+    <div class="hotel-card" data-localizacao="sc">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/ingleses_palace_hotel.jpg" alt="Ingleses Palace Hotel">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Ingleses Palace Hotel</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.9
+                </div>
+            </div>
+            <div class="hotel-location">📍 Florianópolis, Santa Catarina</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 980</span> /noite</p>
+                <p><span>⭐</span> 1.550 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_ingleses_palaceSC.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 6 -->
+    <div class="hotel-card" data-localizacao="rs">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/hotel_colline_france_gramado.jpg" alt="Hotel Colline de France-Gramado">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Colline de France-Gramado</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.6
+                </div>
+            </div>
+            <div class="hotel-location">📍 Gramado, Rio Grande do Sul</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 480</span> /noite</p>
+                <p><span>⭐</span> 1.526 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_collineRS.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 7 -->
+    <div class="hotel-card" data-localizacao="rj">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/Hotel_atalntico.webp" alt="Hotel Atlântico Copacabana">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Atlântico Copacabana</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.6
+                </div>
+            </div>
+            <div class="hotel-location">📍 Copacabana, Rio de Janeiro</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 880</span> /noite</p>
+                <p><span>⭐</span> 6.362 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_Atlantico_copacabanaRJ.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 8 -->
+    <div class="hotel-card" data-localizacao="rj">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/praia_hotel.jpg" alt="Hotel Atlântico Praia">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Atlântico Praia</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.8
+                </div>
+            </div>
+            <div class="hotel-location">📍 Copacabana, Rio de Janeiro</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 780</span> /noite</p>
+                <p><span>⭐</span> 3.695 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_Atlantico_praiaRJ.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 9 -->
+    <div class="hotel-card" data-localizacao="rs">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/hotel_continental.jpg" alt="Hotel Continental">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Continental</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.8
+                </div>
+            </div>
+            <div class="hotel-location">📍 Floresta, Porto Alegre</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 680</span> /noite</p>
+                <p><span>⭐</span> 3.281 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_continentalRS.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 10 -->
+    <div class="hotel-card" data-localizacao="pr">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/hotel_gold.jpg" alt="Hotel GoldMen Express Cianorte">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel GoldMen Express Cianorte</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.3
+                </div>
+            </div>
+            <div class="hotel-location">📍 Zona 3, Cianorte - PR</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 680</span> /noite</p>
+                <p><span>⭐</span> 58 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_GoldMen_Express _CianortePR.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 11 -->
+    <div class="hotel-card" data-localizacao="sp">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/Gran_Villagio_Hotel.webp" alt="Gran Villagio Hotel">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Gran Villagio Hotel</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.6
+                </div>
+            </div>
+            <div class="hotel-location">📍 Consolação, São Paulo</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 980</span> /noite</p>
+                <p><span>⭐</span> 1.425 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_gran_villagioSP.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 12 -->
+    <div class="hotel-card" data-localizacao="rs">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/infinity_hotel.jpg" alt="Life Infinity - Hotel">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Life Infinity - Hotel</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.2
+                </div>
+            </div>
+            <div class="hotel-location">📍 Carniel, Gramado</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 870</span> /noite</p>
+                <p><span>⭐</span> 205 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_life_infinityRS.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 13 -->
+    <div class="hotel-card" data-localizacao="sc">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/Hotel_oceania.jpg" alt="Oceania Park Hotel Spa & Convention Center">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Oceania Park Hotel Spa & Convention Center</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.5
+                </div>
+            </div>
+            <div class="hotel-location">📍 Ingleses Centro, Florianópolis</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 630</span> /noite</p>
+                <p><span>⭐</span> 4.103 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_oceania_parkSC.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 14 -->
+    <div class="hotel-card" data-localizacao="mg">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/hotel_sol.avif" alt="Hotel Pousada Por do Sol">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Pousada Por do Sol</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.7
+                </div>
+            </div>
+            <div class="hotel-location">📍 Camanducaia - MG</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 680</span> /noite</p>
+                <p><span>⭐</span> 247 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_por_do_solMG.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 15 -->
+    <div class="hotel-card" data-localizacao="pr">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/Hotel_Pousada_Agua_Marinha.jpg" alt="Hotel Pousada Agua Marinha">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Pousada Agua Marinha</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.8
+                </div>
+            </div>
+            <div class="hotel-location">📍 Brejatuba, Guaratuba</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 650</span> /noite</p>
+                <p><span>⭐</span> 1.182 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_Pousada_Agua_MarinhaPR.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 16 -->
+    <div class="hotel-card" data-localizacao="sc">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/hotel_canto.jpg" alt="Hotel Pousada Canto da Vigia">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Pousada Canto da Vigia</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.9
+                </div>
+            </div>
+            <div class="hotel-location">📍 Armação, Penha</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 580</span> /noite</p>
+                <p><span>⭐</span> 651 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_Pousada_Canto_da_VigiaSC.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 17 -->
+    <div class="hotel-card" data-localizacao="ma">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/hotel_universal.webp" alt="Hotel Pousada Universal">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Pousada Universal</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.3
+                </div>
+            </div>
+            <div class="hotel-location">📍 Setor rodoviário, Riachão</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 580</span> /noite</p>
+                <p><span>⭐</span> 276 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_Pousada_UniversalMA.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 18 -->
+    <div class="hotel-card" data-localizacao="ma">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/hotel_rios.jpg" alt="Hotel Rios">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Rios</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.4
+                </div>
+            </div>
+            <div class="hotel-location">📍 Potosi, Balsas</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 550</span> /noite</p>
+                <p><span>⭐</span> 80 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_RiosMA.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 19 -->
+    <div class="hotel-card" data-localizacao="sp">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/michel_hotel.jpg" alt="San Michel Hotel">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">San Michel Hotel</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.8
+                </div>
+            </div>
+            <div class="hotel-location">📍 República, São Paulo</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 650</span> /noite</p>
+                <p><span>⭐</span> 2.526 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_San_MichelSP.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 20 -->
+    <div class="hotel-card" data-localizacao="pr">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/Viale_Cataratas_Hotel.jpg" alt="Hotel Viale Cataratas">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Viale Cataratas</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.5
+                </div>
+            </div>
+            <div class="hotel-location">📍 Vila Yolanda, Foz do Iguaçu</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 650</span> /noite</p>
+                <p><span>⭐</span> 1.864 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_Viale_CataratasPR.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hotel 21 -->
+    <div class="hotel-card" data-localizacao="mg">
+        <div class="hotel-img">
+            <img src="../../IMAGENS/Hotel_spa.jpg" alt="Hotel Villa Lobos Spa Romantik">
+        </div>
+        <div class="hotel-content">
+            <div class="hotel-header">
+                <h3 class="hotel-title">Hotel Villa Lobos Spa Romantik</h3>
+                <div class="hotel-rating">
+                    <span class="star">★</span>4.9
+                </div>
+            </div>
+            <div class="hotel-location">📍 Pte. Nova, Extrema</div>
+            <div class="hotel-info">
+                <p><span>💰</span> <span class="hotel-price">R$ 550</span> /noite</p>
+                <p><span>⭐</span> 13.335 avaliações</p>
+            </div>
+            <div class="hotel-footer">
+                <a href="../Hoteis/Hotel_Villa_Lobos_Spa_RomantikMG.html" class="btn-ver-mais">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+
+</div>
 
              
         </main>
@@ -1247,139 +1198,142 @@
         </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Verifica autenticação
-            checkAuth();
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Verifica autenticação
+    checkAuth();
 
-            // Configura o menu
+    // Configura o menu
+    setupMenu();
+
+    // Configura os botões de filtro
+    setupFilterButtons();
+
+    // Configura a paginação
+    setupPagination();
+
+    // Verifica mensagem de sucesso
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
+
+    if (msg) {
+        showNotification(getNotificationMessage(msg), 'success');
+    }
+});
+
+function checkAuth() {
+    const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (userData) {
+        document.querySelector('.user-header').innerHTML = `<span>👤</span> ${userData.firstName}`;
+        loadMenu('Menu_Logado.html');
+    } else {
+        loadMenu('Menu_Nao_Logado.html');
+    }
+}
+
+function loadMenu(menuFile) {
+    fetch(menuFile)
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('menuContainer').innerHTML = html;
             setupMenu();
+        })
+        .catch(err => {
+            console.error('Erro ao carregar menu:', err);
+            showNotification('Erro ao carregar o menu. Por favor, recarregue a página.', 'error');
+        });
+}
 
-            // Configura os botões de filtro
-            setupFilterButtons();
+function setupMenu() {
+    const menuIcon = document.querySelector('.menu-icon');
+    const menu = document.querySelector('.menu-box');
 
-            // Configura a paginação
-            setupPagination();
+    if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
+        });
+    }
 
-            // Verifica mensagem de sucesso
-            const urlParams = new URLSearchParams(window.location.search);
-            const msg = urlParams.get('msg');
+    const logoutBtn = document.getElementById('logout-link');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = '../Paginas_principais/Entrada.html';
+        });
+    }
+}
 
-            if (msg) {
-                showNotification(getNotificationMessage(msg), 'success');
-            }
+function setupFilterButtons() {
+    const btnFiltrar = document.querySelector('.btn-filtrar');
+    const btnLimpar = document.querySelector('.btn-limpar');
+
+    btnFiltrar.addEventListener('click', function () {
+        const localizacao = document.getElementById('localizacao').value;
+        const avaliacao = document.getElementById('avaliacao').value;
+
+        const hotel = document.querySelectorAll('.hotel-card');
+
+        hotel.forEach(hotel => {
+            const hotelLocal = hotel.getAttribute('data-localizacao');
+            const hotelAva = parseFloat(hotel.getAttribute('data-avaliacao'));
+
+            // Checa se hotel atende aos filtros
+            const matchLocal = !localizacao || hotelLocal === localizacao;
+            const matchAva = !avaliacao || hotelAva >= parseFloat(avaliacao);
+
+            hotel.style.display = (matchLocal && matchAva) ? 'block' : 'none';
         });
 
-        function checkAuth() {
-            const userData = JSON.parse(localStorage.getItem('currentUser'));
+        showNotification('Filtro aplicado com sucesso!', 'success');
+    });
 
-            if (userData) {
-                // Atualiza header
-                document.querySelector('.user-header').innerHTML = `
-                    <span>👤</span> ${userData.firstName}
-                `;
+    btnLimpar.addEventListener('click', function () {
+        document.getElementById('localizacao').value = '';
+        document.getElementById('avaliacao').value = '';
 
-                // Carrega menu logado
-                loadMenu('Menu_Logado.html');
-      } else {
-        // Carrega menu não logado
-        loadMenu('Menu_Nao_Logado.html');
-      }
-        }
+        // Mostra todos os hotel novamente
+        document.querySelectorAll('.hotel-card').forEach(hotel => {
+            hotel.style.display = 'block';
+        });
 
-        function loadMenu(menuFile) {
-            fetch(menuFile)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('menuContainer').innerHTML = html;
-                    setupMenu();
-                })
-                .catch(err => {
-                    console.error('Erro ao carregar menu:', err);
+        showNotification('Filtros limpos!', 'success');
+    });
+}
 
-                    // Mostra uma mensagem em caso de erro
-                    showNotification('Erro ao carregar o menu. Por favor, recarregue a página.', 'error');
-                });
-        }
+function setupPagination() {
+    const paginaBtns = document.querySelectorAll('.pagina-btn');
 
-        function setupMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const menu = document.querySelector('.menu-box');
+    paginaBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            paginaBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            showNotification(`Página ${this.textContent} carregada!`, 'success');
+        });
+    });
+}
 
-            if (menu && menuIcon) {
-                menuIcon.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                    menu.classList.toggle('visible');
-                });
-            }
+function getNotificationMessage(msgType) {
+    const messages = {
+        'login': 'Login realizado com sucesso!',
+        'cadastro': 'Cadastro realizado com sucesso!',
+        'reserva': 'Reserva realizada com sucesso!',
+        'avaliacao': 'Avaliação enviada com sucesso!'
+    };
+    return messages[msgType] || 'Operação realizada com sucesso!';
+}
 
-            // Configura logout se existir
-            const logoutBtn = document.getElementById('logout-link');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    localStorage.removeItem('currentUser');
-                    window.location.href = '../Paginas_principais/Entrada.html';
-                });
-            }
-        }
-
-        function setupFilterButtons() {
-            const btnFiltrar = document.querySelector('.btn-filtrar');
-            const btnLimpar = document.querySelector('.btn-limpar');
-
-            btnFiltrar.addEventListener('click', function() {
-                // Lógica para filtrar hotéis
-                showNotification('Filtro aplicado com sucesso!', 'success');
-            });
-
-            btnLimpar.addEventListener('click', function() {
-                // Limpa os campos do filtro
-                document.getElementById('destino').value = '';
-                document.getElementById('preco').value = 'todos';
-                document.getElementById('classificacao').value = 'todos';
-
-                showNotification('Filtros limpos!', 'success');
-            });
-        }
-
-        function setupPagination() {
-            const paginaBtns = document.querySelectorAll('.pagina-btn');
-
-            paginaBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove a classe 'active' de todos os botões
-                    paginaBtns.forEach(b => b.classList.remove('active'));
-
-                    // Adiciona a classe 'active' ao botão clicado
-                    this.classList.add('active');
-
-                    // Lógica para carregar a página correspondente
-                    showNotification(`Página ${this.textContent} carregada!`, 'success');
-                });
-            });
-        }
-
-        function getNotificationMessage(msgType) {
-            const messages = {
-                'login': 'Login realizado com sucesso!',
-                'cadastro': 'Cadastro realizado com sucesso!',
-                'avaliacao': 'Avaliação enviada com sucesso!'
-            };
-
-            return messages[msgType] || 'Operação realizada com sucesso!';
-        }
-
-        function showNotification(message, type) {
-            const notificacao = document.getElementById('notificacao');
-            notificacao.textContent = message;
-            notificacao.className = `notificacao ${type} show`;
-
-            setTimeout(() => {
-                notificacao.classList.remove('show');
-            }, 4000);
-        }
-    </script>
+function showNotification(message, type) {
+    const notificacao = document.getElementById('notificacao');
+    notificacao.textContent = message;
+    notificacao.className = `notificacao ${type} show`;
+    setTimeout(() => {
+        notificacao.classList.remove('show');
+    }, 4000);
+}
+</script>
 </body>
 
 </html>
