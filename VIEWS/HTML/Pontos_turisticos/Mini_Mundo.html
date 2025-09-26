@@ -102,21 +102,34 @@
       </div>
     </div>
   </footer>
-   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Carregamento do menu
-      fetch('../Paginas_principais/Menu_Logado.html')
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById('menuContainer1').innerHTML = html;
-          const menuIcon = document.querySelector('.menu-icon');
-          const menu = document.getElementById('menu-logado');
-          
-          menuIcon.addEventListener('click', () => {
-            menu.classList.toggle('visible');
-          });
-        });
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  checkAuth();
+
+  // Carregamento do menu
+  fetch('../Paginas_principais/Menu_Logado.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('menuContainer1').innerHTML = html;
+      const menuIcon = document.querySelector('.menu-icon');
+      const menu = document.getElementById('menu-logado');
+
+      menuIcon.addEventListener('click', () => {
+        menu.classList.toggle('visible');
+      });
     });
-  </script>
+});
+
+function checkAuth() {
+  const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+  if (userData) {
+    // Atualiza header com o nome do usuário
+    document.querySelector('.user-header').innerHTML = `
+      <span>👤</span> ${userData.firstName}
+    `;
+  }
+}
+</script>
 </body>
 </html>
