@@ -198,11 +198,13 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
+            justify-content: center; /* centraliza os campos horizontalmente */
         }
 
         .filtro-grupo {
-            flex: 1;
-            min-width: 200px;
+            flex: 1 1 250px; /* aumenta o tamanho base dos grupos */
+            min-width: 220px; /* nunca menor que isso */
+            max-width: 300px; /* nunca maior que isso */
         }
 
         .filtro-grupo label {
@@ -215,10 +217,20 @@
         .filtro-grupo select,
         .filtro-grupo input {
             width: 100%;
-            padding: 0.8rem;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            box-sizing: border-box;
             border: 1px solid #D8E6D9;
-            border-radius: 5px;
-            font-family: 'Inter', sans-serif;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* sombra leve */
+            transition: all 0.3s ease;
+        }
+
+        .filtro-grupo select:focus,
+        .filtro-grupo input:focus {
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* sombra mais intensa ao focar */
+            border-color: #5a8f3d;
         }
 
         .filtro-botoes {
