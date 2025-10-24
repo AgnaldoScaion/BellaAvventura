@@ -69,12 +69,13 @@
             cursor: pointer;
         }
 
-        .user-header {
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+   .user-header {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: auto; /* empurra o "Visitante" para a direita */
+    }
 
         .login-container {
             max-width: 400px;
@@ -342,7 +343,7 @@
             });
 
             // Carrega menu não logado
-            fetch('MenuNaoLogado.html')
+            fetch('Menu_Nao_Logado.html')
                 .then(res => res.text())
                 .then(html => {
                     document.getElementById('menuContainer1').innerHTML = html;

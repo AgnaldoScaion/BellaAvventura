@@ -73,10 +73,11 @@
     }
 
     .user-header {
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: auto; /* empurra o "Visitante" para a direita */
     }
 
     .cadastro-container {
@@ -342,14 +343,13 @@
         e.target.value = value;
       });
 
-      // Carrega menu não logado
-      fetch('MenuNaoLogado.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('menuContainer1').innerHTML = html;
-          setupMenu();
-        });
-    });
+ // Carrega menu não logado
+ fetch('./Menu_Nao_Logado.html')
+   .then(res => res.text())
+   .then(html => {
+     document.getElementById('menuContainer1').innerHTML = html;
+     setupMenu();
+   });
 
     function setupMenu() {
       const menu = document.getElementById('menu-nao-logado');
@@ -438,7 +438,7 @@
         notif.classList.remove('show');
       }, 3000);
     }
+  });
   </script>
-</body>
 
 </html>
