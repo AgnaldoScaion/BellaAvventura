@@ -21,7 +21,7 @@
         </div>
       </div>
   
-      <div id="menuContainer1"></div>
+      <div id="menuContainer"></div>
 
       <!-- Logo -->
       <div class="header">
@@ -101,70 +101,56 @@
       </div>
     </div>
   </footer>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Carregamento do menu
-      fetch('../HTML/MenuNaoLogado.html')
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById('menuContainer1').innerHTML = html;
-          const menuIcon = document.querySelector('.menu-icon');
-          const menu = document.getElementById('menu-nao-logado');
-
-          menuIcon.addEventListener('click', () => {
-            menu.classList.toggle('visible');
-          });
-        });
-
-      // Verifica se há usuário logado
-      const userData = JSON.parse(localStorage.getItem('currentUser'));
-      if (userData) {
-        document.querySelector('.user-header').innerHTML = `
-          <span>👤</span> ${userData.firstName}
-        `;
-      }
-    });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const btnVoltar = document.querySelector('.btn-voltar');
-    const footer = document.querySelector('.footer');
-    const threshold = 100; // 100px antes do final para considerar "no final"
-    
-    function adjustButtonPosition() {
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const scrollPosition = window.scrollY || window.pageYOffset;
-        const footerRect = footer.getBoundingClientRect();
-        const footerTop = footerRect.top;
-        
-        // Verifica se chegou perto do final da página
-        const nearBottom = scrollPosition + windowHeight >= documentHeight - threshold;
-        
-        if (nearBottom) {
-            btnVoltar.classList.add('visible');
-            
-            // Calcula a posição segura acima do footer
-            const safePosition = windowHeight - footerTop - 1; // 20px de margem
-            
-            if (footerTop < windowHeight) {
-                // Footer está visível - ajusta posição
-                btnVoltar.style.bottom = `${Math.max(20, safePosition)}px`;
-            } else {
-                // Footer não está visível - posição padrão
-                btnVoltar.style.bottom = '30px';
-            }
-        } else {
-            btnVoltar.classList.remove('visible');
-        }
-    }
-    
-    // Event listeners
-    window.addEventListener('scroll', adjustButtonPosition);
-    window.addEventListener('resize', adjustButtonPosition);
-    
-    // Verificação inicial
-    adjustButtonPosition();
+   <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Verifica autenticação
+    checkAuth();
 });
-  </script>
+
+function checkAuth() {
+    const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (userData) {
+        document.querySelector('.user-header').innerHTML = `<span>👤</span> ${userData.firstName}`;
+        loadMenu('../Paginas_principais/Menu_Logado.html');
+    } else {
+        loadMenu('../Paginas_principais/Menu_Nao_Logado.html');
+    }
+}
+
+function loadMenu(menuFile) {
+    fetch(menuFile)
+        .then(res => res.text())
+        .then(html => {
+            // Use o mesmo ID que o Hoteis.html usa
+            document.getElementById('menuContainer').innerHTML = html;
+            setupMenu();
+        })
+        .catch(err => {
+            console.error('Erro ao carregar menu:', err);
+        });
+}
+
+function setupMenu() {
+    const menuIcon = document.querySelector('.menu-icon');
+    const menu = document.querySelector('.menu-box');
+
+    if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
+        });
+    }
+
+    const logoutBtn = document.getElementById('logout-link');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = '../Paginas_principais/Entrada.html';
+        });
+    }
+}
+</script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!-- ...existing code... -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,99 +8,322 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="icon" type="image/png" href="https://i.ibb.co/vx2Dzj9v/image.png">
   <style>
+    :root{
+      --bg:#f6faf6;
+      --panel:#ffffff;
+      --accent:#2f8f4a;
+      --muted:#6b6b6b;
+      --shadow: 0 8px 30px rgba(12,40,18,0.12);
+      --radius:12px;
+      --gap:14px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* container usado para posicionamento absoluto no layout atual */
     .menu-box {
-        position: absolute;
-        top: 50px;
-        left: 20px;
-        background-color: #d6e3d6;
-        border-radius: 8px;
-        padding: 20px;
-        width: 260px;
-        display: flex;
-        gap: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        font-family: 'Garamond', serif;
-        z-index: 10;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
-    
-      .menu-lateral {
-        background-color: #88b68b;
-        width: 24px;
-        border-radius: 8px;
-      }
-    
-      .menu-conteudo {
-        flex: 1;
-      }
-    
-      .menu-conteudo h2 {
-        font-size: 20px;
-        margin: 0;
-        border-bottom: 1px solid #999;
-        padding-bottom: 10px;
-      }
-    
-      .menu-conteudo ul {
-        list-style: none;
-        padding: 0;
-        margin-top: 15px;
-      }
-    
-      .menu-conteudo li {
-        margin: 15px 0;
-      }
-    
-      .menu-conteudo a {
-        text-decoration: none;
-        color: black;
-        transition: color 0.2s;
-      }
-    
-      .menu-conteudo a:hover {
-        color: #3a6545;
-      }
-    
-      /* Esconde o menu inicialmente */
-      .hidden {
-        visibility: hidden;
-        opacity: 0;
-        pointer-events: none;
-      }
-    
-      .visible {
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-      }
+      position: absolute;
+      top: 62px;
+      left: 18px;
+      width: 320px;
+      max-width: calc(100vw - 40px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--panel));
+      border-radius: var(--radius);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: var(--gap);
+      align-items: start;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+      transform-origin: top left;
+      transform: translateY(-8px) scale(0.98);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform .22s cubic-bezier(.2,.9,.3,1), opacity .18s ease, visibility .18s;
+      z-index: 1200;
+    }
+
+    .menu-box.visible {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-lateral {
+      background: linear-gradient(180deg,var(--accent), #4aa56a);
+      border-radius: 10px;
+      padding: 10px;
+      color: white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: inset 0 -4px 10px rgba(0,0,0,0.08);
+    }
+
+    .menu-lateral i { font-size: 20px; }
+
+    .menu-conteudo {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .menu-header {
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .avatar {
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#e6f1e6,#ffffff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--accent);
+      font-weight:700;
+      box-shadow: 0 4px 10px rgba(47,143,74,0.08);
+      overflow:hidden;
+      flex-shrink:0;
+    }
+
+    .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .user-info {
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .user-info .name {
+      font-size:16px;
+      font-weight:700;
+      color:#102014;
+    }
+
+    .user-info .email {
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .menu-actions {
+      display:flex;
+      gap:8px;
+      margin-top:6px;
+      flex-wrap:wrap;
+    }
+
+    .menu-btn {
+      background:transparent;
+      border:1px solid rgba(16,32,20,0.06);
+      padding:8px 10px;
+      border-radius:10px;
+      font-size:13px;
+      color:#15321a;
+      cursor:pointer;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      transition:all .14s;
+    }
+
+    .menu-btn:hover{
+      transform:translateY(-2px);
+      box-shadow: 0 6px 16px rgba(16,32,20,0.06);
+    }
+
+    .menu-list{
+      margin-top:6px;
+      padding-top:8px;
+      border-top:1px solid rgba(16,32,20,0.04);
+    }
+
+    .menu-list ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:8px;
+    }
+
+    .menu-list a{
+      display:flex;
+      gap:10px;
+      padding:8px 10px;
+      border-radius:8px;
+      text-decoration:none;
+      color:#16321b;
+      align-items:center;
+      font-size:14px;
+      transition:background .14s, transform .12s;
+    }
+
+    .menu-list a i{
+      width:28px;
+      text-align:center;
+      color:var(--accent);
+    }
+
+    .menu-list a:hover{
+      background:linear-gradient(90deg, rgba(47,143,74,0.06), rgba(47,143,74,0.03));
+      transform:translateX(4px);
+    }
+
+    .menu-list a.secondary{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .logout-btn {
+      display:inline-flex;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:8px;
+      align-items:center;
+      cursor:pointer;
+      color:#a12b2b;
+      border:1px solid rgba(161,43,43,0.08);
+      background:rgba(161,43,43,0.03);
+      justify-content:center;
+      width:100%;
+    }
+
+    /* small screens adapt */
+    @media (max-width:520px){
+      .menu-box{ left: 12px; right:12px; width:auto; grid-template-columns:60px 1fr; padding:12px; }
+      .avatar{ width:44px; height:44px; }
+      .menu-btn{ padding:7px 8px; font-size:13px; }
+      .menu-list a{ font-size:13px; padding:8px; }
+    }
   </style>
 </head>
 <body>
-  <div id="menu-logado" class="menu-box hidden">
-  <div class="menu-lateral">
-  <div class="menu-conteudo">
-    <h2>MENU <span class="user-name" id="menu-user-name">Usuário</span></h2>
-    <ul>
-      <li><a href="../Paginas_principais/Perfil.html">Meu Perfil</a></li>
-      <li><a href="../Paginas_principais/Restaurantes.html">Restaurantes</a></li>
-      <li><a href="../Paginas_principais/Hoteis.html">Hotéis</a></li>
-      <li><a href="../Paginas_principais/Pontos_Turisticos.html">Pontos Turísticos</a></li>
-      <li><a href="../Paginas_principais/Feedbacks.html">Meus Feedbacks</a></li>
-      <li><a href="../Paginas_principais/SobreNos.html">Sobre nós</a></li>
-      <li><a href="#" id="logout-link"><span class="logout-btn">Sair</span></a></li>
-    </ul>
-  </div>
-  </div>
-</div>
+  <div id="menu-logado" class="menu-box" role="dialog" aria-modal="false" aria-hidden="true">
+    <div class="menu-lateral" aria-hidden="true">
+      <i class="fa-solid fa-compass-drafting"></i>
+    </div>
 
-  <script>
-    // Atualiza nome do usuário
-    document.addEventListener('DOMContentLoaded', function() {
-      const userData = JSON.parse(localStorage.getItem('currentUser'));
-      if (userData) {
-        document.getElementById('menu-user-name').textContent = userData.firstName;
+    <div class="menu-conteudo">
+      <div class="menu-header">
+        <div class="avatar" id="menu-avatar" aria-hidden="true">
+          <!-- Avatar ou iniciais serão inseridos por JS -->
+        </div>
+        <div class="user-info">
+          <div class="name" id="menu-user-name">Usuário</div>
+          <div class="email" id="menu-user-email">visitante@bellaavventura</div>
+        </div>
+      </div>
+
+
+      <nav class="menu-list" aria-label="Navegação principal">
+        <ul>
+          <li><a href="../Paginas_principais/Perfil.html"><i class="fa-regular fa-user"></i> Meu Perfil</a></li>
+          <li><a href="../Paginas_principais/Restaurantes.html"><i class="fa-solid fa-utensils"></i> Restaurantes</a></li>
+          <li><a href="../Paginas_principais/Hoteis.html"><i class="fa-solid fa-hotel"></i> Hotéis</a></li>
+          <li><a href="../Paginas_principais/Pontos_Turisticos.html"><i class="fa-solid fa-map-location-dot"></i> Pontos Turísticos</a></li>
+          <li><a href="../Paginas_principais/Manutenção.html"><i class="fa-solid fa-comments"></i> Meus Feedbacks</a></li>
+          <li><a href="../Paginas_principais/SobreNos.html"><i class="fa-solid fa-circle-info"></i> Sobre nós</a></li>
+          <li><button id="logout-link" class="logout-btn" aria-label="Sair da conta"><i class="fa-solid fa-right-from-bracket"></i> Sair</button></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const nameEl = document.getElementById('menu-user-name');
+  const emailEl = document.getElementById('menu-user-email');
+  const avatarEl = document.getElementById('menu-avatar');
+
+  function findUserInStorage(){
+    const preferKeys = ['currentUser','usuario','user','usuarioAtual','usuario_logado','cadastro','userData','usuarioData'];
+    for(const k of preferKeys){
+      const raw = localStorage.getItem(k);
+      if(!raw) continue;
+      try {
+        const parsed = JSON.parse(raw);
+        if(parsed && typeof parsed === 'object') return parsed;
+      } catch(e){}
+      if(raw.includes('|')){
+        const [nome,email] = raw.split('|').map(s=>s.trim());
+        return { nome, email };
       }
+      if(raw.includes('@')) return { email: raw };
+      return { nome: raw };
+    }
+    for(let i=0;i<localStorage.length;i++){
+      const k = localStorage.key(i);
+      const raw = localStorage.getItem(k);
+      if(!raw) continue;
+      try {
+        const parsed = JSON.parse(raw);
+        if(parsed && typeof parsed === 'object'){
+          const keys = Object.keys(parsed).map(s=>s.toLowerCase()).join(' ');
+          if(/name|nome|first|usuario|full/.test(keys) || /email|mail/.test(keys)) return parsed;
+        }
+      } catch(e){}
+    }
+    const nome = localStorage.getItem('nome') || localStorage.getItem('nomeUsuario') || localStorage.getItem('name') || null;
+    const email = localStorage.getItem('email') || localStorage.getItem('usuarioEmail') || null;
+    if(nome || email) return { nome, email };
+    return null;
+  }
+
+  function normalizeUser(u){
+    if(!u) return null;
+    const full = u.firstName || u.first_name || u.name || u.nome || '';
+    const firstName = (u.firstName) ? u.firstName : (full.split ? full.split(' ')[0] : full) || null;
+    return {
+      name: full || null,
+      firstName: firstName,
+      email: u.email || u.emailUser || u.usuarioEmail || u.mail || u.email_address || null,
+      avatarUrl: u.avatarUrl || u.avatar || u.foto || u.photo || null
+    };
+  }
+
+  const raw = findUserInStorage();
+  const user = normalizeUser(raw);
+
+  if(user && (user.firstName || user.name || user.email)){
+    if(nameEl) nameEl.textContent = user.firstName || user.name || 'Usuário';
+    if(emailEl && user.email) emailEl.textContent = user.email;
+    if(avatarEl){
+      if(user.avatarUrl){
+        avatarEl.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = user.avatarUrl;
+        img.alt = (user.firstName || user.name || 'Usuário') + ' avatar';
+        avatarEl.appendChild(img);
+      } else {
+        const initials = (user.firstName || user.name || 'V').trim().split(' ').filter(Boolean).map(s=>s[0]).slice(0,2).join('').toUpperCase();
+        avatarEl.textContent = initials || 'V';
+      }
+    }
+  } else {
+    // sem dados: mantém padrão
+    if(nameEl) nameEl.textContent = 'Visitante';
+    if(emailEl) emailEl.textContent = 'Entre para mais funções';
+    if(avatarEl) avatarEl.textContent = 'V';
+    console.warn('Menu_Logado: nenhum dado de usuário encontrado em localStorage. Verifique cadastro (use localStorage.setItem("currentUser", JSON.stringify({ firstName, name, email })) ).');
+  }
+
+  // logout: mantém comportamento existente
+  const logoutBtn = document.getElementById('logout-link');
+  if(logoutBtn){
+    logoutBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      const ok = confirm('Deseja realmente sair?');
+      if(!ok) return;
+      ['currentUser','usuario','user','usuario_logado','cadastro','userData','usuarioData','nome','email'].forEach(k => localStorage.removeItem(k));
+      window.location.href = '../../Entrada.html';
     });
-  </script>
+  }
+});
+</script>
+
 </body>
 </html>
+<!-- ...existing code... -->

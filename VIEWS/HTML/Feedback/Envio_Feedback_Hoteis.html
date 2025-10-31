@@ -515,78 +515,57 @@
         </footer>
     </div>
 
-    <script>
-        // Verifica autenticação
-        function checkAuth() {
-            const userData = JSON.parse(localStorage.getItem('currentUser'));
+      <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Verifica autenticação
+    checkAuth();
+});
 
-            if (userData) {
-                // Atualiza header
-                document.querySelector('.user-header').innerHTML = `
-                    <span>👤</span> ${userData.firstName}
-                `;
+function checkAuth() {
+    const userData = JSON.parse(localStorage.getItem('currentUser'));
 
-                // Carrega menu logado
-                loadMenu('MenuLogado.html');
-            } else {
-                // Carrega menu não logado
-                loadMenu('MenuNaoLogado.html');
-            }
-        }
+    if (userData) {
+        document.querySelector('.user-header').innerHTML = `<span>👤</span> ${userData.firstName}`;
+        loadMenu('../Paginas_principais/Menu_Logado.html');
+    } else {
+        loadMenu('../Paginas_principais/Menu_Nao_Logado.html');
+    }
+}
 
-        // Carrega o menu
-        function loadMenu(menuFile) {
-            fetch(menuFile)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('menuContainer').innerHTML = html;
-                    setupMenu();
-                });
-        }
-
-        // Configura o menu
-        function setupMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const menu = document.querySelector('.menu-box');
-
-            if (menu && menuIcon) {
-                menuIcon.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                    menu.classList.toggle('visible');
-                });
-            }
-
-            // Configura logout se existir
-            const logoutBtn = document.getElementById('logout-link');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    localStorage.removeItem('currentUser');
-                    window.location.href = '../Paginas_principais/Entrada.html';
-                });
-            }
-        }
-
-        // Verifica autenticação e configura o menu
-        document.addEventListener('DOMContentLoaded', function () {
-            checkAuth();
+function loadMenu(menuFile) {
+    fetch(menuFile)
+        .then(res => res.text())
+        .then(html => {
+            // Use o mesmo ID que o Hoteis.html usa
+            document.getElementById('menuContainer').innerHTML = html;
             setupMenu();
-
-            // Configura o botão de enviar feedback
-            document.querySelector('.btn-enviar').addEventListener('click', function() {
-                const restaurante = document.getElementById('restaurante').value;
-                const avaliacao = document.getElementById('avaliacao').value;
-                const comentario = document.getElementById('comentario').value;
-
-                if (restaurante && avaliacao && comentario) {
-                    alert('Feedback enviado com sucesso!');
-                    // Aqui você pode adicionar a lógica para salvar o feedback
-                } else {
-                    alert('Por favor, preencha todos os campos.');
-                }
-            });
+        })
+        .catch(err => {
+            console.error('Erro ao carregar menu:', err);
         });
-    </script>
+}
+
+function setupMenu() {
+    const menuIcon = document.querySelector('.menu-icon');
+    const menu = document.querySelector('.menu-box');
+
+    if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
+        });
+    }
+
+    const logoutBtn = document.getElementById('logout-link');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = '../Paginas_principais/Entrada.html';
+        });
+    }
+}
+</script>
 </body>
 
 </html>
