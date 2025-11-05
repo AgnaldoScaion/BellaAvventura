@@ -280,7 +280,7 @@
     <!-- Conteúdo -->
     <main class="main-content">
       <div class="cadastro-container">
-        <h1 class="cadastro-title">Cadastre-se como adm</h1>
+        <h1 class="cadastro-title">Cadastre-se</h1>
         <div class="cadastro-box">
           <div class="form-group">
             <label for="nome">Nome completo</label>
@@ -298,7 +298,7 @@
           </div>
 
           <div class="form-group">
-            <label for="senha">Senha adm</label>
+            <label for="senha">Senha</label>
             <input type="password" id="senha" name="senha" placeholder="Crie uma senha">
           </div>
 
@@ -343,10 +343,10 @@
       });
 
       // Carrega menu não logado
-      fetch('MenuNaoLogado.html')
+      fetch('../Paginas_principais/MenuNaoLogado.html')
         .then(res => res.text())
         .then(html => {
-          document.getElementById('menuContainer1').innerHTML = html;
+          document.getElementById('menuContainer').innerHTML = html;
           setupMenu();
         });
     });
@@ -367,7 +367,7 @@
       const nome = document.getElementById('nome').value.trim();
       const cpf = document.getElementById('cpf').value.replace(/\D/g, ''); // Remove formatação
       const email = document.getElementById('email').value.trim();
-      const senha = document.getElementById('senha adm').value;
+      const senha = document.getElementById('senha').value;
 
       // Validação dos campos
       if (!nome || !cpf || !email || !senha) {

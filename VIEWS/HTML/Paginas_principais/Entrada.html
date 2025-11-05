@@ -648,114 +648,57 @@
         </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            checkAuth();
+       <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Verifica autenticação
+    checkAuth();
+});
+
+function checkAuth() {
+    const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (userData) {
+        document.querySelector('.user-header').innerHTML = `<span>👤</span> ${userData.firstName}`;
+        loadMenu('../Paginas_principais/Menu_Logado.html');
+    } else {
+        loadMenu('../Paginas_principais/Menu_Nao_Logado.html');
+    }
+}
+
+function loadMenu(menuFile) {
+    fetch(menuFile)
+        .then(res => res.text())
+        .then(html => {
+            // Use o mesmo ID que o Hoteis.html usa
+            document.getElementById('menuContainer').innerHTML = html;
             setupMenu();
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const msg = urlParams.get('msg');
-
-            if (msg === 'login') {
-                showNotification('Login realizado com sucesso!', 'success');
-            } else if (msg === 'cadastro') {
-                showNotification('Cadastro realizado com sucesso!', 'success');
-            }
-
-            const backToTopButton = document.getElementById('backToTop');
-            const footer = document.getElementById('pageFooter');
-
-            function updateBackToTopPosition() {
-                const footerRect = footer.getBoundingClientRect();
-                const scrollPosition = window.innerHeight + window.pageYOffset;
-                const documentHeight = document.body.offsetHeight;
-
-                if (scrollPosition >= documentHeight - footer.offsetHeight - 20) {
-                    backToTopButton.style.bottom = (window.innerHeight - footerRect.top + 30) + 'px';
-                } else {
-                    backToTopButton.style.bottom = '30px';
-                }
-            }
-
-            window.addEventListener('scroll', function () {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
-                updateBackToTopPosition();
-            });
-
-            backToTopButton.addEventListener('click', function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            window.addEventListener('resize', updateBackToTopPosition);
+        })
+        .catch(err => {
+            console.error('Erro ao carregar menu:', err);
         });
+}
 
-        function checkAuth() {
-            const userData = JSON.parse(localStorage.getItem('currentUser'));
+function setupMenu() {
+    const menuIcon = document.querySelector('.menu-icon');
+    const menu = document.querySelector('.menu-box');
 
-            if (userData) {
-                document.querySelector('.user-header').innerHTML = `
-                <span>👤</span> ${userData.firstName}
-            `;
-                loadMenu('Menu_Logado.html');
-      } else {
-        // Carrega menu não logado
-        loadMenu('Menu_Nao_Logado.html');
-      }
-        }
+    if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('visible');
+        });
+    }
 
-        function loadMenu(menuFile) {
-            fetch(menuFile)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('menuContainer').innerHTML = html;
-                    setupMenu();
-                });
-        }
-
-        function setupMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const menu = document.querySelector('.menu-box');
-
-            if (menu && menuIcon) {
-                menuIcon.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                    menu.classList.toggle('visible');
-                });
-            }
-
-            const logoutBtn = document.getElementById('logout-link');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    localStorage.removeItem('currentUser');
-                    window.location.href = '../Paginas_principais/Entrada.html';
-                });
-            }
-        }
-
-        function showNotification(message, type) {
-            const notif = document.createElement('div');
-            notif.className = `notification ${type}`;
-            notif.textContent = message;
-            document.body.appendChild(notif);
-
-            setTimeout(() => {
-                notif.classList.add('show');
-            }, 10);
-
-            setTimeout(() => {
-                notif.classList.remove('show');
-                setTimeout(() => notif.remove(), 300);
-            }, 3000);
-        }
-    </script>
+    const logoutBtn = document.getElementById('logout-link');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = '../Paginas_principais/Entrada.html';
+        });
+    }
+}
+</script>
 </body>
 
 </html>

@@ -343,10 +343,10 @@
       });
 
       // Carrega menu não logado
-      fetch('MenuNaoLogado.html')
+      fetch('../Paginas_principais/MenuNaoLogado.html')
         .then(res => res.text())
         .then(html => {
-          document.getElementById('menuContainer1').innerHTML = html;
+          document.getElementById('menuContainer').innerHTML = html;
           setupMenu();
         });
     });

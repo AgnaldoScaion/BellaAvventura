@@ -342,10 +342,10 @@
             });
 
             // Carrega menu não logado
-            fetch('MenuNaoLogado.html')
+            fetch('../Paginas_principais/MenuNaoLogado.html')
                 .then(res => res.text())
                 .then(html => {
-                    document.getElementById('menuContainer1').innerHTML = html;
+                    document.getElementById('menuContainer').innerHTML = html;
                     setupMenu();
                 });
 
@@ -396,17 +396,26 @@
             // document.getElementById('limparStorage').addEventListener('click', clearLocalStorage);
         });
 
-        function setupMenu() {
-            const menu = document.getElementById('menu-nao-logado');
-            const menuIcon = document.querySelector('.menu-icon');
+        // Carrega menu não logado
+      fetch('../Paginas_principais/MenuNaoLogado.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menuContainer').innerHTML = html;
+          setupMenu();
+        });
+    
 
-            if (menu && menuIcon) {
-                menuIcon.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                    menu.classList.toggle('visible');
-                });
-            }
-        }
+    function setupMenu() {
+      const menu = document.getElementById('menu-nao-logado');
+      const menuIcon = document.querySelector('.menu-icon');
+
+      if (menu && menuIcon) {
+        menuIcon.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          menu.classList.toggle('visible');
+        });
+      }
+    }
 
         function showNotification(message, type) {
             const notif = document.getElementById('notification');
